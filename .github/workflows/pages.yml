@@ -1,10 +1,11 @@
-name: Build y despliegue en GitHub Pages
+name: Build, test and deploy
 
 on:
   push:
     branches: [main]
+  pull_request:
   schedule:
-    # Cada día a las 05:30 UTC: refresca versiones y actividad de GitHub
+    # Cada día a las 05:30 UTC: refresca datos de GitHub, Escriba y estado de servicios
     - cron: "30 5 * * *"
   workflow_dispatch:
 
@@ -14,7 +15,7 @@ permissions:
   id-token: write
 
 concurrency:
-  group: pages
+  group: pages-${{ github.ref }}
   cancel-in-progress: false
 
 jobs:
@@ -22,19 +23,70 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
+
       - uses: actions/setup-node@v7
         with:
           node-version: 24
-      - name: Build (site/ + datos de GitHub -> _site/)
+          cache: npm
+
+      - name: Install tooling
+        run: npm ci
+
+      - name: Cache Playwright browsers
+        uses: actions/cache@v6
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: Build (site/ + live data -> _site/)
         run: node scripts/build.mjs
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Render Open Graph images
+        run: node scripts/og.mjs
+
+      - name: Validate HTML
+        run: npm run check:html
+
+      - name: Check es/en are in sync
+        run: npm run check:i18n
+
+      - name: Check links
+        uses: lycheeverse/lychee-action@v2.9.0
+        with:
+          args: >-
+            --no-progress --root-dir "${{ github.workspace }}/_site"
+            --exclude "linkedin\.com" --exclude "goatcounter\.com" --exclude "toniruiz\.es"
+            --max-retries 3 --accept 200,206,429
+            "_site/**/*.html"
+          fail: true
+
+      - name: End-to-end tests
+        run: npx playwright test
+
+      - name: Lighthouse
+        run: |
+          export CHROME_PATH="$(node -e "import('@playwright/test').then(m => console.log(m.chromium.executablePath()))")"
+          npx lhci autorun
+
+      - name: Publish Lighthouse scores
+        run: node scripts/lighthouse-scores.mjs
+
       - uses: actions/configure-pages@v6
+        if: github.event_name != 'pull_request'
+
       - uses: actions/upload-pages-artifact@v5
+        if: github.event_name != 'pull_request'
         with:
           path: _site
+          include-hidden-files: true
 
   deploy:
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
     needs: build
     runs-on: ubuntu-latest
     environment:

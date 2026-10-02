@@ -17,11 +17,12 @@
         ['Uptime', '+20 años programando'],
         ['Lenguajes', 'PHP · Python · Go · .NET · Node.js'],
         ['Cloud', 'AWS · GCP · Azure'],
-        ['Contenedores', 'Docker · Kubernetes'],
+        ['Contenedores', 'Docker · Podman · Kubernetes'],
         ['IaC', 'Terraform · Ansible'],
-        ['CI/CD', 'GitHub Actions · Jenkins'],
+        ['CI/CD', 'GitHub Actions · GitLab CI · Bitbucket · Jenkins'],
+        ['Shell', 'Bash · zsh'],
         ['Observabilidad', 'Prometheus · Grafana · ELK'],
-        ['Idiomas', 'español · català · English']
+        ['Idiomas', 'Español · Català · English']
       ],
       help: [
         'Comandos disponibles',
@@ -31,6 +32,7 @@
         ['projects', 'proyectos en producción'],
         ['kubectl get pods', 'estado de los proyectos'],
         ['git log', 'actividad reciente en GitHub'],
+        ['status', 'estado real de los servicios'],
         ['contact', 'cómo hablar conmigo'],
         ['cd <sección>', 'ir a perfil, stack, proyectos o contacto'],
         ['lang', 'switch to English'],
@@ -39,8 +41,8 @@
       ],
       whoami: 'Escribo el código. Y lo llevo a producción.',
       skills: {
-        dev: [['backend', 'PHP, Python, Go, .NET, Node.js'], ['arquitectura', 'REST, GraphQL, microservicios, hexagonal, DDD'], ['datos', 'PostgreSQL, MySQL, SQL Server, NoSQL'], ['frontend', 'JavaScript, React, AngularJS, PWA'], ['calidad', 'PHPUnit, pgTAP, Playwright'], ['ia', 'agentes, RAG, LLM, n8n, Make']],
-        ops: [['cloud', 'AWS, GCP, Azure'], ['contenedores', 'Docker, Kubernetes, Compose, Nginx'], ['ci/cd', 'GitHub Actions, Jenkins'], ['iac', 'Terraform, Ansible'], ['observab.', 'Prometheus, Grafana, ELK']]
+        dev: [['backend', 'PHP, Python, Go, .NET, Node.js'], ['arquitectura', 'REST, GraphQL, microservicios, hexagonal, DDD'], ['datos', 'PostgreSQL, MySQL, SQL Server, NoSQL, dbt'], ['frontend', 'JavaScript, React, AngularJS, PWA'], ['calidad', 'PHPUnit, pgTAP, Playwright'], ['automatización', 'n8n, Make, Bash'], ['ia', 'agentes, RAG, LLM']],
+        ops: [['cloud', 'AWS, GCP, Azure'], ['contenedores', 'Docker, Podman, Kubernetes, Compose, Nginx'], ['ci/cd', 'GitHub Actions, GitLab CI, Bitbucket Pipelines, Jenkins'], ['iac', 'Terraform, Ansible'], ['observab.', 'Prometheus, Grafana, ELK']]
       },
       projects: { escriba: 'PWA para coleccionistas de la Marca del Este', osr: 'ayuda de mesa para directores de juego OSR', open: 'abrir app', code: 'código' },
       noData: 'Sin datos ahora mismo. Mira ',
@@ -57,6 +59,7 @@
       notFound: '— prueba con',
       langSwitch: 'Switching to English…',
       intro: '<span class="dim">Escribe</span> <span class="ok">help</span> <span class="dim">para ver los comandos disponibles.</span>',
+      status: { head: ['SERVICIO', 'ESTADO', 'HTTP', 'LATENCIA', 'COMPROBADO'], up: 'operativo', down: 'caído', none: 'Sin comprobaciones recientes.' },
       menuOpen: 'Abrir menú',
       menuClose: 'Cerrar menú',
       // El aviso se muestra en el idioma de destino
@@ -73,9 +76,10 @@
         ['Uptime', '20+ years coding'],
         ['Languages', 'PHP · Python · Go · .NET · Node.js'],
         ['Cloud', 'AWS · GCP · Azure'],
-        ['Containers', 'Docker · Kubernetes'],
+        ['Containers', 'Docker · Podman · Kubernetes'],
         ['IaC', 'Terraform · Ansible'],
-        ['CI/CD', 'GitHub Actions · Jenkins'],
+        ['CI/CD', 'GitHub Actions · GitLab CI · Bitbucket · Jenkins'],
+        ['Shell', 'Bash · zsh'],
         ['Observability', 'Prometheus · Grafana · ELK'],
         ['Speaks', 'Spanish · Catalan · English']
       ],
@@ -87,6 +91,7 @@
         ['projects', 'projects in production'],
         ['kubectl get pods', 'project status'],
         ['git log', 'recent GitHub activity'],
+        ['status', 'live service status'],
         ['contact', 'how to reach me'],
         ['cd <section>', 'go to profile, stack, projects or contact'],
         ['lang', 'cambiar a español'],
@@ -95,8 +100,8 @@
       ],
       whoami: 'I write the code. And I ship it to production.',
       skills: {
-        dev: [['backend', 'PHP, Python, Go, .NET, Node.js'], ['architecture', 'REST, GraphQL, microservices, hexagonal, DDD'], ['data', 'PostgreSQL, MySQL, SQL Server, NoSQL'], ['frontend', 'JavaScript, React, AngularJS, PWA'], ['quality', 'PHPUnit, pgTAP, Playwright'], ['ai', 'agents, RAG, LLM, n8n, Make']],
-        ops: [['cloud', 'AWS, GCP, Azure'], ['containers', 'Docker, Kubernetes, Compose, Nginx'], ['ci/cd', 'GitHub Actions, Jenkins'], ['iac', 'Terraform, Ansible'], ['observab.', 'Prometheus, Grafana, ELK']]
+        dev: [['backend', 'PHP, Python, Go, .NET, Node.js'], ['architecture', 'REST, GraphQL, microservices, hexagonal, DDD'], ['data', 'PostgreSQL, MySQL, SQL Server, NoSQL, dbt'], ['frontend', 'JavaScript, React, AngularJS, PWA'], ['quality', 'PHPUnit, pgTAP, Playwright'], ['automation', 'n8n, Make, Bash'], ['ai', 'agents, RAG, LLM']],
+        ops: [['cloud', 'AWS, GCP, Azure'], ['containers', 'Docker, Podman, Kubernetes, Compose, Nginx'], ['ci/cd', 'GitHub Actions, GitLab CI, Bitbucket Pipelines, Jenkins'], ['iac', 'Terraform, Ansible'], ['observab.', 'Prometheus, Grafana, ELK']]
       },
       projects: { escriba: 'PWA for Aventuras en la Marca del Este collectors', osr: 'table assistant for OSR game masters', open: 'open app', code: 'code' },
       noData: 'No data right now. See ',
@@ -113,6 +118,7 @@
       notFound: '— try',
       langSwitch: 'Cambiando a español…',
       intro: '<span class="dim">Type</span> <span class="ok">help</span> <span class="dim">to see the available commands.</span>',
+      status: { head: ['SERVICE', 'STATUS', 'HTTP', 'LATENCY', 'CHECKED'], up: 'up', down: 'down', none: 'No recent checks.' },
       menuOpen: 'Open menu',
       menuClose: 'Close menu',
       hint: { text: 'Esta web también está en', link: 'español →', close: 'Cerrar' }
@@ -290,10 +296,10 @@
       const m = c.match(/^(\S+)( <.+>)?$/);
       const name = m && m[2] ? '<span class="ok">' + m[1] + '</span> <span class="dim">' + esc(m[2].trim()) + '</span>' : '<span class="ok">' + c + '</span>';
       return '  ' + name + ' '.repeat(Math.max(1, 18 - c.length)) + d;
-    }).join('\n'),
+    }).join('\n') + '\n\n<span class="dim">' + (LANG === 'en' ? 'psst… there are secret commands. Try' : 'psst… hay comandos secretos. Prueba') + '</span> <span class="ok">secrets</span>',
     whoami: () => 'Toni Ruiz — <span class="dv">Developer</span> &amp; <span class="ok">DevOps</span> · Barcelona\n' + T.whoami,
     neofetch: () => ({ html: NEOFETCH, tag: 'div', cls: 'neo' }),
-    skills: () => '<span class="dv b"># dev</span>\n' + table(T.skills.dev, 14) + '\n<span class="ok b"># ops</span>\n' + table(T.skills.ops, 14),
+    skills: () => '<span class="dv b"># dev</span>\n' + table(T.skills.dev, 16) + '\n<span class="ok b"># ops</span>\n' + table(T.skills.ops, 16),
     projects: () => [
       '<span class="b">escribadelamarca</span>  ' + T.projects.escriba,
       '                  ' + link('https://favashi.github.io/escribadelamarca/?ref=toniruiz-es', T.projects.open) + ' · ' + link('https://github.com/Favashi/escribadelamarca', T.projects.code),
@@ -306,14 +312,28 @@
         const d = p[key] || {};
         const pod = (name + '-' + (d.version || fallbackVer)).replace(/\./g, '-');
         const age = d.released_at || d.pushed_at ? shortAge(d.released_at || d.pushed_at) : 'stable';
-        return pod.padEnd(26) + '1/1     <span class="ok">Running</span>   0          ' + age;
+        const down = d.health && !d.health.ok;
+        const status = down ? '<span class="err">CrashLoopBackOff</span>' : '<span class="ok">Running</span>         ';
+        return pod.padEnd(26) + (down ? '0/1' : '1/1') + '     ' + status + '   0          ' + age;
       };
       return [
-        '<span class="dim">' + 'NAME'.padEnd(26) + 'READY   STATUS    RESTARTS   AGE</span>',
+        '<span class="dim">' + 'NAME'.padEnd(26) + 'READY   STATUS             RESTARTS   AGE</span>',
         row('escribadelamarca', 'escribadelamarca', 'v1.14'),
         row('osr-manager', 'osr-manager', 'v0.4'),
         row('toniruiz-es', 'toniruiz.es', 'latest')
       ].join('\n');
+    },
+    status: () => {
+      const p = (gh && gh.projects) || {};
+      const rows = Object.entries(p).filter(([, d]) => d.health);
+      if (!rows.length) return T.status.none;
+      const h = T.status.head;
+      return ['<span class="dim">' + h[0].padEnd(19) + h[1].padEnd(13) + h[2].padEnd(6) + h[3].padEnd(10) + h[4] + '</span>']
+        .concat(rows.map(([name, d]) => {
+          const st = d.health.ok ? '<span class="ok">● ' + T.status.up.padEnd(10) + '</span>' : '<span class="err">● ' + T.status.down.padEnd(10) + '</span>';
+          const ms = d.health.ms != null ? (d.health.ms + ' ms').padEnd(10) : '—'.padEnd(10);
+          return name.padEnd(19) + st + ' ' + String(d.health.status || '—').padEnd(6) + ms + ago(d.health.checked_at);
+        })).join('\n');
     },
     'git log': () => {
       const list = (gh && gh.activity) || [];
@@ -346,6 +366,160 @@
     'cat readme': 'cat readme.md', 'k get pods': 'kubectl get pods'
   };
 
+  /* ---------- Comandos secretos (no salen en help ni en el autocompletado) ---------- */
+  const L = (es, en) => (LANG === 'en' ? en : es);
+  const printText = (text, cls) => {
+    const el = document.createElement('pre');
+    if (cls) el.className = cls;
+    el.textContent = text;
+    out.insertBefore(el, inputLine);
+    return el;
+  };
+  let vimMode = false;
+
+  const TRAIN = [
+    '      ====        ________                ___________ ',
+    '  _D _|  |_______/        \\__I_I_____===__|_________| ',
+    '   |(_)---  |   H\\________/ |   |        =|___ ___|   ',
+    '   /     |  |   H  |  |     |   |         ||_| |_||   ',
+    '  |      |  |   H  |__--------------------| [___] |   ',
+    '  | ________|___H__/__|_____/[][]~\\_______|       |   ',
+    '  |/ |   |-----------I_____I [][] []  D   |=======|__ ',
+    '__/ =| o |=-~~\\  /~~\\  /~~\\  /~~\\ ____Y___________|__ ',
+    ' |/-=|___|=    ||    ||    ||    |_____/~\\___/        ',
+    '  \\_/      \\O=====O=====O=====O_/      \\_/            '
+  ];
+  const sl = () => {
+    const el = printText('', 'ok');
+    const cols = Math.max(40, Math.floor(out.clientWidth / 8.6));
+    const width = TRAIN[0].length;
+    const frame = (off) => TRAIN.map((l) => (' '.repeat(Math.max(0, off)) + l.slice(Math.max(0, -off))).slice(0, cols)).join('\n');
+    if (reduced) { el.textContent = frame(2); return; }
+    let off = cols;
+    const timer = setInterval(() => {
+      el.textContent = frame(off);
+      scrollEnd();
+      if (--off < -width) { clearInterval(timer); el.remove(); print('<span class="dim">' + L('🚂 chu-chu. Querías escribir «ls».', '🚂 choo-choo. You meant «ls».') + '</span>'); scrollEnd(); }
+    }, 35);
+  };
+
+  const cowsay = (msg) => {
+    const words = (msg || L('Muuu… despliega en viernes bajo tu responsabilidad.', 'Mooo… deploy on Friday at your own risk.')).split(/\s+/);
+    const lines = [];
+    let cur = '';
+    for (const w of words) {
+      if ((cur + ' ' + w).trim().length > 36) { lines.push(cur); cur = w; } else cur = (cur + ' ' + w).trim();
+    }
+    if (cur) lines.push(cur);
+    const w = Math.max(...lines.map((l) => l.length));
+    const body = lines.length === 1 ? ['< ' + lines[0] + ' >'] : lines.map((l, i) => {
+      const [a, b] = i === 0 ? ['/', '\\'] : i === lines.length - 1 ? ['\\', '/'] : ['|', '|'];
+      return a + ' ' + l.padEnd(w) + ' ' + b;
+    });
+    printText([' ' + '_'.repeat(w + 2)].concat(body, [' ' + '-'.repeat(w + 2),
+      '        \\   ^__^',
+      '         \\  (oo)\\_______',
+      '            (__)\\       )\\/\\',
+      '                ||----w |',
+      '                ||     ||']).join('\n'));
+  };
+
+  const FORTUNES = L([
+    '«Funciona en mi máquina.» — Todos, alguna vez',
+    'Si duele, hazlo más a menudo. — Principio de la entrega continua',
+    'Hay dos problemas difíciles en informática: invalidar cachés, poner nombres y los errores por uno.',
+    'Todo falla, todo el tiempo. — Werner Vogels',
+    'El código que no existe no tiene bugs.',
+    'Un buen dashboard vale más que mil logs.',
+    'Primero haz que funcione, luego que sea correcto y luego que sea rápido. — Kent Beck',
+    'Los dados no mienten. Los directores de juego, a veces.'
+  ], [
+    '"It works on my machine." — Everyone, at some point',
+    'If it hurts, do it more often. — Continuous delivery principle',
+    'There are two hard things in computer science: cache invalidation, naming things and off-by-one errors.',
+    'Everything fails, all the time. — Werner Vogels',
+    'Code that does not exist has no bugs.',
+    'A good dashboard is worth a thousand logs.',
+    'Make it work, make it right, make it fast. — Kent Beck',
+    'Dice never lie. Game masters sometimes do.'
+  ]);
+
+  const roll = (expr) => {
+    const m = (expr || 'd20').replace(/\s+/g, '').match(/^(\d*)d(\d+|%)([+-]\d+)?$/i);
+    if (!m) return L('Uso: roll 2d6+1 · roll d20 · roll d%', 'Usage: roll 2d6+1 · roll d20 · roll d%');
+    const n = Math.min(Number(m[1] || 1), 50);
+    const sides = m[2] === '%' ? 100 : Math.min(Number(m[2]), 1000);
+    const mod = Number(m[3] || 0);
+    if (!n || !sides) return L('Esos dados no existen ni en el Plano Astral.', 'Those dice do not exist, not even on the Astral Plane.');
+    const rolls = Array.from({ length: n }, () => 1 + Math.floor(Math.random() * sides));
+    const total = rolls.reduce((a, b) => a + b, 0) + mod;
+    let note = '';
+    if (n === 1 && sides === 20 && rolls[0] === 20) note = ' <span class="ok">' + L('¡CRÍTICO! 🐉', 'CRITICAL HIT! 🐉') + '</span>';
+    if (n === 1 && sides === 20 && rolls[0] === 1) note = ' <span class="err">' + L('Pifia. El kobold se ríe.', 'Fumble. The kobold laughs.') + '</span>';
+    return '🎲 ' + esc(expr || 'd20') + ' → [' + rolls.join(', ') + ']' + (mod ? (mod > 0 ? ' + ' : ' − ') + Math.abs(mod) : '') + ' = <span class="b">' + total + '</span>' + note;
+  };
+
+  const matrix = () => {
+    const chars = 'ｱｲｳｴｵｶｷｸｹｺｻｼｽｾｿﾀﾁﾂﾃﾄ01010110';
+    const cols = Math.max(30, Math.floor(out.clientWidth / 8.6));
+    const line = () => Array.from({ length: cols }, () => (Math.random() < 0.55 ? chars[Math.floor(Math.random() * chars.length)] : ' ')).join('');
+    if (reduced) { printText(Array.from({ length: 6 }, line).join('\n'), 'ok'); return; }
+    let i = 0;
+    const timer = setInterval(() => {
+      printText(line(), 'ok');
+      scrollEnd();
+      if (++i > 18) { clearInterval(timer); print('<span class="dim">' + L('Despierta, Neo… el clúster te tiene.', 'Wake up, Neo… the cluster has you.') + '</span>'); scrollEnd(); }
+    }, 70);
+  };
+
+  // Devuelve true si la entrada era un comando secreto
+  const easterEgg = (key, input) => {
+    const egg = (name, fn) => { track('terminal/egg-' + name, 'Easter egg: ' + name); const r = fn(); if (typeof r === 'string') print(r); return true; };
+    if (vimMode) {
+      if ([':q', ':q!', ':wq', ':x', 'zz'].includes(key)) { vimMode = false; return egg('vim-exit', () => '<span class="ok">' + L('Has salido de vim. Muy pocos lo consiguen. 🏆', 'You exited vim. Very few make it. 🏆') + '</span>'); }
+      print('<span class="err">E37: No write since last change (add ! to override)</span>');
+      return true;
+    }
+    if (key === 'sudo make me a sandwich') return egg('sandwich', () => 'Okay. 🥪 <span class="dim">(xkcd 149)</span>');
+    if (key === 'make me a sandwich') return egg('sandwich-no', () => 'What? Make it yourself.');
+    if (key === 'sl') return egg('sl', sl);
+    if (key === 'cowsay' || key.startsWith('cowsay ')) return egg('cowsay', () => cowsay(input.slice(6).trim()));
+    if (key === 'fortune') return egg('fortune', () => FORTUNES[Math.floor(Math.random() * FORTUNES.length)]);
+    if (key === 'roll' || key.startsWith('roll ') || /^\d*d(\d+|%)([+-]\d+)?$/.test(key)) return egg('roll', () => roll(key.startsWith('roll') ? key.slice(4).trim() : key));
+    if (key === 'matrix') return egg('matrix', matrix);
+    if (key === 'xyzzy') return egg('xyzzy', () => L('No pasa nada.', 'Nothing happens.'));
+    if (key === '42' || key === 'answer') return egg('42', () => L('42. Ahora solo falta saber cuál era la pregunta.', '42. Now you just need to know the question.'));
+    if (key === 'hello there') return egg('kenobi', () => 'General Kenobi! ⚔️');
+    if (key === 'coffee' || key === 'brew coffee' || key === 'make coffee') return egg('teapot', () => '<span class="warn">HTTP 418 I\'m a teapot</span> ☕ <span class="dim">(RFC 2324)</span>');
+    if (key === 'git blame') return egg('blame', () => L('Toni. Siempre es Toni.', 'Toni. It is always Toni.'));
+    if (key.startsWith('kubectl delete')) return egg('kubectl-delete', () => L('pod "escribadelamarca" deleted… y vuelve a arrancar. Es un Deployment. 😌', 'pod "escribadelamarca" deleted… and it comes right back. It is a Deployment. 😌'));
+    if (key === 'ping' || key.startsWith('ping ')) return egg('ping', () => 'PING ' + esc(input.slice(5).trim() || 'toniruiz.es') + ': 64 bytes, icmp_seq=1 ttl=64 time=0.042 ms\npong 🏓');
+    if (key === 'vim' || key === 'vi') { vimMode = true; return egg('vim', () => '<span class="dim">' + L('Has entrado en vim. Buena suerte saliendo.', 'You are now in vim. Good luck getting out.') + '</span>\n~\n~\n~\n<span class="dim">-- INSERT --</span>'); }
+    if (key === 'emacs') return egg('emacs', () => L('Gran sistema operativo. Le falta un buen editor.', 'Great operating system. It just lacks a decent editor.'));
+    if (key === 'nano') return egg('nano', () => L('nano. Respeto. 🫡', 'nano. Respect. 🫡'));
+    if (key === 'lumos' || key === 'nox') return egg(key, () => { root.dataset.theme = key === 'lumos' ? 'light' : 'dark'; try { localStorage.setItem('theme', root.dataset.theme); } catch (e) {} return key === 'lumos' ? '✨ Lumos!' : '🌑 Nox.'; });
+    if (key === 'hack' || key === 'hackerman') return egg('hack', () => L('Accediendo al mainframe… ██████████ 100%\n<span class="ok">ACCESS GRANTED</span>\nEs broma. Aquí todo es open source.', 'Accessing the mainframe… ██████████ 100%\n<span class="ok">ACCESS GRANTED</span>\nJust kidding. Everything here is open source.'));
+    if (key === 'secrets' || key === 'easter eggs' || key === 'eastereggs') return egg('secrets', () => L(
+      'Los comandos secretos no se listan. Pistas:\n  · un tren que aparece cuando escribes mal «ls»\n  · una vaca que habla\n  · xkcd 149 · Colossal Cave · Douglas Adams\n  · un editor del que nadie sabe salir\n  · tira un dado de 20 caras\n  · ↑ ↑ ↓ ↓ ← → ← → B A',
+      'Secret commands are not listed. Hints:\n  · a train that shows up when you mistype "ls"\n  · a talking cow\n  · xkcd 149 · Colossal Cave · Douglas Adams\n  · an editor nobody knows how to exit\n  · roll a twenty-sided die\n  · ↑ ↑ ↓ ↓ ← → ← → B A'));
+    return false;
+  };
+
+  // Código Konami en cualquier parte de la página
+  const KONAMI = ['arrowup', 'arrowup', 'arrowdown', 'arrowdown', 'arrowleft', 'arrowright', 'arrowleft', 'arrowright', 'b', 'a'];
+  let konamiPos = 0;
+  document.addEventListener('keydown', (e) => {
+    const k = (e.key || '').toLowerCase();
+    konamiPos = k === KONAMI[konamiPos] ? konamiPos + 1 : (k === KONAMI[0] ? 1 : 0);
+    if (konamiPos === KONAMI.length) {
+      konamiPos = 0;
+      track('terminal/egg-konami', 'Easter egg: konami');
+      document.getElementById('shell').scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'center' });
+      print('<span class="ok b">' + L('🎮 ¡Código Konami! +30 vidas. Modo dios activado.', '🎮 Konami code! +30 lives. God mode enabled.') + '</span>');
+      matrix();
+    }
+  });
+
   const run = (raw) => {
     const input = raw.trim();
     print(PROMPT + esc(raw));
@@ -355,6 +529,7 @@
       Array.from(out.children).forEach((n) => { if (n !== inputLine) n.remove(); });
       return;
     }
+    if (easterEgg(key, input)) return;
     if (key.startsWith('sudo')) { print('<span class="err">' + T.sudo + '</span>'); return; }
     if (key.startsWith('rm -rf')) { print('<span class="warn">' + T.rm + '</span>'); return; }
     const cd = key.match(/^cd\s+(\S+?)\/?$/);
@@ -422,6 +597,24 @@
     setTimeout(tick, 400);
   });
   let introRunning = true;
+  document.querySelectorAll('.cmd-chip').forEach((btn) => {
+    btn.addEventListener('click', async () => {
+      if (introRunning) return;
+      introRunning = true;
+      if (!reduced) await typeCmd(btn.dataset.cmd);
+      introRunning = false;
+      run(btn.dataset.cmd);
+      scrollEnd();
+    });
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key !== '/' || e.metaKey || e.ctrlKey || e.altKey) return;
+    const t = e.target;
+    if (t.closest && t.closest('input, textarea, select, [contenteditable="true"]')) return;
+    e.preventDefault();
+    document.getElementById('shell').scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'center' });
+    field.focus({ preventScroll: true });
+  });
   (async () => {
     for (const c of ['whoami', 'neofetch']) {
       if (!reduced) await typeCmd(c);

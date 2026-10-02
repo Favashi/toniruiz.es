@@ -400,6 +400,17 @@ body::before {
 }
 .nav-links #theme { margin-left: 6px; }
 
+/* Botones de comandos bajo la terminal */
+.hint { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 6px; }
+.cmd-chip {
+  font: 500 .75rem/1 var(--mono); padding: 6px 9px; border-radius: 7px; cursor: pointer;
+  background: var(--surface); border: 1px solid var(--line); color: var(--ink);
+  transition: border-color .15s, background-color .15s;
+}
+.cmd-chip:hover { border-color: var(--ops); }
+.cmd-chip:active { transform: scale(.97); }
+@media (pointer: coarse) { .hint-key { display: none; } .cmd-chip { padding: 9px 11px; } }
+
 /* Panel de GitHub */
 .gh-h { margin: 18px 0 10px; }
 .term-body pre + .gh-h, .term-body pre + * + .gh-h { margin-top: 12px; }

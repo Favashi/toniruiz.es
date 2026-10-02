@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="site/og-image-en.png" alt="Toni Ruiz — I write the code. And I ship it to production." width="720">
+<img src="https://favashi.github.io/toniruiz.es/og-image-en.png" alt="Toni Ruiz — I write the code. And I ship it to production." width="720">
 
 # toniruiz.es
 
@@ -8,8 +8,9 @@
 
 [![Build and deploy](https://github.com/Favashi/toniruiz.es/actions/workflows/pages.yml/badge.svg)](https://github.com/Favashi/toniruiz.es/actions/workflows/pages.yml)
 ![HTML](https://img.shields.io/badge/HTML%20%2B%20CSS%20%2B%20JS-no%20framework-3ee6a8)
-![Dependencies](https://img.shields.io/badge/dependencies-0-9d9bff)
+![Runtime dependencies](https://img.shields.io/badge/runtime%20dependencies-0-9d9bff)
 ![Languages](https://img.shields.io/badge/i18n-es%20%7C%20en-1d1d1f)
+[![Lighthouse](https://img.shields.io/endpoint?url=https%3A%2F%2Ffavashi.github.io%2Ftoniruiz.es%2Fdata%2Flighthouse-badge.json)](https://favashi.github.io/toniruiz.es/data/lighthouse.json)
 
 [**toniruiz.es**](https://toniruiz.es) · [English version](https://toniruiz.es/en/) · [GitHub Pages preview](https://favashi.github.io/toniruiz.es/)
 
@@ -31,7 +32,9 @@ content fresh every day.
 
 - **Interactive terminal.** It types `whoami` and `neofetch` on load, then accepts
   commands: `help`, `skills`, `projects`, `kubectl get pods`, `git log`, `contact`,
-  `cd <section>`, `lang`, `theme`, `clear`. It has history (↑/↓) and Tab completion.
+  `cd <section>`, `status`, `lang`, `theme`, `clear`. It has history (↑/↓), Tab completion,
+  tappable command buttons for mobile and a `/` shortcut to focus it. There are also a few
+  secret commands for the curious (type `secrets` for hints).
 - **Live data, baked into the HTML.** Every build collects:
   - from the **GitHub API**: versions, last update, recent commits, latest releases,
     language breakdown, and total commits, releases and CI workflows;
@@ -59,16 +62,39 @@ content fresh every day.
   cookies and no personal data. It counts page views, clicks on key links and which
   terminal commands people use (known commands only, never free text).
 
+## Quality gates
+
+Every push and pull request runs the full pipeline. Nothing is deployed unless all of
+these pass:
+
+| Check | Tool |
+|---|---|
+| HTML validity | [html-validate](https://html-validate.org) |
+| Spanish and English pages stay structurally in sync | `scripts/check-i18n.mjs` |
+| No broken links | [lychee](https://github.com/lycheeverse/lychee) |
+| End-to-end tests on desktop and mobile (rendering, no console or CSP errors, terminal, menu, language switch, theme) | [Playwright](https://playwright.dev) |
+| Accessibility, best practices and SEO ≥ 95, performance ≥ 90 | [Lighthouse CI](https://github.com/GoogleChrome/lighthouse-ci) |
+
+The Lighthouse scores of each deploy are published in the footer of the site and in the
+badge above. [Dependabot](.github/dependabot.yml) keeps the actions and tooling up to date.
+
+Security: a strict Content-Security-Policy (inline scripts are allowed by hash only),
+a referrer policy and [`/.well-known/security.txt`](https://toniruiz.es/.well-known/security.txt).
+
 ## How it works
 
 ```mermaid
 flowchart LR
-    A[push to main<br/>or daily cron] --> B[GitHub Actions]
+    A[push, PR<br/>or daily cron] --> B[GitHub Actions]
     B --> C["scripts/build.mjs"]
-    D[(GitHub API)] -->|versions, commits| C
+    D[(GitHub API)] -->|versions, commits,<br/>releases, languages| C
+    H[(Escriba RPC)] -->|usage stats| C
+    I[Health checks] -->|status, latency| C
     E["site/"] --> C
-    C --> F["_site/<br/>HTML with data baked in<br/>+ data/github.json"]
-    F --> G[GitHub Pages]
+    C --> J["scripts/og.mjs<br/>Open Graph images"]
+    J --> K{Quality gates}
+    K -->|pass| G[GitHub Pages]
+    K -->|fail| X[No deploy]
 ```
 
 `scripts/build.mjs` does the following:
@@ -82,8 +108,16 @@ flowchart LR
 4. Clones the featured repositories (shallow) to count lines of code and tests, and
    reads Escriba's public stats endpoint. The Supabase URL and publishable key are read
    from Escriba's own `js/config.js`, so they never drift.
-5. Adds a content hash (`?v=…`) to CSS/JS URLs for safe cache busting.
-6. Writes `_site/data/github.json` and refreshes the dates in the sitemap.
+5. Checks that the live apps respond (status code and latency) for the `status` and
+   `kubectl get pods` terminal commands.
+6. Downloads the current GitHub avatar, so the photo is never out of date.
+7. Adds a content hash (`?v=…`) to CSS/JS URLs for safe cache busting.
+8. Adds the Content-Security-Policy with the hash of the inline script, and writes
+   `security.txt` with a fresh expiry date.
+9. Writes `_site/data/github.json` and refreshes the dates in the sitemap.
+
+`scripts/og.mjs` then renders the Open Graph images from `scripts/og/template.html`
+with Playwright.
 
 If the API is unavailable, the build still succeeds and publishes the static
 fallback content.
@@ -105,19 +139,31 @@ fallback content.
 │   ├── og-image.png         # Social preview (es)
 │   ├── og-image-en.png      # Social preview (en)
 │   ├── sitemap.xml, robots.txt, site.webmanifest, icons…
-├── scripts/build.mjs        # Build: copy + GitHub data injection
-└── .github/workflows/
-    └── pages.yml            # Build and deploy on push, daily and on demand
+├── scripts/
+│   ├── build.mjs            # Build: copy, live data, avatar, CSP, security.txt
+│   ├── og.mjs               # Open Graph images (template in og/template.html)
+│   ├── check-i18n.mjs       # es/en structure check
+│   ├── lighthouse-scores.mjs# Publishes Lighthouse scores
+│   └── serve.mjs            # Tiny static server for local use and tests
+├── tests/site.spec.js       # Playwright end-to-end tests
+├── lighthouserc.json        # Lighthouse CI budgets
+└── .github/
+    ├── workflows/pages.yml  # Build, test and deploy (push, PR, daily, manual)
+    └── dependabot.yml
 ```
 
 ## Local development
 
-Requires Node.js 20 or newer. There is nothing to install.
+Requires Node.js 22 or newer. The site has no runtime dependencies; `npm ci` only
+installs the build and test tooling.
 
 ```sh
-node scripts/build.mjs              # build with live GitHub data
-node scripts/build.mjs --offline    # build without calling the API
-python3 -m http.server -d _site 8000
+npm ci
+npx playwright install chromium
+
+npm run build                       # build with live data (or: node scripts/build.mjs --offline)
+npm run serve                       # http://localhost:8000
+npm run ci                          # the full pipeline: build, OG, checks, tests, Lighthouse
 ```
 
 Then open <http://localhost:8000> (Spanish) or <http://localhost:8000/en/> (English).

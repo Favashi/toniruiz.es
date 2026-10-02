@@ -9,3 +9,7 @@ _site/
 /.nojekyll
 
 .DS_Store
+node_modules/
+.lighthouseci/
+test-results/
+playwright-report/

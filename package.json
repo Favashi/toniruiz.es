@@ -1,0 +1,24 @@
+{
+  "name": "toniruiz.es",
+  "private": true,
+  "description": "Personal website of Toni Ruiz. The site itself has no runtime dependencies; these are build and CI tools.",
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "og": "node scripts/og.mjs",
+    "check:html": "html-validate \"_site/**/*.html\"",
+    "check:i18n": "node scripts/check-i18n.mjs",
+    "test:e2e": "playwright test",
+    "lighthouse": "lhci autorun",
+    "ci": "npm run build && npm run og && npm run check:html && npm run check:i18n && npm run test:e2e && npm run lighthouse && node scripts/lighthouse-scores.mjs",
+    "serve": "node scripts/serve.mjs 8000"
+  },
+  "devDependencies": {
+    "@lhci/cli": "^0.15.1",
+    "@playwright/test": "^1.63.0",
+    "html-validate": "^11.16.1"
+  }
+}

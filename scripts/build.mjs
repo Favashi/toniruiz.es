@@ -101,6 +101,85 @@ async function escribaShowcase() {
   }
 }
 
+// URLs públicas que se comprueban en cada build (estado real en la terminal)
+const HEALTH_URLS = {
+  escribadelamarca: 'https://favashi.github.io/escribadelamarca/',
+  'osr-manager': 'https://favashi.github.io/osr-manager/app/',
+};
+async function healthCheck(url) {
+  if (!url) return null;
+  const start = performance.now();
+  try {
+    const res = await fetch(url, { redirect: 'follow', signal: AbortSignal.timeout(10000), headers: { 'User-Agent': 'toniruiz.es-healthcheck' } });
+    return { url, ok: res.ok, status: res.status, ms: Math.round(performance.now() - start), checked_at: new Date().toISOString() };
+  } catch {
+    return { url, ok: false, status: 0, ms: null, checked_at: new Date().toISOString() };
+  }
+}
+
+// Foto de perfil de GitHub: se descarga en cada build para que nunca quede desfasada
+async function syncAvatar() {
+  const user = await api(`/users/${USER}`);
+  if (!user?.avatar_url) return false;
+  const get = async (size) => {
+    const res = await fetch(`${user.avatar_url}${user.avatar_url.includes('?') ? '&' : '?'}s=${size}`);
+    if (!res.ok || !(res.headers.get('content-type') || '').startsWith('image/jpeg')) throw new Error('avatar');
+    return Buffer.from(await res.arrayBuffer());
+  };
+  try {
+    const big = await get(460);
+    const hero = await get(352);
+    writeFileSync(join(OUT, 'assets/img/avatar.jpg'), big);
+    writeFileSync(join(OUT, 'assets/img/avatar-352.jpg'), hero);
+    const v = createHash('sha256').update(hero).digest('hex').slice(0, 10);
+    for (const { file } of PAGES) {
+      const path = join(OUT, file);
+      writeFileSync(path, readFileSync(path, 'utf8').replace(/assets\/img\/avatar-176\.webp/g, `assets/img/avatar-352.jpg?v=${v}`));
+    }
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+// Content-Security-Policy por <meta> (GitHub Pages no permite cabeceras propias).
+// El script inline de tema se autoriza por su hash, calculado aquí.
+function applyCsp() {
+  for (const { file } of PAGES) {
+    const path = join(OUT, file);
+    let html = readFileSync(path, 'utf8');
+    const hashes = [...html.matchAll(/<script>([\s\S]*?)<\/script>/g)]
+      .map(([, code]) => `'sha256-${createHash('sha256').update(code).digest('base64')}'`);
+    const csp = [
+      "default-src 'self'",
+      `script-src 'self' ${hashes.join(' ')} https://gc.zgo.at`,
+      "style-src 'self' 'unsafe-inline'",
+      "img-src 'self' data: https://toniruiz.goatcounter.com",
+      "connect-src 'self' https://toniruiz.goatcounter.com",
+      "font-src 'self'",
+      "object-src 'none'",
+      "base-uri 'self'",
+      "form-action 'none'",
+    ].join('; ');
+    html = html.replace('<meta charset="utf-8">', `<meta charset="utf-8">\n  <meta http-equiv="Content-Security-Policy" content="${csp}">`);
+    html = html.replace('<meta name="author"', '<meta name="referrer" content="strict-origin-when-cross-origin">\n  <meta name="author"');
+    writeFileSync(path, html);
+  }
+}
+
+// /.well-known/security.txt (RFC 9116) con caducidad renovada en cada build
+function writeSecurityTxt() {
+  const expires = new Date(Date.now() + 180 * 86400000).toISOString().replace(/\.\d{3}Z$/, 'Z');
+  mkdirSync(join(OUT, '.well-known'), { recursive: true });
+  writeFileSync(join(OUT, '.well-known', 'security.txt'), [
+    'Contact: mailto:info@toniruiz.es',
+    `Expires: ${expires}`,
+    'Preferred-Languages: es, en',
+    'Canonical: https://toniruiz.es/.well-known/security.txt',
+    '',
+  ].join('\n'));
+}
+
 // Colores de lenguaje de GitHub (linguist)
 const LANG_COLORS = {
   JavaScript: '#f1e05a', TypeScript: '#3178c6', CSS: '#663399', HTML: '#e34c26', PLpgSQL: '#336790',
@@ -148,6 +227,7 @@ async function collect() {
     const workflows = await api(`/repos/${USER}/${name}/actions/workflows`);
     const repoCommits = await apiCount(`/repos/${USER}/${name}/commits`);
     const { loc, tests } = analyzeRepo(name);
+    const health = await healthCheck(HEALTH_URLS[name]);
 
     for (const r of allReleases) {
       if (!r.draft) releases.push({ repo: name, tag: r.tag_name, date: r.published_at, url: r.html_url });
@@ -162,6 +242,7 @@ async function collect() {
     projects[name].releases = allReleases.filter((r) => !r.draft).length;
     projects[name].loc = loc;
     projects[name].tests = tests;
+    if (health) projects[name].health = health;
     if (allReleases.length) {
       const first = allReleases.map((r) => new Date(r.published_at)).sort((a, b) => a - b)[0];
       projects[name].first_release_at = first.toISOString();
@@ -303,9 +384,13 @@ if (OFFLINE) {
       const path = join(OUT, file);
       writeFileSync(path, render(readFileSync(path, 'utf8'), data, lang));
     }
-    console.log(`Build OK: ${Object.keys(data.projects).length} proyectos, ${data.activity.length} commits recientes.`);
+    const avatar = await syncAvatar();
+    console.log(`Build OK: ${Object.keys(data.projects).length} proyectos, ${data.activity.length} commits recientes${avatar ? ', avatar actualizado' : ''}.`);
   } catch (err) {
     // Si GitHub falla, se publica igualmente con el contenido estático de respaldo.
     console.warn(`Aviso: sin datos de GitHub (${err.message}). Se publica el contenido estático.`);
   }
 }
+
+applyCsp();
+writeSecurityTxt();

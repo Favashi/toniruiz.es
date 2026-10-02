@@ -78,7 +78,7 @@
         "description": "Software developer with 20+ years of experience, now working full-time in DevOps.",
         "address": { "@type": "PostalAddress", "addressLocality": "Barcelona", "addressCountry": "ES" },
         "knowsLanguage": ["es", "ca", "en"],
-        "knowsAbout": ["DevOps", "Software development", "AWS", "Google Cloud", "Azure", "Kubernetes", "Docker", "Terraform", "Ansible", "GitHub Actions", "Jenkins", "Prometheus", "Grafana", "PHP", "Python", "Go", ".NET", "Node.js", "PostgreSQL", "Hexagonal architecture", "DDD", "PWA"],
+        "knowsAbout": ["DevOps", "Software development", "AWS", "Google Cloud", "Azure", "Kubernetes", "Docker", "Terraform", "Ansible", "GitHub Actions", "GitLab CI", "Bitbucket Pipelines", "Jenkins", "Podman", "Bash", "dbt", "n8n", "Prometheus", "Grafana", "PHP", "Python", "Go", ".NET", "Node.js", "PostgreSQL", "Hexagonal architecture", "DDD", "PWA"],
         "sameAs": ["https://github.com/Favashi", "https://www.linkedin.com/in/toniruizfernandez"]
       },
       {
@@ -184,7 +184,7 @@
 Toni Ruiz — Developer &amp; DevOps · Barcelona</pre></noscript>
             </div>
           </div>
-          <p class="hint">Interactive terminal: try <kbd>help</kbd>, <kbd>projects</kbd> or <kbd>kubectl get pods</kbd></p>
+          <p class="hint"><span>Interactive terminal. Try:</span> <button type="button" class="cmd-chip" data-cmd="help">help</button> <button type="button" class="cmd-chip" data-cmd="projects">projects</button> <button type="button" class="cmd-chip" data-cmd="kubectl get pods">kubectl get pods</button> <button type="button" class="cmd-chip" data-cmd="git log">git log</button> <button type="button" class="cmd-chip" data-cmd="status">status</button> <span class="hint-key">· press <kbd>/</kbd> to type</span></p>
         </div>
       </div>
     </section>
@@ -216,7 +216,7 @@ Toni Ruiz — Developer &amp; DevOps · Barcelona</pre></noscript>
             <h3>Well-designed software, from backend to PWA.</h3>
             <p>REST and GraphQL APIs, microservices, hexagonal architecture and DDD. Databases tested like the rest of the code, and frontends you can install on your phone.</p>
             <ul class="chips">
-              <li>PHP</li><li>Python</li><li>Go</li><li>.NET</li><li>Node.js</li><li>JavaScript</li><li>React</li><li>PostgreSQL</li>
+              <li>PHP</li><li>Python</li><li>Go</li><li>.NET</li><li>Node.js</li><li>JavaScript</li><li>React</li><li>PostgreSQL</li><li>dbt</li><li>n8n</li>
             </ul>
             <div class="term" aria-hidden="true">
               <div class="term-bar"><div></div><div class="title">src/Domain/Collection.php</div><div></div></div>
@@ -243,7 +243,7 @@ Toni Ruiz — Developer &amp; DevOps · Barcelona</pre></noscript>
               <li><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>monitor</span></li>
             </ol>
             <ul class="chips">
-              <li>AWS</li><li>GCP</li><li>Azure</li><li>Kubernetes</li><li>Docker</li><li>Terraform</li><li>Ansible</li><li>GitHub Actions</li><li>Jenkins</li><li>Prometheus</li><li>Grafana</li>
+              <li>AWS</li><li>GCP</li><li>Azure</li><li>Kubernetes</li><li>Docker</li><li>Podman</li><li>Terraform</li><li>Ansible</li><li>GitHub Actions</li><li>GitLab CI</li><li>Bitbucket Pipelines</li><li>Jenkins</li><li>Prometheus</li><li>Grafana</li><li>Bash</li>
             </ul>
             <div class="term" aria-hidden="true">
               <div class="term-bar"><div></div><div class="title">toni@barcelona: ~/infra</div><div></div></div>
@@ -282,7 +282,7 @@ deployment <span class="b">"api"</span> <span class="ok">successfully rolled out
               <span class="kind">ops</span>
             </div>
             <h3>Containers</h3>
-            <p>Docker, Kubernetes, Compose, Nginx.</p>
+            <p>Docker, Podman, Kubernetes, Compose and Nginx.</p>
           </div>
           <div class="tile ops reveal">
             <div class="tile-top">
@@ -290,7 +290,7 @@ deployment <span class="b">"api"</span> <span class="ok">successfully rolled out
               <span class="kind">ops</span>
             </div>
             <h3>CI/CD</h3>
-            <p>GitHub Actions and Jenkins.</p>
+            <p>GitHub Actions, GitLab CI, Bitbucket Pipelines and Jenkins.</p>
           </div>
           <div class="tile ops reveal">
             <div class="tile-top">
@@ -298,7 +298,7 @@ deployment <span class="b">"api"</span> <span class="ok">successfully rolled out
               <span class="kind">ops</span>
             </div>
             <h3>Infrastructure as code</h3>
-            <p>Terraform and Ansible.</p>
+            <p>Terraform, Ansible and Bash scripting.</p>
           </div>
           <div class="tile ops reveal">
             <div class="tile-top">
@@ -322,7 +322,7 @@ deployment <span class="b">"api"</span> <span class="ok">successfully rolled out
               <span class="kind">dev</span>
             </div>
             <h3>Data</h3>
-            <p>PostgreSQL, MySQL, SQL Server and NoSQL.</p>
+            <p>PostgreSQL, MySQL, SQL Server, NoSQL and data modelling with dbt.</p>
           </div>
           <div class="tile dev reveal">
             <div class="tile-top">
@@ -475,7 +475,7 @@ deployment <span class="b">"api"</span> <span class="ok">successfully rolled out
       <div class="narrow reveal">
         <p class="eyebrow"><span class="p">$</span> ./contact.sh</p>
         <h2>Let's talk.</h2>
-        <p class="sub">Projects, infrastructure, automation or a good idea waiting to be built. I reply personally.</p>
+        <p class="sub">Open to new opportunities: <strong>DevOps or development roles</strong>, <strong>projects</strong> and <strong>consulting</strong> on infrastructure and automation. I reply personally.</p>
         <div class="mail-line">
           <span><span class="ok">$</span> mail <a href="mailto:info@toniruiz.es" data-goatcounter-click="click/contact-email">info@toniruiz.es</a></span>
           <button class="copy" type="button" id="copy" data-email="info@toniruiz.es" aria-label="Copy email">
@@ -500,7 +500,7 @@ deployment <span class="b">"api"</span> <span class="ok">successfully rolled out
   <footer>
     <div class="wrap">
       <span>© <span id="year">2026</span> Toni Ruiz · Barcelona</span>
-      <span>HTML, CSS and a little JS. No frameworks. Deployed with GitHub Actions and GitHub Pages · GitHub data <time data-gh-time="generated_at" data-prefix="updated" datetime="2026-10-02">updated in October 2026</time></span>
+      <span>HTML, CSS and a little JS. No frameworks. Deployed with GitHub Actions and GitHub Pages · GitHub data <time data-gh-time="generated_at" data-prefix="updated" datetime="2026-10-02">updated in October 2026</time><!-- lh:scores --><!-- /lh:scores --></span>
     </div>
   </footer>
 
