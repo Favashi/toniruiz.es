@@ -56,7 +56,11 @@
       noDir: 'cd: no existe el directorio: ',
       notFound: '— prueba con',
       langSwitch: 'Switching to English…',
-      intro: '<span class="dim">Escribe</span> <span class="ok">help</span> <span class="dim">para ver los comandos disponibles.</span>'
+      intro: '<span class="dim">Escribe</span> <span class="ok">help</span> <span class="dim">para ver los comandos disponibles.</span>',
+      menuOpen: 'Abrir menú',
+      menuClose: 'Cerrar menú',
+      // El aviso se muestra en el idioma de destino
+      hint: { text: 'This site is also available in', link: 'English →', close: 'Dismiss' }
     },
     en: {
       now: 'just now',
@@ -108,7 +112,10 @@
       noDir: 'cd: no such file or directory: ',
       notFound: '— try',
       langSwitch: 'Cambiando a español…',
-      intro: '<span class="dim">Type</span> <span class="ok">help</span> <span class="dim">to see the available commands.</span>'
+      intro: '<span class="dim">Type</span> <span class="ok">help</span> <span class="dim">to see the available commands.</span>',
+      menuOpen: 'Open menu',
+      menuClose: 'Close menu',
+      hint: { text: 'Esta web también está en', link: 'español →', close: 'Cerrar' }
     }
   };
   const T = I18N[LANG];
@@ -160,6 +167,52 @@
     setTimeout(() => { lbl.textContent = T.copy; }, 1800);
   });
 
+  /* ---------- Analítica (GoatCounter, sin cookies) ---------- */
+  const track = (path, title) => {
+    if (window.goatcounter && typeof window.goatcounter.count === 'function') {
+      window.goatcounter.count({ path, title: title || path, event: true });
+    }
+  };
+
+  /* ---------- Menú móvil ---------- */
+  const menuBtn = document.getElementById('menu-btn');
+  const menu = document.getElementById('mobile-menu');
+  const setMenu = (open) => {
+    menu.hidden = !open;
+    menuBtn.setAttribute('aria-expanded', String(open));
+    menuBtn.setAttribute('aria-label', open ? T.menuClose : T.menuOpen);
+  };
+  menuBtn.addEventListener('click', () => setMenu(menu.hidden));
+  menu.addEventListener('click', (e) => { if (e.target.closest('a')) setMenu(false); });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && !menu.hidden) { setMenu(false); menuBtn.focus(); }
+  });
+  document.addEventListener('click', (e) => {
+    if (!menu.hidden && !menu.contains(e.target) && !menuBtn.contains(e.target)) setMenu(false);
+  });
+
+  /* ---------- Sugerencia de idioma (sin redirigir) ---------- */
+  const altLink = document.querySelector('link[rel="alternate"][hreflang="' + (LANG === 'en' ? 'es' : 'en') + '"]');
+  const switchLink = document.querySelector('.lang-switch');
+  const store = (k, v) => { try { if (v === undefined) return localStorage.getItem(k); localStorage.setItem(k, v); } catch (e) {} return null; };
+  if (switchLink) switchLink.addEventListener('click', () => store('lang-choice', switchLink.getAttribute('hreflang')));
+  const langs = (navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language || '']).map((l) => l.toLowerCase());
+  const prefersSpanish = langs.some((l) => l.startsWith('es') || l.startsWith('ca'));
+  const shouldHint = LANG === 'es' ? !prefersSpanish : (langs[0] || '').match(/^(es|ca)/);
+  if (altLink && switchLink && shouldHint && !store('lang-choice') && !store('lang-hint-dismissed')) {
+    const hint = document.createElement('div');
+    hint.className = 'lang-hint';
+    hint.setAttribute('role', 'region');
+    hint.setAttribute('lang', LANG === 'en' ? 'es' : 'en');
+    hint.setAttribute('aria-label', T.hint.text);
+    hint.innerHTML = '<span>' + T.hint.text + '</span>' +
+      '<a href="' + switchLink.getAttribute('href') + '" hreflang="' + switchLink.getAttribute('hreflang') + '">' + T.hint.link + '</a>' +
+      '<button type="button" aria-label="' + T.hint.close + '"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>';
+    hint.querySelector('a').addEventListener('click', () => { store('lang-choice', switchLink.getAttribute('hreflang')); track('lang-hint/accept'); });
+    hint.querySelector('button').addEventListener('click', () => { store('lang-hint-dismissed', '1'); hint.remove(); track('lang-hint/dismiss'); });
+    setTimeout(() => document.body.appendChild(hint), 1500);
+  }
+
   /* ---------- Aparición al hacer scroll ---------- */
   const pipeline = document.getElementById('pipeline');
   const runPipeline = () => {
@@ -184,6 +237,7 @@
 
   /* ---------- Terminal interactiva ---------- */
   const out = document.getElementById('out');
+  out.setAttribute('aria-live', 'off'); // se activa al terminar la intro tecleada
   const PROMPT = '<span class="ok">toni@barcelona</span>:<span class="dv">~</span>$ ';
   const esc = (s) => s.replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 
@@ -272,6 +326,7 @@
       'github    ' + link('https://github.com/Favashi', 'Favashi')
     ].join('\n'),
     lang: () => {
+      store('lang-choice', LANG === 'en' ? 'es' : 'en');
       if (otherLang) setTimeout(() => { window.location.href = otherLang.getAttribute('href'); }, 400);
       return T.langSwitch;
     },
@@ -305,12 +360,14 @@
     const cd = key.match(/^cd\s+(\S+?)\/?$/);
     if (cd) {
       const target = T.sections[cd[1]];
+      if (target) track('terminal/cd', 'Terminal: cd');
       if (target) { print('<span class="dim">→ ' + esc(cd[1]) + '</span>'); document.querySelector(target).scrollIntoView({ behavior: reduced ? 'auto' : 'smooth' }); }
       else if (cd[1] !== '~' && cd[1] !== '..') print(T.noDir + esc(cd[1]));
       return;
     }
     const fn = commands[key] || commands[aliases[key]];
     if (!fn) { print('zsh: command not found: ' + esc(input.split(' ')[0]) + '  <span class="dim">' + T.notFound + '</span> <span class="ok">help</span>'); return; }
+    if (!introRunning) track('terminal/' + (commands[key] ? key : aliases[key]).replace(/\s+/g, '-'), 'Terminal: ' + key);
     const res = fn();
     if (res && res.html) {
       const el = document.createElement(res.tag);
@@ -364,6 +421,7 @@
     };
     setTimeout(tick, 400);
   });
+  let introRunning = true;
   (async () => {
     for (const c of ['whoami', 'neofetch']) {
       if (!reduced) await typeCmd(c);
@@ -371,5 +429,7 @@
     }
     print('\n' + T.intro);
     scrollEnd();
+    out.setAttribute('aria-live', 'polite');
+    introRunning = false;
   })();
 })();

@@ -17,7 +17,7 @@
   --line-soft: #e8e8ed;
   --dev: #5856d6;
   --dev-soft: rgba(88, 86, 214, .1);
-  --ops: #00875f;
+  --ops: #007a56;
   --ops-soft: rgba(0, 135, 95, .1);
   --cta: #1d1d1f;
   --cta-ink: #ffffff;
@@ -28,7 +28,7 @@
   --term-bar: #1c1c1f;
   --term-line: #2a2a2e;
   --term-ink: #d4d4d8;
-  --term-dim: #7a7a83;
+  --term-dim: #8a8a93;
   --term-ops: #3ee6a8;
   --term-dev: #9d9bff;
   --term-warn: #ffd166;
@@ -389,6 +389,47 @@ body::before {
   border: 1px solid var(--line); border-radius: 999px; color: var(--ink-2);
 }
 .nav-links a.lang-switch:hover { color: var(--ink); border-color: var(--muted); }
+
+/* Menú móvil */
+.menu-btn { display: none; }
+.mobile-menu {
+  border-top: 1px solid var(--line-soft);
+  padding: 8px 16px 16px;
+}
+.mobile-menu[hidden] { display: none; }
+.mobile-menu a {
+  display: flex; align-items: center; justify-content: space-between;
+  min-height: 48px; padding: 0 4px; border-bottom: 1px solid var(--line-soft);
+  font-size: 1.0625rem; font-weight: 500; text-decoration: none; color: var(--ink);
+}
+.mobile-menu a:last-child { border-bottom: 0; }
+.mobile-menu a span { font: 500 .75rem/1 var(--mono); color: var(--muted); }
+
+/* Aviso de idioma */
+.lang-hint {
+  position: fixed; left: 50%; bottom: 20px; z-index: 60; transform: translateX(-50%);
+  display: flex; align-items: center; gap: 4px; width: max-content; max-width: calc(100% - 32px);
+  padding: 6px 6px 6px 16px; border-radius: 999px;
+  background: var(--glass); border: 1px solid var(--line);
+  backdrop-filter: saturate(180%) blur(20px); -webkit-backdrop-filter: saturate(180%) blur(20px);
+  box-shadow: var(--shadow); font-size: .875rem; color: var(--ink-2);
+}
+.lang-hint span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.lang-hint a { color: var(--ink); font-weight: 600; text-decoration: none; padding: 8px 6px; white-space: nowrap; }
+.lang-hint a:hover { text-decoration: underline; text-underline-offset: 3px; }
+.lang-hint button {
+  display: grid; place-items: center; width: 32px; height: 32px; flex: none;
+  border: 0; border-radius: 50%; background: transparent; color: var(--muted); cursor: pointer;
+}
+.lang-hint button:hover { background: var(--surface-2); color: var(--ink); }
+.lang-hint svg { width: 14px; height: 14px; }
+
+@media (max-width: 640px) {
+  .menu-btn { display: inline-grid; }
+}
+@media (min-width: 641px) {
+  .mobile-menu { display: none !important; }
+}
 
 /* ---------- Aparición ---------- */
 .js .reveal { opacity: 0; transform: translateY(24px); transition: opacity .8s cubic-bezier(.2,.7,.2,1), transform .8s cubic-bezier(.2,.7,.2,1); }

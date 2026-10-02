@@ -42,9 +42,15 @@ content fresh every day.
 - **SEO and sharing.** Canonical URLs, Open Graph and Twitter cards with
   per-language 1200×630 images, JSON-LD (`Person`, `ProfilePage`, `WebSite`,
   `WebApplication`), a bilingual sitemap, `robots.txt`, a web manifest and icons.
-- **Accessible and light.** The site has a skip link, semantic landmarks and
-  `prefers-reduced-motion` support. Images are WebP with lazy loading, and it works
+- **Accessible and light.** The site has a skip link, semantic landmarks, a mobile menu,
+  `prefers-reduced-motion` support and colour contrast that meets WCAG AA. Fonts are
+  self-hosted latin subsets and images are WebP with lazy loading. It also works
   without JavaScript.
+- **Language hint.** If the visitor's browser language does not match the page, a small
+  dismissible prompt suggests the other version. It never redirects automatically.
+- **Privacy-friendly analytics.** [GoatCounter](https://www.goatcounter.com) collects no
+  cookies and no personal data. It counts page views, clicks on key links and which
+  terminal commands people use (known commands only, never free text).
 
 ## How it works
 
@@ -81,6 +87,8 @@ fallback content.
 │   ├── 404.html
 │   ├── assets/
 │   │   ├── css/main.css     # Shared styles
+│   │   ├── css/fonts.css    # @font-face for the self-hosted fonts
+│   │   ├── fonts/           # Inter and JetBrains Mono (SIL OFL 1.1)
 │   │   ├── js/main.js       # Theme, terminal, i18n strings, GitHub data
 │   │   └── img/             # WebP screenshots and avatar
 │   ├── og-image.png         # Social preview (es)
@@ -123,6 +131,12 @@ configured with **Source: GitHub Actions**.
 To use the custom domain, add the GitHub Pages DNS records for `toniruiz.es`
 (A/AAAA on the apex, plus a `www` CNAME to `favashi.github.io`). Then set the domain
 under *Settings → Pages* and enable *Enforce HTTPS*.
+
+## Credits
+
+Fonts: [Inter](https://github.com/rsms/inter) and
+[JetBrains Mono](https://github.com/JetBrains/JetBrainsMono), both under the
+SIL Open Font License 1.1 (see `site/assets/fonts/`).
 
 ## Contact
 
