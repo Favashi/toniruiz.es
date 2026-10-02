@@ -10,6 +10,7 @@
 // Uso: node scripts/build.mjs            (GITHUB_TOKEN opcional, evita el límite de 60 req/h)
 //      node scripts/build.mjs --offline  (sin red: solo copia y fecha el sitemap)
 
+import { createHash } from 'node:crypto';
 import { cpSync, mkdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -124,6 +125,18 @@ cpSync(SRC, OUT, { recursive: true });
 const today = new Date().toISOString().slice(0, 10);
 const sitemapPath = join(OUT, 'sitemap.xml');
 writeFileSync(sitemapPath, readFileSync(sitemapPath, 'utf8').replace(/<lastmod>[^<]*<\/lastmod>/g, `<lastmod>${today}</lastmod>`));
+
+// Versionado de CSS/JS (?v=hash) para que un despliegue nuevo nunca mezcle
+// HTML nuevo con recursos antiguos de la caché del navegador.
+const assetHash = (rel) => createHash('sha256').update(readFileSync(join(OUT, rel))).digest('hex').slice(0, 10);
+for (const { file } of [{ file: 'index.html' }, { file: 'en/index.html' }]) {
+  const path = join(OUT, file);
+  const html = readFileSync(path, 'utf8').replace(
+    /((?:href|src)="(?:\.\.\/)?)(assets\/(?:css|js)\/[\w.-]+\.(?:css|js))"/g,
+    (m, pre, rel) => `${pre}${rel}?v=${assetHash(rel)}"`
+  );
+  writeFileSync(path, html);
+}
 
 if (OFFLINE) {
   console.log('Build offline: _site/ sin datos de GitHub.');
