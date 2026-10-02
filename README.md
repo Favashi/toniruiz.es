@@ -32,9 +32,16 @@ content fresh every day.
 - **Interactive terminal.** It types `whoami` and `neofetch` on load, then accepts
   commands: `help`, `skills`, `projects`, `kubectl get pods`, `git log`, `contact`,
   `cd <section>`, `lang`, `theme`, `clear`. It has history (↑/↓) and Tab completion.
-- **Live GitHub data, baked into the HTML.** The project versions, last update time and
-  recent commits come from the GitHub API at build time. They are rendered into the
-  page, so search engines and link previews see real content without running JS.
+- **Live data, baked into the HTML.** Every build collects:
+  - from the **GitHub API**: versions, last update, recent commits, latest releases,
+    language breakdown, and total commits, releases and CI workflows;
+  - from **shallow clones** of the featured repos: lines of code and automated tests
+    (pgTAP `plan(N)` + Playwright `test(`);
+  - from **Escriba de la Marca's public RPC** (`landing_showcase`): catalogue size and
+    books catalogued by its users.
+
+  Everything is rendered into the page, so search engines and link previews see real
+  numbers without running JS.
 - **Bilingual.** Spanish lives at `/` and English at `/en/`, with `hreflang` alternates,
   a language switch and a localised terminal.
 - **Light and dark themes.** The site follows the system theme, and a manual toggle
@@ -72,7 +79,11 @@ flowchart LR
    recent commits. Other repositories are never shown.
 3. Injects the data into both pages through `data-gh` / `data-gh-time` attributes and
    the `<!-- gh:activity -->` block. It also exposes the data as JSON for the terminal.
-4. Writes `_site/data/github.json` and refreshes the dates in the sitemap.
+4. Clones the featured repositories (shallow) to count lines of code and tests, and
+   reads Escriba's public stats endpoint. The Supabase URL and publishable key are read
+   from Escriba's own `js/config.js`, so they never drift.
+5. Adds a content hash (`?v=…`) to CSS/JS URLs for safe cache busting.
+6. Writes `_site/data/github.json` and refreshes the dates in the sitemap.
 
 If the API is unavailable, the build still succeeds and publishes the static
 fallback content.

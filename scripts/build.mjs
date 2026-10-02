@@ -10,8 +10,10 @@
 // Uso: node scripts/build.mjs            (GITHUB_TOKEN opcional, evita el límite de 60 req/h)
 //      node scripts/build.mjs --offline  (sin red: solo copia y fecha el sitemap)
 
+import { execFileSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
-import { cpSync, mkdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import { cpSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import { tmpdir } from 'node:os';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -24,6 +26,8 @@ const OFFLINE = process.argv.includes('--offline');
 // Solo estos repos aparecen en la web. Cualquier otro se ignora a propósito.
 const PROJECTS = ['escribadelamarca', 'osr-manager', 'toniruiz.es'];
 const ACTIVITY_LIMIT = 6;
+// La propia web cuenta en las estadísticas, pero no en la actividad reciente.
+const ACTIVITY_SKIP = new Set(['toniruiz.es']);
 
 const headers = {
   Accept: 'application/vnd.github+json',
@@ -39,6 +43,70 @@ async function api(path) {
   return res.json();
 }
 
+// Total de elementos de un listado paginado leyendo la cabecera Link (per_page=1)
+async function apiCount(path) {
+  const res = await fetch(`https://api.github.com${path}${path.includes('?') ? '&' : '?'}per_page=1`, { headers });
+  if (!res.ok) return 0;
+  const last = (res.headers.get('link') || '').match(/[?&]page=(\d+)>; rel="last"/);
+  return last ? Number(last[1]) : (await res.json()).length;
+}
+
+// Clona el repo y mide líneas de código fuente propio (sin dependencias de
+// terceros ni minificados) y tests automáticos (plan(N) de pgTAP + test( de Playwright).
+const CODE_EXT = /\.(js|mjs|ts|css|html|sql|php|py|sh|ya?ml)$/;
+const CODE_SKIP = /(^|\/)(vendor|node_modules|dist|third_party)\/|\.min\.(js|css)$/;
+function analyzeRepo(name) {
+  const dir = mkdtempSync(join(tmpdir(), 'repo-'));
+  try {
+    execFileSync('git', ['clone', '-q', '--depth', '1', `https://github.com/${USER}/${name}.git`, dir], { stdio: 'ignore' });
+    const files = execFileSync('git', ['-C', dir, 'ls-files'], { encoding: 'utf8' }).split('\n').filter(Boolean);
+    let loc = 0, tests = 0;
+    for (const f of files) {
+      if (!CODE_EXT.test(f) || CODE_SKIP.test(f)) continue;
+      const text = readFileSync(join(dir, f), 'utf8');
+      loc += text.split('\n').length;
+      if (/(^|\/)tests?\/.*\.sql$/.test(f)) tests += Number((text.match(/\bplan\s*\(\s*(\d+)\s*\)/) || [])[1] || 0);
+      if (/\.(spec|test)\.[mc]?[jt]s$/.test(f)) tests += (text.match(/^\s*test\(/gm) || []).length;
+    }
+    return { loc, tests };
+  } catch {
+    return { loc: 0, tests: 0 };
+  } finally {
+    rmSync(dir, { recursive: true, force: true });
+  }
+}
+
+// Cifras públicas de Escriba de la Marca: la misma RPC que usa su portada.
+// URL y clave publishable se leen de su config.js para no desincronizarse.
+// "scribes" y "supporters" se omiten a propósito hasta que lleguen a 50 y 20.
+async function escribaShowcase() {
+  try {
+    const cfg = await (await fetch(`https://raw.githubusercontent.com/${USER}/escribadelamarca/main/js/config.js`)).text();
+    const url = (cfg.match(/SUPABASE_URL\s*=\s*'([^']+)'/) || [])[1];
+    const key = (cfg.match(/SUPABASE_ANON_KEY\s*=\s*'([^']+)'/) || [])[1];
+    if (!url || !key) return null;
+    const res = await fetch(`${url}/rest/v1/rpc/landing_showcase`, {
+      method: 'POST',
+      headers: { apikey: key, 'Content-Type': 'application/json' },
+      body: '{}',
+    });
+    if (!res.ok) return null;
+    const d = await res.json();
+    const out = { publications: d.publications, authors: d.authors, adventures: d.adventures, books_cataloged: d.books_cataloged };
+    if (d.scribes >= 50) out.scribes = d.scribes;
+    if (d.supporters >= 20) out.supporters = d.supporters;
+    return out;
+  } catch {
+    return null;
+  }
+}
+
+// Colores de lenguaje de GitHub (linguist)
+const LANG_COLORS = {
+  JavaScript: '#f1e05a', TypeScript: '#3178c6', CSS: '#663399', HTML: '#e34c26', PLpgSQL: '#336790',
+  PHP: '#4f5d95', Python: '#3572a5', Go: '#00add8', Shell: '#89e051', Makefile: '#427819', Dockerfile: '#384d54',
+};
+
 const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 const firstLine = (msg) => {
   const line = msg.split('\n')[0].trim();
@@ -47,11 +115,18 @@ const firstLine = (msg) => {
 // Páginas generadas y su idioma
 const PAGES = [{ file: 'index.html', lang: 'es' }, { file: 'en/index.html', lang: 'en' }];
 const LOCALES = { es: { locale: 'es-ES', in: 'en' }, en: { locale: 'en-GB', in: 'in' } };
+const STRINGS = {
+  es: { languages: 'lenguajes', totals: 'totales', releases: 'últimas releases', workflows: 'workflows de CI', loc: 'líneas de código', other: 'otros' },
+  en: { languages: 'languages', totals: 'totals', releases: 'latest releases', workflows: 'CI workflows', loc: 'lines of code', other: 'other' },
+};
 const monthYear = (iso, lang) => new Date(iso).toLocaleDateString(LOCALES[lang].locale, { month: 'long', year: 'numeric', timeZone: 'Europe/Madrid' });
 
 async function collect() {
   const projects = {};
   const commits = [];
+  const releases = [];
+  const languages = {};
+  const stats = { commits: 0, releases: 0, workflows: 0, loc: 0, tests: 0 };
 
   for (const name of PROJECTS) {
     const repo = await api(`/repos/${USER}/${name}`);
@@ -68,7 +143,32 @@ async function collect() {
       released_at: release ? release.published_at : null,
     };
 
-    for (const c of recent) {
+    const allReleases = (await api(`/repos/${USER}/${name}/releases?per_page=100`)) || [];
+    const langs = (await api(`/repos/${USER}/${name}/languages`)) || {};
+    const workflows = await api(`/repos/${USER}/${name}/actions/workflows`);
+    const repoCommits = await apiCount(`/repos/${USER}/${name}/commits`);
+    const { loc, tests } = analyzeRepo(name);
+
+    for (const r of allReleases) {
+      if (!r.draft) releases.push({ repo: name, tag: r.tag_name, date: r.published_at, url: r.html_url });
+    }
+    for (const [lang, bytes] of Object.entries(langs)) languages[lang] = (languages[lang] || 0) + bytes;
+    stats.commits += repoCommits;
+    stats.releases += allReleases.filter((r) => !r.draft).length;
+    stats.workflows += workflows?.total_count || 0;
+    stats.loc += loc;
+    stats.tests += tests;
+    projects[name].commits = repoCommits;
+    projects[name].releases = allReleases.filter((r) => !r.draft).length;
+    projects[name].loc = loc;
+    projects[name].tests = tests;
+    if (allReleases.length) {
+      const first = allReleases.map((r) => new Date(r.published_at)).sort((a, b) => a - b)[0];
+      projects[name].first_release_at = first.toISOString();
+      projects[name].release_days = Math.max(1, Math.ceil((Date.now() - first) / 86400000));
+    }
+
+    for (const c of ACTIVITY_SKIP.has(name) ? [] : recent) {
       commits.push({
         repo: name,
         sha: c.sha.slice(0, 7),
@@ -80,7 +180,24 @@ async function collect() {
   }
 
   commits.sort((a, b) => new Date(b.date) - new Date(a.date));
-  return { generated_at: new Date().toISOString(), projects, activity: commits.slice(0, ACTIVITY_LIMIT) };
+  releases.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+  // Lenguajes en porcentaje: los 6 principales + "otros"
+  const total = Object.values(languages).reduce((a, b) => a + b, 0) || 1;
+  const sorted = Object.entries(languages).sort((a, b) => b[1] - a[1]);
+  const top = sorted.slice(0, 6).map(([name, bytes]) => ({ name, pct: (bytes / total) * 100, color: LANG_COLORS[name] || '#8a8a93' }));
+  const rest = sorted.slice(6).reduce((a, [, b]) => a + b, 0);
+  if (rest / total >= 0.005) top.push({ name: 'other', pct: (rest / total) * 100, color: '#3a3a3f' });
+
+  return {
+    generated_at: new Date().toISOString(),
+    projects,
+    stats,
+    escriba: await escribaShowcase(),
+    languages: top,
+    releases: releases.slice(0, 5),
+    activity: commits.slice(0, ACTIVITY_LIMIT),
+  };
 }
 
 function render(html, data, lang) {
@@ -109,6 +226,43 @@ function render(html, data, lang) {
       `<time class="when dim" data-date="${esc(c.date)}" datetime="${esc(c.date)}">${new Date(c.date).toLocaleDateString(locale, { timeZone: 'Europe/Madrid' })}</time></div>`
     ).join('\n');
     html = html.replace(/<!-- gh:activity -->[\s\S]*?<!-- \/gh:activity -->/, `<!-- gh:activity -->\n${rows}\n              <!-- /gh:activity -->`);
+  }
+
+  // <b data-stat="stats.loc" data-fmt="compact">fallback</b>
+  const pick = (path) => path.split('.').reduce((o, k) => (o == null ? o : o[k]), data);
+  html = html.replace(/(<([a-z]+)([^>]*)\sdata-stat="([^"]+)"([^>]*)>)([^<]*)(<\/\2>)/g, (m, open, _t, a1, key, a2, text, close) => {
+    const value = pick(key);
+    if (typeof value !== 'number' || !value) return m;
+    const compact = /data-fmt="compact"/.test(a1 + a2);
+    const fmt = new Intl.NumberFormat(locale, compact ? { notation: 'compact', maximumFractionDigits: 0 } : {});
+    return open + esc(fmt.format(value)) + close;
+  });
+
+  // Panel de GitHub: lenguajes, contadores y últimas releases
+  if (data.languages?.length) {
+    const t = STRINGS[lang];
+    const nf = new Intl.NumberFormat(locale);
+    const pad = '              ';
+    const bar = data.languages.map((l) =>
+      `<i style="width:${l.pct.toFixed(2)}%;background:${l.color}" title="${esc(l.name === 'other' ? t.other : l.name)} ${l.pct.toFixed(1)}%"></i>`).join('');
+    const legend = data.languages.map((l) =>
+      `<span><i style="background:${l.color}"></i>${esc(l.name === 'other' ? t.other : l.name)} <span class="dim">${l.pct.toFixed(1)}%</span></span>`).join('');
+    const counters = [
+      [data.stats.commits, 'commits'], [data.stats.releases, 'releases'],
+      [data.stats.workflows, t.workflows], [data.stats.loc, t.loc],
+    ].filter(([n]) => n).map(([n, label]) => `<span><b>${nf.format(n)}</b> ${label}</span>`).join('');
+    const rels = data.releases.map((r) =>
+      `${pad}<div class="log-row rel-row"><a href="${esc(r.url)}" rel="noopener">${esc(r.tag)}</a><span class="repo dv">${esc(r.repo)}</span>` +
+      `<time class="when dim" data-date="${esc(r.date)}" datetime="${esc(r.date)}">${new Date(r.date).toLocaleDateString(locale, { timeZone: 'Europe/Madrid' })}</time></div>`).join('\n');
+    const panel = [
+      `${pad}<p class="gh-h dim"># ${t.languages}</p>`,
+      `${pad}<div class="lang-bar" role="img" aria-label="${esc(data.languages.map((l) => `${l.name === 'other' ? t.other : l.name} ${l.pct.toFixed(0)}%`).join(', '))}">${bar}</div>`,
+      `${pad}<div class="lang-legend">${legend}</div>`,
+      `${pad}<p class="gh-h dim"># ${t.totals}</p>`,
+      `${pad}<div class="gh-counters">${counters}</div>`,
+      data.releases.length ? `${pad}<p class="gh-h dim"># ${t.releases}</p>\n${rels}` : '',
+    ].filter(Boolean).join('\n');
+    html = html.replace(/<!-- gh:stats -->[\s\S]*?<!-- \/gh:stats -->/, `<!-- gh:stats -->\n${panel}\n              <!-- /gh:stats -->`);
   }
 
   // JSON para la terminal interactiva (escapando "<" para no cerrar el <script>)

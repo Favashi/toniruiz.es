@@ -244,6 +244,7 @@ section { padding: clamp(80px, 12vw, 140px) 0; }
 .stat:last-child { border-right: 0; }
 .stat b { display: block; font: 700 clamp(2rem, 4vw, 3rem)/1 var(--display); letter-spacing: -.04em; }
 .stat span { display: block; margin-top: 10px; font-size: .9375rem; color: var(--muted); line-height: 1.4; }
+.stat span [data-stat] { display: inline; margin: 0; font-size: inherit; color: var(--ink); font-weight: 600; }
 
 /* ---------- Dos perfiles ---------- */
 .duo { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
@@ -381,6 +382,8 @@ body::before {
   .log-row .repo { grid-column: 2; grid-row: 1; }
   .log-row .msg { grid-column: 1 / -1; white-space: normal; }
   .log-row .when { display: none; }
+  .rel-row { grid-template-columns: 10ch 1fr; }
+  .rel-row .repo { grid-column: 2; }
 }
 
 .nav-links a.lang-switch {
@@ -396,6 +399,19 @@ body::before {
   background: var(--line); transform: translateY(-50%);
 }
 .nav-links #theme { margin-left: 6px; }
+
+/* Panel de GitHub */
+.gh-h { margin: 18px 0 10px; }
+.term-body pre + .gh-h, .term-body pre + * + .gh-h { margin-top: 12px; }
+.gh-more { margin-bottom: 0; }
+.lang-bar { display: flex; gap: 2px; height: 10px; border-radius: 5px; overflow: hidden; background: #1c1c1f; }
+.lang-bar i { display: block; height: 100%; }
+.lang-legend { display: flex; flex-wrap: wrap; gap: 6px 18px; margin-top: 12px; }
+.lang-legend > span { display: inline-flex; align-items: center; gap: 6px; }
+.lang-legend i { width: 8px; height: 8px; border-radius: 50%; }
+.gh-counters { display: flex; flex-wrap: wrap; gap: 8px 28px; }
+.gh-counters b { color: #fff; font-size: 1.25em; font-weight: 700; }
+.rel-row { grid-template-columns: 10ch 18ch auto; justify-content: start; }
 
 /* Menú móvil */
 .menu-btn { display: none; }

@@ -194,9 +194,9 @@ Toni Ruiz — Developer &amp; DevOps · Barcelona</pre></noscript>
       <div class="wrap">
         <div class="stats reveal">
           <div class="stat"><b>+20</b><span>años escribiendo software</span></div>
-          <div class="stat"><b class="t-ops">3</b><span>nubes: AWS, GCP y Azure</span></div>
-          <div class="stat"><b class="t-dev">~200</b><span>tests automáticos en Escriba de la Marca</span></div>
-          <div class="stat"><b>0&nbsp;€</b><span>de infraestructura en mis proyectos</span></div>
+          <div class="stat"><b class="t-ops" data-stat="escriba.books_cataloged">1422</b><span>libros catalogados por los usuarios de Escriba de la Marca</span></div>
+          <div class="stat"><b class="t-dev" data-stat="projects.escribadelamarca.releases">36</b><span>versiones de Escriba publicadas en <span data-stat="projects.escribadelamarca.release_days">9</span> días</span></div>
+          <div class="stat"><b data-stat="stats.tests">209</b><span>tests automáticos que se ejecutan en cada despliegue</span></div>
         </div>
       </div>
     </section>
@@ -367,6 +367,9 @@ deployment <span class="b">"api"</span> <span class="ok">successfully rolled out
             <span class="status"><span class="dot live"></span>En producción · <span data-gh="escribadelamarca.version">v1.14</span> · <time data-gh-time="escribadelamarca.pushed_at" data-prefix="actualizado" datetime="2026-10-01">actualizado en octubre de 2026</time></span>
             <h3>Escriba de la Marca</h3>
             <p>PWA para coleccionistas de <em>Aventuras en la Marca del Este</em>. Escaneas el código de barras y te dice si ya tienes el libro y qué te falta de cada serie.</p>
+            <ul class="chips" aria-label="Catálogo de Escriba">
+              <li><span data-stat="escriba.publications">118</span> publicaciones</li><li><span data-stat="escriba.authors">83</span> autores</li><li><span data-stat="escriba.adventures">83</span> aventuras en el buscador</li>
+            </ul>
             <div class="split">
               <div class="d">
                 <h4><span class="dot dev"></span>Desarrollo</h4>
@@ -452,14 +455,15 @@ deployment <span class="b">"api"</span> <span class="ok">successfully rolled out
           </div>
         </div>
 
-        <div class="ls reveal">
+        <div class="ls reveal" id="github">
           <div class="term">
-            <div class="term-bar"><div></div><div class="title">toni@barcelona: ~/repos</div><div class="ctrls" aria-hidden="true"><span></span><span></span><span class="x"></span></div></div>
+            <div class="term-bar"><div></div><div class="title">toni@barcelona: ~/github</div><div class="ctrls" aria-hidden="true"><span></span><span></span><span class="x"></span></div></div>
             <div class="term-body">
-              <pre><span class="ok">toni@barcelona</span>:<span class="dv">~/repos</span>$ ls -l otros/</pre>
-              <div class="ls-row"><span class="perm dim">drwxr-xr-x</span><span class="lang warn">css</span><span><a href="https://favashi.github.io/pesadillajdr/" rel="noopener">pesadillajdr/</a> <span class="desc">Pesadilla: historia de terrores compartidos</span></span></div>
-              <div class="ls-row"><span class="perm dim">drwxr-xr-x</span><span class="lang warn">php</span><span><a href="https://github.com/Favashi/icommunity-connector">icommunity-connector/</a> <span class="desc">Módulo para conectar WordPress con la API de iCommunity</span></span></div>
-              <div class="ls-row"><span class="perm dim">lrwxr-xr-x</span><span class="lang warn">*</span><span><a href="https://github.com/Favashi">github.com/Favashi</a> <span class="desc">→ todo lo demás</span></span></div>
+              <pre><span class="ok">toni@barcelona</span>:<span class="dv">~/github</span>$ gh stats Favashi <span class="dim"># proyectos en producción</span></pre>
+              <!-- gh:stats -->
+              <p class="gh-h"><a href="https://github.com/Favashi" rel="noopener">Estadísticas en github.com/Favashi</a></p>
+              <!-- /gh:stats -->
+              <p class="gh-h gh-more"><a href="https://github.com/Favashi" rel="me noopener" data-goatcounter-click="click/github-stats">github.com/Favashi</a> <span class="dim">→ perfil completo</span></p>
             </div>
           </div>
         </div>
