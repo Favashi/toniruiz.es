@@ -1,0 +1,1206 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Toni Ruiz · Developer &amp; DevOps en Barcelona</title>
+  <meta name="description" content="Toni Ruiz, Developer y DevOps en Barcelona con más de 20 años de experiencia. Backend, cloud (AWS, GCP, Azure), Kubernetes, CI/CD e infraestructura como código.">
+  <meta name="author" content="Toni Ruiz">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <link rel="canonical" href="https://toniruiz.es/">
+  <link rel="alternate" hreflang="es" href="https://toniruiz.es/">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="profile">
+  <meta property="og:site_name" content="Toni Ruiz">
+  <meta property="og:locale" content="es_ES">
+  <meta property="og:url" content="https://toniruiz.es/">
+  <meta property="og:title" content="Toni Ruiz · Developer &amp; DevOps">
+  <meta property="og:description" content="Escribo el código. Y lo llevo a producción. Más de 20 años desarrollando software y hoy DevOps a tiempo completo.">
+  <meta property="og:image" content="https://toniruiz.es/og-image.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Toni Ruiz, Developer y DevOps: «Escribo el código. Y lo llevo a producción.»">
+  <meta property="profile:first_name" content="Toni">
+  <meta property="profile:last_name" content="Ruiz">
+  <meta property="profile:username" content="Favashi">
+
+  <!-- Twitter / X -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Toni Ruiz · Developer &amp; DevOps">
+  <meta name="twitter:description" content="Escribo el código. Y lo llevo a producción.">
+  <meta name="twitter:image" content="https://toniruiz.es/og-image.png">
+  <meta name="twitter:image:alt" content="Toni Ruiz, Developer y DevOps: «Escribo el código. Y lo llevo a producción.»">
+
+  <!-- Iconos y PWA -->
+  <meta name="theme-color" content="#f5f5f7" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
+  <link rel="icon" href="favicon.ico" sizes="32x32">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+
+  <!-- Datos estructurados -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://toniruiz.es/#website",
+        "url": "https://toniruiz.es/",
+        "name": "Toni Ruiz",
+        "inLanguage": "es",
+        "publisher": { "@id": "https://toniruiz.es/#person" }
+      },
+      {
+        "@type": "ProfilePage",
+        "@id": "https://toniruiz.es/#profilepage",
+        "url": "https://toniruiz.es/",
+        "name": "Toni Ruiz · Developer & DevOps",
+        "inLanguage": "es",
+        "isPartOf": { "@id": "https://toniruiz.es/#website" },
+        "mainEntity": { "@id": "https://toniruiz.es/#person" }
+      },
+      {
+        "@type": "Person",
+        "@id": "https://toniruiz.es/#person",
+        "name": "Toni Ruiz",
+        "alternateName": "Favashi",
+        "url": "https://toniruiz.es/",
+        "image": "https://toniruiz.es/assets/img/toni.jpg",
+        "email": "mailto:info@toniruiz.es",
+        "jobTitle": "Developer & DevOps",
+        "description": "Developer con más de 20 años de experiencia y DevOps a tiempo completo.",
+        "address": { "@type": "PostalAddress", "addressLocality": "Barcelona", "addressCountry": "ES" },
+        "knowsLanguage": ["es", "ca", "en"],
+        "knowsAbout": ["DevOps", "Desarrollo de software", "AWS", "Google Cloud", "Azure", "Kubernetes", "Docker", "Terraform", "Ansible", "GitHub Actions", "Jenkins", "Prometheus", "Grafana", "PHP", "Python", "Go", ".NET", "Node.js", "PostgreSQL", "Arquitectura hexagonal", "DDD", "PWA"],
+        "sameAs": ["https://github.com/Favashi", "https://www.linkedin.com/in/toniruizfernandez"]
+      },
+      {
+        "@type": "WebApplication",
+        "name": "Escriba de la Marca",
+        "url": "https://favashi.github.io/escribadelamarca/",
+        "description": "PWA gratuita para coleccionistas de Aventuras en la Marca del Este: escanea el código de barras y descubre qué te falta de cada serie.",
+        "applicationCategory": "LifestyleApplication",
+        "operatingSystem": "Web, Android, iOS",
+        "inLanguage": "es",
+        "isAccessibleForFree": true,
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
+        "author": { "@id": "https://toniruiz.es/#person" }
+      },
+      {
+        "@type": "WebApplication",
+        "name": "OSR Manager",
+        "url": "https://favashi.github.io/osr-manager/",
+        "description": "Ayuda de mesa para directores de juego OSR: exploración, hexcrawl, encuentros, combate y recursos. Funciona sin conexión.",
+        "applicationCategory": "GameApplication",
+        "operatingSystem": "Web",
+        "inLanguage": "es",
+        "isAccessibleForFree": true,
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
+        "author": { "@id": "https://toniruiz.es/#person" }
+      }
+    ]
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <script>
+    document.documentElement.classList.add('js');
+    try {
+      const t = localStorage.getItem('theme');
+      if (t === 'light' || t === 'dark') document.documentElement.dataset.theme = t;
+    } catch (e) {}
+  </script>
+  <style>
+    /* ------------------------------------------------------------------
+       Paleta
+       Neutros tipo Apple + dos acentos con significado:
+       --dev (índigo)  = desarrollo
+       --ops (menta)   = DevOps / operaciones
+       Las terminales son siempre oscuras, en ambos temas.
+       ------------------------------------------------------------------ */
+    :root {
+      --bg: #f5f5f7;
+      --bg-alt: #ffffff;
+      --surface: #ffffff;
+      --surface-2: #f5f5f7;
+      --ink: #1d1d1f;
+      --ink-2: #424245;
+      --muted: #6e6e73;
+      --line: #d2d2d7;
+      --line-soft: #e8e8ed;
+      --dev: #5856d6;
+      --dev-soft: rgba(88, 86, 214, .1);
+      --ops: #00875f;
+      --ops-soft: rgba(0, 135, 95, .1);
+      --cta: #1d1d1f;
+      --cta-ink: #ffffff;
+      --glass: rgba(245, 245, 247, .72);
+      --shadow: 0 2px 6px rgba(0, 0, 0, .04), 0 24px 48px -24px rgba(0, 0, 0, .18);
+
+      --term-bg: #0c0c0e;
+      --term-bar: #1c1c1f;
+      --term-line: #2a2a2e;
+      --term-ink: #d4d4d8;
+      --term-dim: #7a7a83;
+      --term-ops: #3ee6a8;
+      --term-dev: #9d9bff;
+      --term-warn: #ffd166;
+      --term-err: #ff6b6b;
+
+      --sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", "Segoe UI", system-ui, sans-serif;
+      --display: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", "Segoe UI", system-ui, sans-serif;
+      --mono: "JetBrains Mono", "SF Mono", ui-monospace, Menlo, Consolas, monospace;
+      color-scheme: light;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) {
+        --bg: #000000;
+        --bg-alt: #0a0a0b;
+        --surface: #141416;
+        --surface-2: #1c1c1f;
+        --ink: #f5f5f7;
+        --ink-2: #c7c7cc;
+        --muted: #86868b;
+        --line: #2c2c2f;
+        --line-soft: #1f1f22;
+        --dev: #9d9bff;
+        --dev-soft: rgba(157, 155, 255, .12);
+        --ops: #3ee6a8;
+        --ops-soft: rgba(62, 230, 168, .12);
+        --cta: #f5f5f7;
+        --cta-ink: #000000;
+        --glass: rgba(0, 0, 0, .7);
+        --shadow: 0 0 0 1px rgba(255, 255, 255, .04), 0 24px 48px -24px rgba(0, 0, 0, .8);
+        color-scheme: dark;
+      }
+    }
+    :root[data-theme="dark"] {
+      --bg: #000000;
+      --bg-alt: #0a0a0b;
+      --surface: #141416;
+      --surface-2: #1c1c1f;
+      --ink: #f5f5f7;
+      --ink-2: #c7c7cc;
+      --muted: #86868b;
+      --line: #2c2c2f;
+      --line-soft: #1f1f22;
+      --dev: #9d9bff;
+      --dev-soft: rgba(157, 155, 255, .12);
+      --ops: #3ee6a8;
+      --ops-soft: rgba(62, 230, 168, .12);
+      --cta: #f5f5f7;
+      --cta-ink: #000000;
+      --glass: rgba(0, 0, 0, .7);
+      --shadow: 0 0 0 1px rgba(255, 255, 255, .04), 0 24px 48px -24px rgba(0, 0, 0, .8);
+      color-scheme: dark;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; scroll-padding-top: 64px; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font: 400 1.0625rem/1.55 var(--sans);
+      letter-spacing: -.011em;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    img { max-width: 100%; height: auto; display: block; }
+    a { color: inherit; }
+    code, pre, kbd { font-family: var(--mono); }
+    ::selection { background: var(--ops); color: #000; }
+    :focus-visible { outline: 2px solid var(--dev); outline-offset: 3px; border-radius: 6px; }
+
+    .wrap { width: min(1120px, 100% - 32px); margin-inline: auto; }
+    .narrow { width: min(820px, 100% - 32px); margin-inline: auto; }
+
+    /* ---------- Navegación (cristal) ---------- */
+    .nav {
+      position: sticky; top: 0; z-index: 50;
+      background: var(--glass);
+      backdrop-filter: saturate(180%) blur(20px);
+      -webkit-backdrop-filter: saturate(180%) blur(20px);
+      border-bottom: 1px solid var(--line-soft);
+    }
+    .nav .wrap { height: 52px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+    .logo { font: 700 .9375rem/1 var(--mono); text-decoration: none; letter-spacing: -.02em; display: inline-flex; align-items: center; gap: 2px; }
+    .logo .p { color: var(--ops); }
+    .logo .c { width: 8px; height: 15px; background: var(--ink); margin-left: 3px; animation: blink 1.1s steps(1) infinite; }
+    .nav-links { display: flex; align-items: center; gap: 2px; }
+    .nav-links a { font-size: .8125rem; color: var(--ink-2); text-decoration: none; padding: 8px 12px; border-radius: 8px; transition: color .15s; }
+    .nav-links a:hover { color: var(--ink); }
+    .icon-btn {
+      display: inline-grid; place-items: center; width: 36px; height: 36px;
+      border: 0; background: transparent; color: var(--ink-2); border-radius: 50%; cursor: pointer;
+      transition: background-color .15s, color .15s;
+    }
+    .icon-btn:hover { background: var(--surface-2); color: var(--ink); }
+    .icon-btn svg { width: 18px; height: 18px; }
+    .icon-btn .sun { display: none; }
+    :root[data-theme="dark"] .icon-btn .sun { display: block; }
+    :root[data-theme="dark"] .icon-btn .moon { display: none; }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) .icon-btn .sun { display: block; }
+      :root:not([data-theme="light"]) .icon-btn .moon { display: none; }
+    }
+
+    /* ---------- Tipografía de sección ---------- */
+    .eyebrow { font: 500 .8125rem/1 var(--mono); color: var(--muted); margin: 0 0 16px; letter-spacing: 0; }
+    .eyebrow .p { color: var(--ops); }
+    h1, h2, h3 { font-family: var(--display); margin: 0; }
+    h2 { font-size: clamp(2.25rem, 5.5vw, 3.75rem); font-weight: 700; line-height: 1.04; letter-spacing: -.035em; text-wrap: balance; }
+    .sub { font-size: clamp(1.125rem, 2vw, 1.3125rem); line-height: 1.45; color: var(--muted); margin: 20px 0 0; max-width: 46ch; text-wrap: pretty; }
+    .sub strong { color: var(--ink); font-weight: 600; }
+    .t-dev { color: var(--dev); }
+    .t-ops { color: var(--ops); }
+    .grad {
+      background: linear-gradient(90deg, var(--dev) 0%, var(--ops) 100%);
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+    }
+    section { padding: clamp(80px, 12vw, 140px) 0; }
+    .head { margin-bottom: clamp(40px, 6vw, 64px); }
+    .head.center { text-align: center; }
+    .head.center .sub { margin-inline: auto; }
+
+    /* ---------- Botones ---------- */
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      min-height: 44px; padding: 0 22px; border-radius: 999px;
+      font: 500 .9375rem/1 var(--sans); text-decoration: none; white-space: nowrap;
+      border: 1px solid transparent; cursor: pointer;
+      transition: transform .15s ease, background-color .15s, border-color .15s, opacity .15s;
+    }
+    .btn:active { transform: scale(.97); }
+    .btn svg { width: 16px; height: 16px; flex: none; }
+    .btn-primary { background: var(--cta); color: var(--cta-ink); }
+    .btn-primary:hover { opacity: .85; }
+    .btn-ghost { background: transparent; color: var(--ink); border-color: var(--line); }
+    .btn-ghost:hover { border-color: var(--muted); }
+
+    /* ---------- Hero ---------- */
+    .hero { padding: clamp(64px, 11vw, 128px) 0 0; text-align: center; position: relative; overflow: hidden; }
+    .hero::before {
+      content: ""; position: absolute; inset: -20% -10% auto; height: 80%; z-index: -1; pointer-events: none;
+      background:
+        radial-gradient(40% 50% at 30% 40%, var(--dev-soft), transparent 70%),
+        radial-gradient(40% 50% at 70% 50%, var(--ops-soft), transparent 70%);
+      filter: blur(20px);
+    }
+    .avatar { width: 88px; height: 88px; border-radius: 50%; object-fit: cover; margin: 0 auto 24px; box-shadow: 0 0 0 4px var(--bg), 0 0 0 5px var(--line); }
+    .hero-name { font: 500 1rem/1 var(--mono); color: var(--muted); margin: 0 0 20px; }
+    .hero h1 { font-size: clamp(2.75rem, 8.5vw, 6rem); font-weight: 700; line-height: 1; letter-spacing: -.045em; text-wrap: balance; }
+    .hero h1 .l2 { display: block; padding-bottom: .08em; }
+    .hero .sub { margin: 24px auto 0; max-width: 40ch; }
+    .hero-cta { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-top: 36px; }
+    .pills { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin: 28px 0 0; padding: 0; list-style: none; }
+    .pills li { font: 500 .75rem/1 var(--mono); color: var(--ink-2); background: var(--surface); border: 1px solid var(--line-soft); padding: 8px 12px; border-radius: 999px; display: inline-flex; gap: 8px; align-items: center; }
+    .dot { width: 7px; height: 7px; border-radius: 50%; flex: none; display: inline-block; }
+    .dot.dev { background: var(--dev); }
+    .dot.ops { background: var(--ops); }
+    .dot.live { background: #30d158; box-shadow: 0 0 0 3px rgba(48, 209, 88, .2); }
+
+    /* ---------- Terminal (estilo GNOME, esquinas Apple) ---------- */
+    .term {
+      background: var(--term-bg); color: var(--term-ink);
+      border-radius: 14px; overflow: hidden; text-align: left;
+      box-shadow: 0 0 0 1px rgba(255, 255, 255, .06), 0 40px 80px -30px rgba(0, 0, 0, .55), 0 10px 30px -10px rgba(0, 0, 0, .3);
+      font: 400 .875rem/1.6 var(--mono);
+    }
+    .term-bar {
+      display: grid; grid-template-columns: 1fr auto 1fr; align-items: center;
+      height: 38px; padding: 0 10px; background: var(--term-bar); border-bottom: 1px solid var(--term-line);
+      font: 500 .75rem/1 var(--sans); color: #a1a1aa; user-select: none;
+    }
+    .term-bar .tabs { display: flex; gap: 6px; }
+    .term-bar .tabs span { width: 22px; height: 22px; border-radius: 6px; background: #2a2a2e; display: grid; place-items: center; }
+    .term-bar .tabs svg { width: 12px; height: 12px; }
+    .term-bar .title { text-align: center; font-weight: 600; color: #d4d4d8; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .term-bar .ctrls { display: flex; justify-content: flex-end; gap: 8px; }
+    .term-bar .ctrls span { width: 14px; height: 14px; border-radius: 50%; background: #3a3a3f; display: grid; place-items: center; }
+    .term-bar .ctrls span svg { width: 8px; height: 8px; color: #c4c4cc; }
+    .term-bar .ctrls span.x { background: #e95420; }
+    .term-bar .ctrls span.x svg { color: #fff; }
+    .term-body { padding: 16px 18px 20px; }
+    .term pre { margin: 0; white-space: pre-wrap; word-break: break-word; font: inherit; }
+    .term .ok { color: var(--term-ops); }
+    .term .dv { color: var(--term-dev); }
+    .term .dim { color: var(--term-dim); }
+    .term .warn { color: var(--term-warn); }
+    .term .err { color: var(--term-err); }
+    .term .b { font-weight: 700; color: #fff; }
+    .term .ok.b { color: var(--term-ops); }
+    .term .dv.b { color: var(--term-dev); }
+    .term a { color: var(--term-dev); text-decoration: underline; text-underline-offset: 2px; }
+    .term a:hover { color: #fff; }
+
+    .hero-term { max-width: 880px; margin: clamp(56px, 8vw, 88px) auto 0; }
+    .hero-term .term-body { height: 500px; overflow-y: auto; scrollbar-width: thin; scrollbar-color: #333 transparent; cursor: text; }
+    .neo { display: grid; grid-template-columns: auto 1fr; gap: 28px; align-items: start; margin: 4px 0; }
+    .neo-logo { line-height: 1.05 !important; }
+    .neo-colors { display: flex; margin-top: 10px; }
+    .neo-colors i { width: 22px; height: 12px; }
+    .cmd-line { display: flex; align-items: baseline; flex-wrap: wrap; }
+    .prompt { white-space: pre; }
+    .cmd-input {
+      flex: 1; min-width: 6ch; background: transparent; border: 0; outline: 0; padding: 0; margin: 0;
+      color: #fff; font: inherit; caret-color: var(--term-ops);
+    }
+    .typed::after { content: ""; display: inline-block; width: .6em; height: 1.1em; background: var(--term-ops); vertical-align: -.2em; animation: blink 1s steps(1) infinite; }
+    .hint { margin: 14px 0 0; font: 400 .8125rem/1.4 var(--sans); color: var(--muted); text-align: center; }
+    .hint kbd { font-size: .75rem; padding: 2px 6px; border-radius: 5px; background: var(--surface); border: 1px solid var(--line); color: var(--ink); }
+    @keyframes blink { 50% { opacity: 0; } }
+
+    /* ---------- Cifras ---------- */
+    .stats { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    .stat { padding: 36px 24px; border-right: 1px solid var(--line); }
+    .stat:last-child { border-right: 0; }
+    .stat b { display: block; font: 700 clamp(2rem, 4vw, 3rem)/1 var(--display); letter-spacing: -.04em; }
+    .stat span { display: block; margin-top: 10px; font-size: .9375rem; color: var(--muted); line-height: 1.4; }
+
+    /* ---------- Dos perfiles ---------- */
+    .duo { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .side {
+      position: relative; overflow: hidden;
+      background: var(--surface); border-radius: 28px; padding: clamp(28px, 4vw, 44px);
+      box-shadow: var(--shadow); display: flex; flex-direction: column;
+    }
+    .side::after {
+      content: ""; position: absolute; width: 360px; height: 360px; right: -140px; top: -160px; border-radius: 50%;
+      filter: blur(60px); pointer-events: none;
+    }
+    .side.dev::after { background: var(--dev-soft); }
+    .side.ops::after { background: var(--ops-soft); }
+    .badge { display: inline-flex; align-items: center; gap: 8px; font: 600 .75rem/1 var(--mono); padding: 7px 10px; border-radius: 999px; align-self: flex-start; }
+    .side.dev .badge { color: var(--dev); background: var(--dev-soft); }
+    .side.ops .badge { color: var(--ops); background: var(--ops-soft); }
+    .side h3 { font-size: clamp(1.75rem, 3.2vw, 2.5rem); font-weight: 700; letter-spacing: -.03em; line-height: 1.08; margin: 20px 0 12px; text-wrap: balance; }
+    .side > p { color: var(--muted); margin: 0 0 28px; max-width: 44ch; }
+    .side .term { font-size: .8125rem; margin-top: auto; box-shadow: 0 0 0 1px rgba(255,255,255,.06); }
+    .side .term-bar { height: 32px; }
+    .side .term-body { padding: 14px 16px 16px; }
+    .side .term pre { white-space: pre; overflow-x: auto; }
+    .chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 28px; padding: 0; list-style: none; }
+    .chips li { font: 500 .75rem/1 var(--mono); padding: 7px 10px; border-radius: 8px; background: var(--surface-2); color: var(--ink-2); }
+
+    .pipeline { display: flex; align-items: center; margin: 0 0 20px; padding: 0; list-style: none; flex-wrap: wrap; row-gap: 10px; }
+    .pipeline li { display: flex; align-items: center; font: 500 .75rem/1 var(--mono); color: var(--ink-2); }
+    .pipeline li span { display: inline-flex; align-items: center; gap: 6px; padding: 8px 10px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); }
+    .pipeline li span svg { width: 12px; height: 12px; color: var(--ops); }
+    .pipeline li:not(:last-child)::after { content: ""; width: 14px; height: 1px; background: var(--line); }
+    .js .pipeline li span svg { opacity: 0; transform: scale(.5); transition: opacity .3s, transform .3s; }
+    .js .pipeline.run li span svg { opacity: 1; transform: none; }
+
+    /* ---------- Bento de stack ---------- */
+    .bento { display: grid; grid-template-columns: repeat(4, 1fr); grid-auto-flow: dense; gap: 16px; }
+    .tile { background: var(--surface); border-radius: 22px; padding: 24px; box-shadow: var(--shadow); min-height: 168px; display: flex; flex-direction: column; }
+    .tile.w2 { grid-column: span 2; }
+    .tile-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: auto; }
+    .tile .ico { width: 40px; height: 40px; border-radius: 12px; display: grid; place-items: center; }
+    .tile .ico svg { width: 20px; height: 20px; }
+    .tile.dev .ico { background: var(--dev-soft); color: var(--dev); }
+    .tile.ops .ico { background: var(--ops-soft); color: var(--ops); }
+    .tile .kind { font: 500 .6875rem/1 var(--mono); color: var(--muted); }
+    .tile h3 { font-size: 1.125rem; font-weight: 600; letter-spacing: -.02em; margin: 20px 0 6px; }
+    .tile p { margin: 0; font-size: .9375rem; color: var(--muted); line-height: 1.45; }
+    .legend { display: flex; gap: 20px; justify-content: center; margin-top: 24px; font: 500 .8125rem/1 var(--mono); color: var(--muted); }
+    .legend span { display: inline-flex; align-items: center; gap: 8px; }
+
+    /* ---------- Proyectos ---------- */
+    .project {
+      background: var(--surface); border-radius: 32px; box-shadow: var(--shadow); overflow: hidden;
+      display: grid; grid-template-columns: 1.05fr 1fr; margin-bottom: 24px;
+    }
+    .project-info { padding: clamp(28px, 5vw, 56px); display: flex; flex-direction: column; }
+    .status { display: inline-flex; align-items: center; gap: 8px; font: 500 .75rem/1 var(--mono); color: var(--muted); margin-bottom: 20px; }
+    .project h3 { font-size: clamp(2rem, 4vw, 3rem); font-weight: 700; letter-spacing: -.04em; line-height: 1; margin: 0 0 14px; }
+    .project-info > p { color: var(--muted); margin: 0 0 28px; font-size: 1.0625rem; max-width: 46ch; }
+    .project-info > p em { color: var(--ink); font-style: normal; font-weight: 500; }
+    .split { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin: 0 0 32px; }
+    .split h4 { margin: 0 0 10px; font: 600 .75rem/1 var(--mono); display: flex; align-items: center; gap: 8px; }
+    .split .d h4 { color: var(--dev); }
+    .split .o h4 { color: var(--ops); }
+    .split ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 8px; font-size: .875rem; color: var(--ink-2); line-height: 1.45; }
+    .split code { font-size: .8125rem; background: var(--surface-2); padding: 1px 5px; border-radius: 4px; }
+    .project-links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: auto; }
+
+    .stage { position: relative; min-height: 420px; display: flex; align-items: flex-end; justify-content: center; overflow: hidden; }
+    .stage.escriba { background: linear-gradient(160deg, #2b1a3a 0%, #120b18 100%); padding: 56px 24px 0; gap: 18px; }
+    .phone {
+      width: min(42%, 220px); border-radius: 30px 30px 0 0; padding: 8px 8px 0; background: #1a1a1c;
+      box-shadow: 0 0 0 1px rgba(255,255,255,.1), 0 30px 60px rgba(0,0,0,.5);
+    }
+    .phone img { border-radius: 22px 22px 0 0; }
+    .phone.back { transform: translateY(40px); }
+    .stage.osr { background: radial-gradient(80% 80% at 50% 30%, #0b1a6b 0%, #050512 100%); align-items: center; padding: 40px 28px; }
+    .stage.osr .term { width: 100%; max-width: 560px; }
+    .stage.osr .term-body { padding: 0; }
+    .stage.osr .term-body img { width: 100%; }
+
+    /* ls -l */
+    .ls { max-width: 880px; margin: 48px auto 0; }
+    .ls-row { display: grid; grid-template-columns: 11ch 4ch 1fr; gap: 12px; padding: 2px 0; }
+    .ls-row a { text-decoration: none; color: var(--term-dev); font-weight: 700; }
+    .ls-row a:hover { text-decoration: underline; }
+    .ls-row .desc { color: var(--term-dim); }
+
+    /* ---------- Contacto ---------- */
+    .contact { text-align: center; }
+    .contact h2 { font-size: clamp(2.75rem, 8vw, 5.5rem); letter-spacing: -.045em; }
+    .contact .sub { margin-inline: auto; }
+    .mail-line {
+      display: inline-flex; align-items: center; gap: 12px; margin-top: 40px; padding: 10px 10px 10px 20px;
+      background: var(--term-bg); color: var(--term-ink); border-radius: 14px; font: 400 clamp(.875rem, 2.4vw, 1.0625rem)/1 var(--mono);
+      box-shadow: 0 20px 40px -20px rgba(0,0,0,.5); max-width: 100%;
+    }
+    .mail-line .ok { color: var(--term-ops); }
+    .mail-line a { color: #fff; text-decoration: none; }
+    .mail-line a:hover { text-decoration: underline; text-underline-offset: 3px; }
+    .copy {
+      flex: none; display: inline-flex; align-items: center; gap: 6px; border: 0; cursor: pointer;
+      font: 500 .75rem/1 var(--sans); color: #e4e4e7; background: #26262a; padding: 10px 12px; border-radius: 9px;
+      transition: background-color .15s;
+    }
+    .copy:hover { background: #333338; }
+    .copy svg { width: 14px; height: 14px; }
+    .socials { display: flex; justify-content: center; flex-wrap: wrap; gap: 12px; margin-top: 24px; }
+
+    footer { border-top: 1px solid var(--line); padding: 24px 0 40px; font-size: .75rem; color: var(--muted); }
+    footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+
+    /* ---------- Añadidos v2 (solo elementos nuevos) ---------- */
+    /* Patrón de circuito de fondo, muy sutil; usa --ink para adaptarse al tema */
+    body::before {
+      content: ""; position: fixed; inset: 0; z-index: -2; pointer-events: none;
+      background: var(--ink); opacity: .025;
+      -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='96' height='96' fill='none' stroke='%23000' stroke-width='1'%3E%3Cpath d='M0 24h24l12 12h24l12-12h24M48 0v8M48 96V72l12-12h12M8 0v4M8 96V84l8-8h8'/%3E%3Ccircle cx='48' cy='10' r='2'/%3E%3Ccircle cx='74' cy='60' r='2'/%3E%3Ccircle cx='26' cy='76' r='2'/%3E%3Ccircle cx='8' cy='6' r='2'/%3E%3Crect x='62' y='78' width='18' height='10' rx='1.5'/%3E%3C/svg%3E") 0 0 / 96px 96px repeat;
+              mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='96' height='96' fill='none' stroke='%23000' stroke-width='1'%3E%3Cpath d='M0 24h24l12 12h24l12-12h24M48 0v8M48 96V72l12-12h12M8 0v4M8 96V84l8-8h8'/%3E%3Ccircle cx='48' cy='10' r='2'/%3E%3Ccircle cx='74' cy='60' r='2'/%3E%3Ccircle cx='26' cy='76' r='2'/%3E%3Ccircle cx='8' cy='6' r='2'/%3E%3Crect x='62' y='78' width='18' height='10' rx='1.5'/%3E%3C/svg%3E") 0 0 / 96px 96px repeat;
+    }
+    :root[data-theme="dark"] body::before { opacity: .045; }
+    @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) body::before { opacity: .045; } }
+
+    .skip {
+      position: absolute; left: 16px; top: -48px; z-index: 100;
+      background: var(--cta); color: var(--cta-ink); padding: 10px 16px; border-radius: 10px;
+      font-size: .875rem; text-decoration: none; transition: top .15s;
+    }
+    .skip:focus { top: 8px; }
+
+    .log-row { display: grid; grid-template-columns: 7ch 18ch 1fr auto; gap: 12px; padding: 2px 0; }
+    .log-row a { color: var(--term-warn); text-decoration: none; }
+    .log-row a:hover { text-decoration: underline; }
+    .log-row .msg { color: var(--term-ink); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    @media (max-width: 640px) {
+      .log-row { grid-template-columns: 7ch 1fr; gap: 0 10px; padding: 6px 0; }
+      .log-row .repo { grid-column: 2; grid-row: 1; }
+      .log-row .msg { grid-column: 1 / -1; white-space: normal; }
+      .log-row .when { display: none; }
+    }
+
+    /* ---------- Aparición ---------- */
+    .js .reveal { opacity: 0; transform: translateY(24px); transition: opacity .8s cubic-bezier(.2,.7,.2,1), transform .8s cubic-bezier(.2,.7,.2,1); }
+    .js .reveal.in { opacity: 1; transform: none; }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .js .reveal { opacity: 1; transform: none; transition: none; }
+      .logo .c, .typed::after { animation: none; }
+      .js .pipeline li span svg { opacity: 1; transform: none; transition: none; }
+    }
+
+    /* ---------- Responsive ---------- */
+    @media (max-width: 960px) {
+      .duo, .project { grid-template-columns: 1fr; }
+      .bento { grid-template-columns: repeat(2, 1fr); }
+      .stage { min-height: 360px; }
+      .stats { grid-template-columns: repeat(2, 1fr); }
+      .stat:nth-child(2) { border-right: 0; }
+      .stat:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
+    }
+    @media (max-width: 640px) {
+      body { font-size: 1rem; }
+      .nav-links a { display: none; }
+      .term { font-size: .75rem; }
+      .hero-term .term-body { height: 420px; padding: 14px; }
+      .neo { grid-template-columns: 1fr; gap: 0; }
+      .neo-logo { display: none; }
+      .term-bar .tabs { visibility: hidden; }
+      .bento { grid-template-columns: 1fr; }
+      .tile.w2 { grid-column: auto; }
+      .tile { min-height: 0; padding: 20px; }
+      .tile h3 { margin-top: 14px; }
+      .split { grid-template-columns: 1fr; gap: 20px; }
+      .stat { padding: 28px 16px; }
+      .ls-row { grid-template-columns: 1fr; gap: 0; padding: 6px 0; }
+      .ls-row .perm, .ls-row .lang { display: none; }
+      .stage.escriba { padding: 40px 16px 0; }
+      .mail-line { padding-left: 14px; }
+      .copy .lbl { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main">Saltar al contenido</a>
+  <header class="nav">
+    <div class="wrap">
+      <a class="logo" href="#" aria-label="Toni Ruiz, inicio"><span class="p">~/</span>toniruiz<span class="c" aria-hidden="true"></span></a>
+      <nav class="nav-links" aria-label="Principal">
+        <a href="#perfil">Perfil</a>
+        <a href="#stack">Stack</a>
+        <a href="#proyectos">Proyectos</a>
+        <a href="#contacto">Contacto</a>
+        <button class="icon-btn" type="button" id="theme" aria-label="Cambiar tema claro u oscuro">
+          <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg>
+          <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- ================= HERO ================= -->
+    <section class="hero">
+      <div class="wrap">
+        <img class="avatar" src="assets/img/toni-176.webp" width="176" height="176" alt="Retrato de Toni Ruiz" fetchpriority="high">
+        <p class="hero-name">Toni Ruiz · Barcelona</p>
+        <h1>Escribo el código.<span class="l2 grad">Y lo llevo a producción.</span></h1>
+        <p class="sub">Más de <strong>20 años como desarrollador</strong> y hoy <strong>DevOps a tiempo completo</strong>. De la primera línea al clúster, sin cambiar de manos.</p>
+        <div class="hero-cta">
+          <a class="btn btn-primary" href="#proyectos">Ver proyectos</a>
+          <a class="btn btn-ghost" href="#contacto">Contactar</a>
+        </div>
+        <ul class="pills" aria-label="Resumen">
+          <li><span class="dot dev"></span>Developer</li>
+          <li><span class="dot ops"></span>DevOps</li>
+          <li><span class="dot live"></span>2 proyectos en producción</li>
+        </ul>
+
+        <div class="hero-term reveal">
+          <div class="term" id="shell">
+            <div class="term-bar">
+              <div class="tabs" aria-hidden="true">
+                <span><svg viewBox="0 0 24 24" fill="none" stroke="#a1a1aa" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
+              </div>
+              <div class="title">toni@barcelona: ~</div>
+              <div class="ctrls" aria-hidden="true">
+                <span><svg viewBox="0 0 10 10"><path d="M2 5h6" stroke="currentColor" stroke-width="1.5"/></svg></span>
+                <span><svg viewBox="0 0 10 10"><rect x="2" y="2" width="6" height="6" fill="none" stroke="currentColor" stroke-width="1.3"/></svg></span>
+                <span class="x"><svg viewBox="0 0 10 10"><path d="M2.5 2.5l5 5M7.5 2.5l-5 5" stroke="currentColor" stroke-width="1.5"/></svg></span>
+              </div>
+            </div>
+            <div class="term-body" id="out" role="log" aria-live="polite" aria-label="Terminal interactiva">
+              <noscript><pre>toni@barcelona:~$ whoami
+Toni Ruiz — Developer &amp; DevOps · Barcelona</pre></noscript>
+            </div>
+          </div>
+          <p class="hint">Terminal interactiva: prueba <kbd>help</kbd>, <kbd>projects</kbd> o <kbd>kubectl get pods</kbd></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= CIFRAS ================= -->
+    <section style="padding-bottom:0">
+      <div class="wrap">
+        <div class="stats reveal">
+          <div class="stat"><b>+20</b><span>años escribiendo software</span></div>
+          <div class="stat"><b class="t-ops">3</b><span>nubes: AWS, GCP y Azure</span></div>
+          <div class="stat"><b class="t-dev">~200</b><span>tests automáticos en Escriba de la Marca</span></div>
+          <div class="stat"><b>0&nbsp;€</b><span>de infraestructura en mis proyectos</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= PERFIL: DEV + OPS ================= -->
+    <section id="perfil">
+      <div class="wrap">
+        <div class="head center reveal">
+          <p class="eyebrow"><span class="p">$</span> cat perfil.md</p>
+          <h2>Dos oficios.<br>Un solo flujo.</h2>
+          <p class="sub">Sé lo que cuesta escribir el código porque llevo años haciéndolo. Y sé lo que cuesta mantenerlo vivo porque hoy es mi trabajo.</p>
+        </div>
+
+        <div class="duo">
+          <article class="side dev reveal">
+            <span class="badge"><span class="dot dev"></span>Developer</span>
+            <h3>Software bien diseñado, de backend a PWA.</h3>
+            <p>APIs REST y GraphQL, microservicios, arquitectura hexagonal y DDD. Bases de datos que se testean como el resto del código y frontends que se instalan en el móvil.</p>
+            <ul class="chips">
+              <li>PHP</li><li>Python</li><li>Go</li><li>.NET</li><li>Node.js</li><li>JavaScript</li><li>React</li><li>PostgreSQL</li>
+            </ul>
+            <div class="term" aria-hidden="true">
+              <div class="term-bar"><div></div><div class="title">src/Domain/Collection.php</div><div></div></div>
+<div class="term-body"><pre><span class="dv">final class</span> <span class="b">Collection</span>
+{
+    <span class="dv">public function</span> <span class="ok">missingFrom</span>(Series $s): <span class="dv">array</span>
+    {
+        <span class="dv">return</span> array_diff($s-&gt;codes(), $this-&gt;owned());
+    }
+}
+<span class="dim">// tests: 200 passed · 0 failed</span></pre></div>
+            </div>
+          </article>
+
+          <article class="side ops reveal">
+            <span class="badge"><span class="dot ops"></span>DevOps</span>
+            <h3>Infraestructura que se despliega sola.</h3>
+            <p>Cloud, contenedores, pipelines e infraestructura como código. Monitorización antes de que salte la alarma. Si algo se hace dos veces, es un pipeline.</p>
+            <ol class="pipeline" id="pipeline" aria-label="Pipeline: commit, test, build, deploy, monitor">
+              <li><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>commit</span></li>
+              <li><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>test</span></li>
+              <li><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>build</span></li>
+              <li><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>deploy</span></li>
+              <li><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>monitor</span></li>
+            </ol>
+            <ul class="chips">
+              <li>AWS</li><li>GCP</li><li>Azure</li><li>Kubernetes</li><li>Docker</li><li>Terraform</li><li>Ansible</li><li>GitHub Actions</li><li>Jenkins</li><li>Prometheus</li><li>Grafana</li>
+            </ul>
+            <div class="term" aria-hidden="true">
+              <div class="term-bar"><div></div><div class="title">toni@barcelona: ~/infra</div><div></div></div>
+<div class="term-body"><pre><span class="ok">$</span> terraform plan
+<span class="dim">No changes. Your infrastructure matches
+the configuration.</span>
+<span class="ok">$</span> kubectl rollout status deploy/api
+deployment <span class="b">"api"</span> <span class="ok">successfully rolled out</span></pre></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= STACK ================= -->
+    <section id="stack" style="background:var(--bg-alt)">
+      <div class="wrap">
+        <div class="head center reveal">
+          <p class="eyebrow"><span class="p">$</span> ls ~/stack</p>
+          <h2>Herramientas del día a día.</h2>
+          <p class="sub">Lo que uso para construir, desplegar y vigilar software.</p>
+        </div>
+
+        <div class="bento">
+          <div class="tile ops w2 reveal">
+            <div class="tile-top">
+              <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/></svg></span>
+              <span class="kind">ops</span>
+            </div>
+            <h3>Cloud</h3>
+            <p>AWS, Google Cloud y Azure. Redes, cómputo, almacenamiento y costes bajo control.</p>
+          </div>
+          <div class="tile ops reveal">
+            <div class="tile-top">
+              <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="M3.3 7 12 12l8.7-5M12 22V12"/></svg></span>
+              <span class="kind">ops</span>
+            </div>
+            <h3>Contenedores</h3>
+            <p>Docker, Kubernetes, Compose, Nginx.</p>
+          </div>
+          <div class="tile ops reveal">
+            <div class="tile-top">
+              <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="12" r="3"/><path d="M6 9v6M8.6 7.5 15.4 11M8.6 16.5l6.8-3.5"/></svg></span>
+              <span class="kind">ops</span>
+            </div>
+            <h3>CI/CD</h3>
+            <p>GitHub Actions y Jenkins.</p>
+          </div>
+          <div class="tile ops reveal">
+            <div class="tile-top">
+              <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3v4a1 1 0 0 0 1 1h4"/><path d="M17 21H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7l5 5v11a2 2 0 0 1-2 2Z"/><path d="M9 13h6M9 17h4"/></svg></span>
+              <span class="kind">ops</span>
+            </div>
+            <h3>Infra como código</h3>
+            <p>Terraform y Ansible.</p>
+          </div>
+          <div class="tile ops reveal">
+            <div class="tile-top">
+              <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg></span>
+              <span class="kind">ops</span>
+            </div>
+            <h3>Observabilidad</h3>
+            <p>Prometheus, Grafana y ELK.</p>
+          </div>
+          <div class="tile dev w2 reveal">
+            <div class="tile-top">
+              <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m16 18 6-6-6-6M8 6l-6 6 6 6"/></svg></span>
+              <span class="kind">dev</span>
+            </div>
+            <h3>Backend y arquitectura</h3>
+            <p>PHP, Python, Go, .NET y Node.js. REST, GraphQL, microservicios, hexagonal y DDD.</p>
+          </div>
+          <div class="tile dev reveal">
+            <div class="tile-top">
+              <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5"/><path d="M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></span>
+              <span class="kind">dev</span>
+            </div>
+            <h3>Datos</h3>
+            <p>PostgreSQL, MySQL, SQL Server y NoSQL.</p>
+          </div>
+          <div class="tile dev reveal">
+            <div class="tile-top">
+              <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="2" width="14" height="20" rx="3"/><path d="M11 18h2"/></svg></span>
+              <span class="kind">dev</span>
+            </div>
+            <h3>Frontend</h3>
+            <p>JavaScript, React, AngularJS y PWA.</p>
+          </div>
+          <div class="tile dev reveal">
+            <div class="tile-top">
+              <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></span>
+              <span class="kind">dev</span>
+            </div>
+            <h3>Calidad</h3>
+            <p>PHPUnit, pgTAP y Playwright.</p>
+          </div>
+          <div class="tile dev reveal">
+            <div class="tile-top">
+              <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.9 5.8L20 10l-5 3.6L16.5 20 12 16.5 7.5 20 9 13.6 4 10l6.1-1.2Z"/></svg></span>
+              <span class="kind">dev</span>
+            </div>
+            <h3>IA y automatización</h3>
+            <p>Agentes, RAG y LLM integrados en flujos reales con n8n y Make.</p>
+          </div>
+        </div>
+        <div class="legend reveal"><span><span class="dot dev"></span>desarrollo</span><span><span class="dot ops"></span>operaciones</span></div>
+      </div>
+    </section>
+
+    <!-- ================= PROYECTOS ================= -->
+    <section id="proyectos">
+      <div class="wrap">
+        <div class="head center reveal">
+          <p class="eyebrow"><span class="p">$</span> git log --author=toni</p>
+          <h2>Proyectos en producción.</h2>
+          <p class="sub">Código abierto, usuarios reales y cero euros de infraestructura. Diseñados, programados y operados por mí.</p>
+        </div>
+
+        <article class="project reveal">
+          <div class="project-info">
+            <span class="status"><span class="dot live"></span>En producción · <span data-gh="escribadelamarca.version">v1.14</span> · <time data-gh-time="escribadelamarca.pushed_at" data-prefix="actualizado" datetime="2026-10-01">actualizado en octubre de 2026</time></span>
+            <h3>Escriba de la Marca</h3>
+            <p>PWA para coleccionistas de <em>Aventuras en la Marca del Este</em>. Escaneas el código de barras y te dice si ya tienes el libro y qué te falta de cada serie.</p>
+            <div class="split">
+              <div class="d">
+                <h4><span class="dot dev"></span>Desarrollo</h4>
+                <ul>
+                  <li>PWA en JavaScript, sin framework ni build</li>
+                  <li>Escáner de códigos de barras continuo</li>
+                  <li>Catálogo colaborativo con misiones y niveles</li>
+                  <li>PostgreSQL con políticas RLS</li>
+                </ul>
+              </div>
+              <div class="o">
+                <h4><span class="dot ops"></span>Operaciones</h4>
+                <ul>
+                  <li>CI/CD con GitHub Actions a GitHub Pages</li>
+                  <li>~200 tests: <code>pgTAP</code> + <code>Playwright</code></li>
+                  <li>Tareas con <code>pg_cron</code> y alertas en Telegram</li>
+                  <li>Supabase: coste de infraestructura 0&nbsp;€</li>
+                </ul>
+              </div>
+            </div>
+            <div class="project-links">
+              <a class="btn btn-primary" href="https://favashi.github.io/escribadelamarca/?ref=toniruiz-es">Abrir la app</a>
+              <a class="btn btn-ghost" href="https://github.com/Favashi/escribadelamarca">Ver código</a>
+            </div>
+          </div>
+          <div class="stage escriba">
+            <div class="phone back"><img src="assets/img/escriba-escaner.webp" width="540" height="985" alt="Escriba de la Marca: escáner de códigos de barras" loading="lazy" decoding="async"></div>
+            <div class="phone"><img src="assets/img/escriba-series.webp" width="540" height="985" alt="Escriba de la Marca: biblioteca por series con los huecos de cada serie" loading="lazy" decoding="async"></div>
+          </div>
+        </article>
+
+        <article class="project reveal">
+          <div class="project-info">
+            <span class="status"><span class="dot live"></span>Activo · <span data-gh="osr-manager.version">v0.4</span> · <time data-gh-time="osr-manager.pushed_at" data-prefix="actualizado" datetime="2026-09-27">actualizado en septiembre de 2026</time></span>
+            <h3>OSR Manager</h3>
+            <p>Ayuda de mesa para directores de juego de rol clásico: exploración, hexcrawl, encuentros, combate, luz y recursos. Funciona en el navegador y <em>sin conexión</em>.</p>
+            <div class="split">
+              <div class="d">
+                <h4><span class="dot dev"></span>Desarrollo</h4>
+                <ul>
+                  <li>Motor de dados propio, sin <code>eval</code></li>
+                  <li>Reglas por campaña: base + overrides</li>
+                  <li>Importador de statblocks desde texto</li>
+                  <li>7 sistemas: OSE, B/X, BECMI, LotFP…</li>
+                </ul>
+              </div>
+              <div class="o">
+                <h4><span class="dot ops"></span>Operaciones</h4>
+                <ul>
+                  <li>Cero dependencias, cero backend</li>
+                  <li>Funciona offline desde <code>file://</code></li>
+                  <li>Releases con ZIP portable</li>
+                  <li>Landing y app en GitHub Pages</li>
+                </ul>
+              </div>
+            </div>
+            <div class="project-links">
+              <a class="btn btn-primary" href="https://favashi.github.io/osr-manager/app/?ref=toniruiz-es">Abrir online</a>
+              <a class="btn btn-ghost" href="https://github.com/Favashi/osr-manager/releases/latest">Descargar</a>
+              <a class="btn btn-ghost" href="https://github.com/Favashi/osr-manager">Código</a>
+            </div>
+          </div>
+          <div class="stage osr">
+            <div class="term">
+              <div class="term-bar">
+                <div></div><div class="title">osr-manager</div>
+                <div class="ctrls" aria-hidden="true"><span></span><span></span><span class="x"></span></div>
+              </div>
+              <div class="term-body"><img src="assets/img/osr-mazmorra.webp" width="1054" height="889" alt="OSR Manager: modo Mazmorra con interfaz de estilo terminal" loading="lazy" decoding="async"></div>
+            </div>
+          </div>
+        </article>
+
+        <div class="ls reveal" id="actividad">
+          <div class="term">
+            <div class="term-bar"><div></div><div class="title">toni@barcelona: ~/repos</div><div class="ctrls" aria-hidden="true"><span></span><span></span><span class="x"></span></div></div>
+            <div class="term-body">
+              <pre><span class="ok">toni@barcelona</span>:<span class="dv">~/repos</span>$ git log --all --oneline -n 6 <span class="dim"># actividad reciente</span></pre>
+              <!-- gh:activity -->
+              <div class="log-row"><a href="https://github.com/Favashi">·······</a><span class="repo dv">Favashi</span><span class="msg">Actividad reciente en github.com/Favashi</span><span class="when dim"></span></div>
+              <!-- /gh:activity -->
+            </div>
+          </div>
+        </div>
+
+        <div class="ls reveal">
+          <div class="term">
+            <div class="term-bar"><div></div><div class="title">toni@barcelona: ~/repos</div><div class="ctrls" aria-hidden="true"><span></span><span></span><span class="x"></span></div></div>
+            <div class="term-body">
+              <pre><span class="ok">toni@barcelona</span>:<span class="dv">~/repos</span>$ ls -l otros/</pre>
+              <div class="ls-row"><span class="perm dim">drwxr-xr-x</span><span class="lang warn">css</span><span><a href="https://favashi.github.io/pesadillajdr/" rel="noopener">pesadillajdr/</a> <span class="desc">Pesadilla: historia de terrores compartidos</span></span></div>
+              <div class="ls-row"><span class="perm dim">drwxr-xr-x</span><span class="lang warn">php</span><span><a href="https://github.com/Favashi/icommunity-connector">icommunity-connector/</a> <span class="desc">Módulo para conectar WordPress con la API de iCommunity</span></span></div>
+              <div class="ls-row"><span class="perm dim">lrwxr-xr-x</span><span class="lang warn">*</span><span><a href="https://github.com/Favashi">github.com/Favashi</a> <span class="desc">→ todo lo demás</span></span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= CONTACTO ================= -->
+    <section id="contacto" class="contact" style="background:var(--bg-alt)">
+      <div class="narrow reveal">
+        <p class="eyebrow"><span class="p">$</span> ./contactar.sh</p>
+        <h2>¿Hablamos?</h2>
+        <p class="sub">Proyectos, infraestructura, automatización o una buena idea por construir. Respondo personalmente.</p>
+        <div class="mail-line">
+          <span><span class="ok">$</span> mail <a href="mailto:info@toniruiz.es">info@toniruiz.es</a></span>
+          <button class="copy" type="button" id="copy" data-email="info@toniruiz.es" aria-label="Copiar email">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            <span class="lbl">Copiar</span>
+          </button>
+        </div>
+        <div class="socials">
+          <a class="btn btn-ghost" href="https://www.linkedin.com/in/toniruizfernandez" rel="me noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0Z"/></svg>
+            LinkedIn
+          </a>
+          <a class="btn btn-ghost" href="https://github.com/Favashi" rel="me noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2.2c-3.3.7-4-1.4-4-1.4-.6-1.4-1.4-1.8-1.4-1.8-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 0-.8.4-1.3.7-1.6-2.7-.3-5.5-1.3-5.5-6 0-1.2.5-2.3 1.3-3.1-.2-.4-.6-1.6 0-3.2 0 0 1-.3 3.4 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.6.2 2.8.1 3.2.8.8 1.3 1.9 1.3 3.2 0 4.6-2.8 5.6-5.5 5.9.5.4.9 1.1.9 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3"/></svg>
+            GitHub
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <span>© <span id="year">2026</span> Toni Ruiz · Barcelona</span>
+      <span>HTML, CSS y un poco de JS. Sin frameworks. Desplegado con GitHub Actions y GitHub Pages · datos de GitHub <time data-gh-time="generated_at" data-prefix="actualizados" datetime="2026-10-02">actualizados en octubre de 2026</time></span>
+    </div>
+  </footer>
+
+  <script type="application/json" id="gh-data">null</script>
+  <script>
+  (function () {
+    const root = document.documentElement;
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    /* ---------- Tema ---------- */
+    const mq = window.matchMedia('(prefers-color-scheme: dark)');
+    const currentTheme = () => root.dataset.theme || (mq.matches ? 'dark' : 'light');
+    const toggleTheme = () => {
+      const next = currentTheme() === 'dark' ? 'light' : 'dark';
+      root.dataset.theme = next;
+      try { localStorage.setItem('theme', next); } catch (e) {}
+      return next;
+    };
+    document.getElementById('theme').addEventListener('click', toggleTheme);
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    /* ---------- Datos de GitHub (generados en el build) ---------- */
+    let gh = null;
+    try { gh = JSON.parse(document.getElementById('gh-data').textContent); } catch (e) {}
+    const rtf = new Intl.RelativeTimeFormat('es', { numeric: 'auto' });
+    const ago = (iso) => {
+      const diff = (new Date(iso) - Date.now()) / 1000;
+      const units = [['year', 31536000], ['month', 2592000], ['week', 604800], ['day', 86400], ['hour', 3600], ['minute', 60]];
+      for (const [u, sec] of units) if (Math.abs(diff) >= sec) return rtf.format(Math.round(diff / sec), u);
+      return 'ahora mismo';
+    };
+    const shortAge = (iso) => {
+      const d = Math.max(0, (Date.now() - new Date(iso)) / 86400000);
+      return d >= 1 ? Math.floor(d) + 'd' : Math.max(1, Math.floor(d * 24)) + 'h';
+    };
+    document.querySelectorAll('time[data-gh-time]').forEach((t) => {
+      const iso = t.getAttribute('datetime');
+      if (!iso || isNaN(new Date(iso))) return;
+      t.title = new Date(iso).toLocaleString('es-ES');
+      t.textContent = (t.dataset.prefix ? t.dataset.prefix + ' ' : '') + ago(iso);
+    });
+    document.querySelectorAll('.log-row .when[data-date]').forEach((el) => { el.textContent = ago(el.dataset.date); });
+
+    /* ---------- Copiar email ---------- */
+    const copyBtn = document.getElementById('copy');
+    copyBtn.addEventListener('click', async () => {
+      const lbl = copyBtn.querySelector('.lbl');
+      try {
+        await navigator.clipboard.writeText(copyBtn.dataset.email);
+        lbl.textContent = 'Copiado';
+      } catch (e) {
+        window.location.href = 'mailto:' + copyBtn.dataset.email;
+      }
+      setTimeout(() => { lbl.textContent = 'Copiar'; }, 1800);
+    });
+
+    /* ---------- Aparición al hacer scroll ---------- */
+    const pipeline = document.getElementById('pipeline');
+    const runPipeline = () => {
+      if (pipeline.classList.contains('run')) return;
+      pipeline.querySelectorAll('svg').forEach((m, i) => { m.style.transitionDelay = (reduced ? 0 : 300 + i * 220) + 'ms'; });
+      pipeline.classList.add('run');
+    };
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((e) => {
+          if (!e.isIntersecting) return;
+          e.target.classList.add('in');
+          if (e.target.contains(pipeline)) runPipeline();
+          io.unobserve(e.target);
+        });
+      }, { rootMargin: '0px 0px -8% 0px', threshold: 0.05 });
+      document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+    } else {
+      document.querySelectorAll('.reveal').forEach((el) => el.classList.add('in'));
+      runPipeline();
+    }
+
+    /* ---------- Terminal interactiva ---------- */
+    const out = document.getElementById('out');
+    const PROMPT = '<span class="ok">toni@barcelona</span>:<span class="dv">~</span>$ ';
+    const esc = (s) => s.replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+
+    const inputLine = document.createElement('div');
+    inputLine.className = 'cmd-line';
+    inputLine.innerHTML = '<span class="prompt">' + PROMPT + '</span>';
+    const field = document.createElement('input');
+    field.className = 'cmd-input';
+    field.type = 'text';
+    field.autocomplete = 'off';
+    field.autocapitalize = 'off';
+    field.spellcheck = false;
+    field.setAttribute('aria-label', 'Escribe un comando');
+    field.setAttribute('enterkeyhint', 'send');
+    inputLine.appendChild(field);
+    out.appendChild(inputLine);
+
+    const print = (html, tag) => {
+      const el = document.createElement(tag || 'pre');
+      el.innerHTML = html;
+      out.insertBefore(el, inputLine);
+    };
+    const scrollEnd = () => { out.scrollTop = out.scrollHeight; };
+
+    const LOGO = [
+      '<span class="ok">████████╗██████╗ </span>',
+      '<span class="ok">╚══██╔══╝██╔══██╗</span>',
+      '<span class="ok">   ██║   ██████╔╝</span>',
+      '<span class="dv">   ██║   ██╔══██╗</span>',
+      '<span class="dv">   ██║   ██║  ██║</span>',
+      '<span class="dv">   ╚═╝   ╚═╝  ╚═╝</span>'
+    ].join('\n');
+    const kv = (k, v) => '<span class="ok b">' + k + '</span>: ' + v;
+    const NEOFETCH =
+      '<pre class="neo-logo">' + LOGO + '</pre><div><pre>' + [
+        '<span class="b">toni</span>@<span class="b">barcelona</span>',
+        '<span class="dim">──────────────────</span>',
+        kv('Rol', 'Developer &amp; DevOps'),
+        kv('Uptime', '+20 años programando'),
+        kv('Lenguajes', 'PHP · Python · Go · .NET · Node.js'),
+        kv('Cloud', 'AWS · GCP · Azure'),
+        kv('Contenedores', 'Docker · Kubernetes'),
+        kv('IaC', 'Terraform · Ansible'),
+        kv('CI/CD', 'GitHub Actions · Jenkins'),
+        kv('Observabilidad', 'Prometheus · Grafana · ELK'),
+        kv('Idiomas', 'español · català · English')
+      ].join('\n') + '</pre><div class="neo-colors" aria-hidden="true">' +
+      ['#1c1c1f', '#ff6b6b', '#3ee6a8', '#ffd166', '#5e9bff', '#9d9bff', '#5ee6e6', '#d4d4d8']
+        .map((c) => '<i style="background:' + c + '"></i>').join('') +
+      '</div></div>';
+
+    const link = (href, text) => '<a href="' + href + '" target="_blank" rel="noopener">' + text + '</a>';
+    const commands = {
+      help: () => [
+        '<span class="b">Comandos disponibles</span>',
+        '  <span class="ok">whoami</span>            quién soy',
+        '  <span class="ok">neofetch</span>          resumen del sistema',
+        '  <span class="ok">skills</span>            stack técnico (dev + ops)',
+        '  <span class="ok">projects</span>          proyectos en producción',
+        '  <span class="ok">kubectl get pods</span>  estado de los proyectos',
+        '  <span class="ok">git log</span>           actividad reciente en GitHub',
+        '  <span class="ok">contact</span>           cómo hablar conmigo',
+        '  <span class="ok">cd</span> <span class="dim">&lt;sección&gt;</span>      ir a perfil, stack, proyectos o contacto',
+        '  <span class="ok">theme</span>             cambiar tema claro/oscuro',
+        '  <span class="ok">clear</span>             limpiar la terminal'
+      ].join('\n'),
+      whoami: () => 'Toni Ruiz — <span class="dv">Developer</span> &amp; <span class="ok">DevOps</span> · Barcelona\nEscribo el código. Y lo llevo a producción.',
+      neofetch: () => ({ html: NEOFETCH, tag: 'div', cls: 'neo' }),
+      skills: () => [
+        '<span class="dv b"># dev</span>',
+        '  backend       PHP, Python, Go, .NET, Node.js',
+        '  arquitectura  REST, GraphQL, microservicios, hexagonal, DDD',
+        '  datos         PostgreSQL, MySQL, SQL Server, NoSQL',
+        '  frontend      JavaScript, React, AngularJS, PWA',
+        '  calidad       PHPUnit, pgTAP, Playwright',
+        '  ia            agentes, RAG, LLM, n8n, Make',
+        '<span class="ok b"># ops</span>',
+        '  cloud         AWS, GCP, Azure',
+        '  contenedores  Docker, Kubernetes, Compose, Nginx',
+        '  ci/cd         GitHub Actions, Jenkins',
+        '  iac           Terraform, Ansible',
+        '  observab.     Prometheus, Grafana, ELK'
+      ].join('\n'),
+      projects: () => [
+        '<span class="b">escribadelamarca</span>  PWA para coleccionistas de la Marca del Este',
+        '                  ' + link('https://favashi.github.io/escribadelamarca/?ref=toniruiz-es', 'abrir app') + ' · ' + link('https://github.com/Favashi/escribadelamarca', 'código'),
+        '<span class="b">osr-manager</span>       ayuda de mesa para directores de juego OSR',
+        '                  ' + link('https://favashi.github.io/osr-manager/app/?ref=toniruiz-es', 'abrir app') + ' · ' + link('https://github.com/Favashi/osr-manager', 'código')
+      ].join('\n'),
+      'kubectl get pods': () => {
+        const p = (gh && gh.projects) || {};
+        const row = (name, key, fallbackVer) => {
+          const d = p[key] || {};
+          const pod = (name + '-' + (d.version || fallbackVer)).replace(/\./g, '-');
+          const age = d.released_at || d.pushed_at ? shortAge(d.released_at || d.pushed_at) : 'stable';
+          return pod.padEnd(26) + '1/1     <span class="ok">Running</span>   0          ' + age;
+        };
+        return [
+          '<span class="dim">' + 'NAME'.padEnd(26) + 'READY   STATUS    RESTARTS   AGE</span>',
+          row('escribadelamarca', 'escribadelamarca', 'v1.14'),
+          row('osr-manager', 'osr-manager', 'v0.4'),
+          row('toniruiz-es', 'toniruiz.es', 'latest')
+        ].join('\n');
+      },
+      'git log': () => {
+        const list = (gh && gh.activity) || [];
+        if (!list.length) return 'Sin datos ahora mismo. Mira ' + link('https://github.com/Favashi', 'github.com/Favashi');
+        return list.map((c) => '<span class="warn">' + esc(c.sha) + '</span> <span class="dv">(' + esc(c.repo) + ')</span> ' + esc(c.message) + ' <span class="dim">— ' + ago(c.date) + '</span>').join('\n');
+      },
+      contact: () => [
+        'email     ' + link('mailto:info@toniruiz.es', 'info@toniruiz.es'),
+        'linkedin  ' + link('https://www.linkedin.com/in/toniruizfernandez', 'toniruizfernandez'),
+        'github    ' + link('https://github.com/Favashi', 'Favashi')
+      ].join('\n'),
+      theme: () => 'Tema cambiado a <span class="b">' + (toggleTheme() === 'dark' ? 'oscuro' : 'claro') + '</span>.',
+      ls: () => '<span class="dv b">perfil/</span>  <span class="dv b">stack/</span>  <span class="dv b">proyectos/</span>  <span class="dv b">contacto/</span>  README.md',
+      'cat readme.md': () => 'Escribe <span class="ok">help</span> para ver los comandos. O baja con el scroll, también vale.',
+      pwd: () => '/home/toni',
+      date: () => new Date().toLocaleString('es-ES'),
+      uptime: () => 'up +20 años, load average: 0.42, 0.37, 0.31',
+      exit: () => 'logout… es broma. Sigue bajando ↓',
+      'git status': () => 'En la rama <span class="b">main</span>\nTu rama está actualizada con <span class="dv">origin/main</span>.\n\nnada para hacer commit, el árbol de trabajo está limpio',
+      'terraform plan': () => '<span class="ok">No changes.</span> Your infrastructure matches the configuration.',
+      'make help': () => '  <span class="ok">up</span>       levanta el entorno\n  <span class="ok">test</span>     ejecuta los tests\n  <span class="ok">deploy</span>   hoy no, que es viernes'
+    };
+    const aliases = { '?': 'help', 'proyectos': 'projects', 'contacto': 'contact', 'stack': 'skills', 'cat readme': 'cat readme.md', 'k get pods': 'kubectl get pods' };
+    const SECTIONS = { perfil: '#perfil', stack: '#stack', proyectos: '#proyectos', projects: '#proyectos', contacto: '#contacto', contact: '#contacto' };
+
+    const run = (raw) => {
+      const input = raw.trim();
+      print(PROMPT + esc(raw));
+      if (!input) return;
+      const key = input.toLowerCase().replace(/\s+/g, ' ');
+      if (key === 'clear') {
+        Array.from(out.children).forEach((n) => { if (n !== inputLine) n.remove(); });
+        return;
+      }
+      if (key.startsWith('sudo')) { print('<span class="err">toni no está en el archivo sudoers. Se informará de este incidente.</span>'); return; }
+      if (key.startsWith('rm -rf')) { print('<span class="warn">Buen intento. Hay backups.</span>'); return; }
+      const cd = key.match(/^cd\s+(\S+?)\/?$/);
+      if (cd) {
+        const target = SECTIONS[cd[1]];
+        if (target) { print('<span class="dim">→ ' + esc(cd[1]) + '</span>'); document.querySelector(target).scrollIntoView({ behavior: reduced ? 'auto' : 'smooth' }); }
+        else if (cd[1] !== '~' && cd[1] !== '..') print('cd: no existe el directorio: ' + esc(cd[1]));
+        return;
+      }
+      const fn = commands[key] || commands[aliases[key]];
+      if (!fn) { print('zsh: command not found: ' + esc(input.split(' ')[0]) + '  <span class="dim">— prueba con</span> <span class="ok">help</span>'); return; }
+      const res = fn();
+      if (res && res.html) {
+        const el = document.createElement(res.tag);
+        el.className = res.cls;
+        el.innerHTML = res.html;
+        out.insertBefore(el, inputLine);
+      } else print(res);
+    };
+
+    const history = [];
+    let hIdx = 0;
+    field.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        const v = field.value;
+        if (v.trim()) history.push(v);
+        hIdx = history.length;
+        field.value = '';
+        run(v);
+        scrollEnd();
+      } else if (e.key === 'ArrowUp') {
+        if (hIdx > 0) { hIdx--; field.value = history[hIdx]; }
+        e.preventDefault();
+      } else if (e.key === 'ArrowDown') {
+        if (hIdx < history.length - 1) { hIdx++; field.value = history[hIdx]; }
+        else { hIdx = history.length; field.value = ''; }
+        e.preventDefault();
+      } else if (e.key === 'Tab') {
+        const v = field.value.toLowerCase();
+        const match = v && Object.keys(commands).find((c) => c.startsWith(v));
+        if (match) { field.value = match; e.preventDefault(); }
+      } else if (e.key === 'l' && e.ctrlKey) {
+        e.preventDefault(); field.value = ''; run('clear');
+      }
+    });
+    out.addEventListener('click', (e) => {
+      if (e.target.closest('a') || String(window.getSelection())) return;
+      field.focus({ preventScroll: true });
+    });
+
+    // Introducción tecleada: whoami + neofetch
+    const typeCmd = (cmd) => new Promise((resolve) => {
+      const line = document.createElement('pre');
+      line.innerHTML = PROMPT + '<span class="typed"></span>';
+      out.insertBefore(line, inputLine);
+      const span = line.querySelector('.typed');
+      let i = 0;
+      const tick = () => {
+        span.textContent = cmd.slice(0, ++i);
+        if (i < cmd.length) setTimeout(tick, 55 + Math.random() * 60);
+        else setTimeout(() => { line.remove(); resolve(); }, 260);
+      };
+      setTimeout(tick, 400);
+    });
+    (async () => {
+      for (const c of ['whoami', 'neofetch']) {
+        if (!reduced) await typeCmd(c);
+        run(c);
+      }
+      print('\n<span class="dim">Escribe</span> <span class="ok">help</span> <span class="dim">para ver los comandos disponibles.</span>');
+      scrollEnd();
+    })();
+  })();
+  </script>
+</body>
+</html>

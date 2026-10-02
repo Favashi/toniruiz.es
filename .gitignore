@@ -1,0 +1,11 @@
+# Salida del build
+_site/
+
+# Versión 1 de la web (referencia local, no se publica)
+/index.html
+/assets/
+/favicon.svg
+/CNAME
+/.nojekyll
+
+.DS_Store

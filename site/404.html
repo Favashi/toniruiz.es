@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>404 · Página no encontrada · Toni Ruiz</title>
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#000000">
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <style>
+    :root { color-scheme: dark; }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; min-height: 100vh; display: grid; place-items: center; padding: 16px;
+      background: #000; color: #d4d4d8;
+      font: 400 .9375rem/1.6 "JetBrains Mono", "SF Mono", ui-monospace, Menlo, Consolas, monospace;
+    }
+    .term { width: min(640px, 100%); background: #0c0c0e; border-radius: 14px; overflow: hidden; box-shadow: 0 0 0 1px rgba(255,255,255,.06), 0 40px 80px -30px rgba(0,0,0,.6); }
+    .bar { height: 38px; display: flex; align-items: center; justify-content: center; background: #1c1c1f; border-bottom: 1px solid #2a2a2e; font: 600 .75rem/1 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; color: #d4d4d8; }
+    .body { padding: 20px; }
+    pre { margin: 0; white-space: pre-wrap; font: inherit; }
+    .ok { color: #3ee6a8; } .dv { color: #9d9bff; } .err { color: #ff6b6b; } .dim { color: #7a7a83; }
+    a { color: #9d9bff; }
+  </style>
+</head>
+<body>
+  <main class="term">
+    <div class="bar">toni@barcelona: ~</div>
+    <div class="body">
+<pre><span class="ok">toni@barcelona</span>:<span class="dv">~</span>$ cd <span id="path">/esta-pagina</span>
+<span class="err">cd: no existe el archivo o el directorio</span>
+<span class="dim">Error 404: la página que buscas no está aquí.</span>
+
+<span class="ok">toni@barcelona</span>:<span class="dv">~</span>$ <a href="/">cd ~</a>  <span class="dim"># volver al inicio</span></pre>
+    </div>
+  </main>
+  <script>
+    document.getElementById('path').textContent = decodeURIComponent(location.pathname);
+  </script>
+</body>
+</html>
