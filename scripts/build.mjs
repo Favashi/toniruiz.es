@@ -5,6 +5,8 @@
 // tanto en _site/data/github.json como incrustados en el HTML (para que los
 // buscadores y las previsualizaciones vean contenido real sin ejecutar JS).
 //
+// Genera las dos versiones (es en /, en en /en/).
+//
 // Uso: node scripts/build.mjs            (GITHUB_TOKEN opcional, evita el límite de 60 req/h)
 //      node scripts/build.mjs --offline  (sin red: solo copia y fecha el sitemap)
 
@@ -41,7 +43,10 @@ const firstLine = (msg) => {
   const line = msg.split('\n')[0].trim();
   return line.length > 72 ? line.slice(0, 71) + '…' : line;
 };
-const monthYear = (iso) => new Date(iso).toLocaleDateString('es-ES', { month: 'long', year: 'numeric', timeZone: 'Europe/Madrid' });
+// Páginas generadas y su idioma
+const PAGES = [{ file: 'index.html', lang: 'es' }, { file: 'en/index.html', lang: 'en' }];
+const LOCALES = { es: { locale: 'es-ES', in: 'en' }, en: { locale: 'en-GB', in: 'in' } };
+const monthYear = (iso, lang) => new Date(iso).toLocaleDateString(LOCALES[lang].locale, { month: 'long', year: 'numeric', timeZone: 'Europe/Madrid' });
 
 async function collect() {
   const projects = {};
@@ -77,7 +82,8 @@ async function collect() {
   return { generated_at: new Date().toISOString(), projects, activity: commits.slice(0, ACTIVITY_LIMIT) };
 }
 
-function render(html, data) {
+function render(html, data, lang) {
+  const { locale } = LOCALES[lang];
   // <span data-gh="repo.campo">fallback</span>
   html = html.replace(/(<([a-z]+)[^>]*\sdata-gh="([^"]+)"[^>]*>)([^<]*)(<\/\2>)/g, (m, open, _tag, key, text, close) => {
     const [repo, field] = key.split('.');
@@ -91,7 +97,7 @@ function render(html, data) {
     if (!iso) return m;
     const attrs = (a + b).replace(/\sdatetime="[^"]*"/, '');
     const prefix = (attrs.match(/data-prefix="([^"]*)"/) || [])[1];
-    return `<time${attrs} data-gh-time="${key}" datetime="${iso}">${prefix ? prefix + ' en ' : ''}${monthYear(iso)}</time>`;
+    return `<time${attrs} data-gh-time="${key}" datetime="${iso}">${prefix ? `${prefix} ${LOCALES[lang].in} ` : ''}${monthYear(iso, lang)}</time>`;
   });
 
   // Bloque de actividad reciente
@@ -99,7 +105,7 @@ function render(html, data) {
     const rows = data.activity.map((c) =>
       `              <div class="log-row"><a href="${esc(c.url)}" rel="noopener">${esc(c.sha)}</a>` +
       `<span class="repo dv">${esc(c.repo)}</span><span class="msg">${esc(c.message)}</span>` +
-      `<time class="when dim" data-date="${esc(c.date)}" datetime="${esc(c.date)}">${new Date(c.date).toLocaleDateString('es-ES', { timeZone: 'Europe/Madrid' })}</time></div>`
+      `<time class="when dim" data-date="${esc(c.date)}" datetime="${esc(c.date)}">${new Date(c.date).toLocaleDateString(locale, { timeZone: 'Europe/Madrid' })}</time></div>`
     ).join('\n');
     html = html.replace(/<!-- gh:activity -->[\s\S]*?<!-- \/gh:activity -->/, `<!-- gh:activity -->\n${rows}\n              <!-- /gh:activity -->`);
   }
@@ -126,8 +132,10 @@ if (OFFLINE) {
     const data = await collect();
     mkdirSync(join(OUT, 'data'), { recursive: true });
     writeFileSync(join(OUT, 'data', 'github.json'), JSON.stringify(data, null, 2));
-    const indexPath = join(OUT, 'index.html');
-    writeFileSync(indexPath, render(readFileSync(indexPath, 'utf8'), data));
+    for (const { file, lang } of PAGES) {
+      const path = join(OUT, file);
+      writeFileSync(path, render(readFileSync(path, 'utf8'), data, lang));
+    }
     console.log(`Build OK: ${Object.keys(data.projects).length} proyectos, ${data.activity.length} commits recientes.`);
   } catch (err) {
     // Si GitHub falla, se publica igualmente con el contenido estático de respaldo.
