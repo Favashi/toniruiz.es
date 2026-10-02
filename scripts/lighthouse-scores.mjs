@@ -48,3 +48,10 @@ for (const [file, lang] of [['index.html', 'es'], ['en/index.html', 'en']]) {
   writeFileSync(path, html);
 }
 console.log(`Lighthouse: ${message}`);
+for (const r of runs) {
+  const rep = JSON.parse(readFileSync(r.jsonPath, 'utf8'));
+  const m = (id) => rep.audits[id]?.displayValue;
+  console.log(`  ${new URL(r.url).pathname}: FCP ${m('first-contentful-paint')} · LCP ${m('largest-contentful-paint')} · TBT ${m('total-blocking-time')} · CLS ${m('cumulative-layout-shift')} · SI ${m('speed-index')}`);
+  const lcp = rep.audits['largest-contentful-paint-element']?.details?.items?.[0]?.items?.[0]?.node?.snippet;
+  if (lcp) console.log(`    LCP element: ${lcp.slice(0, 120)}`);
+}
