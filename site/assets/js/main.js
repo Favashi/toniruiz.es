@@ -616,7 +616,7 @@
     field.focus({ preventScroll: true });
   });
   (async () => {
-    for (const c of ['whoami', 'neofetch']) {
+    for (const c of ['neofetch']) {
       if (!reduced) await typeCmd(c);
       run(c);
     }

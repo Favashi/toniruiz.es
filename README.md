@@ -30,7 +30,7 @@ content fresh every day.
 
 ## Features
 
-- **Interactive terminal.** It types `whoami` and `neofetch` on load, then accepts
+- **Interactive terminal.** It types `neofetch` on load, then accepts
   commands: `help`, `skills`, `projects`, `kubectl get pods`, `git log`, `contact`,
   `cd <section>`, `status`, `lang`, `theme`, `clear`. It has history (↑/↓), Tab completion,
   tappable command buttons for mobile and a `/` shortcut to focus it. There are also a few
