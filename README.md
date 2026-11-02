@@ -7,7 +7,7 @@
 **Personal website of Toni Ruiz — Developer & DevOps in Barcelona.**
 
 [![Build and deploy](https://github.com/Favashi/toniruiz.es/actions/workflows/pages.yml/badge.svg)](https://github.com/Favashi/toniruiz.es/actions/workflows/pages.yml)
-![HTML](https://img.shields.io/badge/HTML%20%2B%20CSS%20%2B%20JS-no%20framework-3ee6a8)
+![HTML](https://img.shields.io/badge/HTML%20%2B%20Tailwind%20%2B%20JS-no%20runtime%20framework-f7c600)
 ![Runtime dependencies](https://img.shields.io/badge/runtime%20dependencies-0-9d9bff)
 ![Languages](https://img.shields.io/badge/i18n-es%20%7C%20en-1d1d1f)
 [![Lighthouse](https://img.shields.io/endpoint?url=https%3A%2F%2Ffavashi.github.io%2Ftoniruiz.es%2Fdata%2Flighthouse-badge.json)](https://favashi.github.io/toniruiz.es/data/lighthouse.json)
@@ -21,10 +21,10 @@
 ## Overview
 
 A fast, static, bilingual personal site that presents both sides of my work:
-**development** (indigo) and **DevOps** (mint). It mixes an Apple-like layout with
-Linux terminal details, including an interactive shell in the hero section.
+**development** and **DevOps**. The page is designed as a device, after Braun under Dieter Rams and
+teenage engineering: warm grey chassis, physical keys and a black terminal display, including an interactive shell in the hero section.
 
-It uses plain HTML, CSS and JavaScript, with no framework, bundler or `node_modules`.
+It uses plain HTML and JavaScript with no framework in the browser. Tailwind CSS is compiled once at build time.
 A small Node script runs at build time, and a GitHub Actions workflow keeps the
 content fresh every day.
 
@@ -75,7 +75,7 @@ these pass:
 | End-to-end tests on desktop and mobile (rendering, no console or CSP errors, terminal, menu, language switch, theme) | [Playwright](https://playwright.dev) |
 | Accessibility, best practices and SEO ≥ 95, performance ≥ 90 | [Lighthouse CI](https://github.com/GoogleChrome/lighthouse-ci) |
 
-The Lighthouse scores of each deploy are published in the footer of the site and in the
+The Lighthouse scores of each deploy are published in the
 badge above. [Dependabot](.github/dependabot.yml) keeps the actions and tooling up to date.
 
 Security: a strict Content-Security-Policy (inline scripts are allowed by hash only),
@@ -131,9 +131,8 @@ fallback content.
 │   ├── en/index.html        # English
 │   ├── 404.html
 │   ├── assets/
-│   │   ├── css/main.css     # Shared styles
 │   │   ├── css/fonts.css    # @font-face for the self-hosted fonts
-│   │   ├── fonts/           # Inter and JetBrains Mono (SIL OFL 1.1)
+│   │   ├── fonts/           # Geist and JetBrains Mono (SIL OFL 1.1)
 │   │   ├── js/main.js       # Theme, terminal, i18n strings, GitHub data
 │   │   └── img/             # WebP screenshots and avatar
 │   ├── og-image.png         # Social preview (es)
@@ -176,8 +175,8 @@ limit for anonymous API calls.
 - **Text:** edit `site/index.html` (es) and `site/en/index.html` (en). Keep the two in sync.
 - **Terminal output:** edit the `I18N` object at the top of `site/assets/js/main.js`.
 - **Featured repositories:** edit `PROJECTS` in `scripts/build.mjs`.
-- **Styles:** edit `site/assets/css/main.css`. The colour tokens are defined at the top:
-  `--dev` and `--ops` are the two accent colours.
+- **Styles:** Tailwind CSS v4 utilities in the HTML, tokens and components in `styles/main.css`.
+  `scripts/build.mjs` compiles it to `_site/assets/css/main.css`; nothing from Tailwind runs in the browser.
 
 ## Deployment
 
@@ -191,7 +190,7 @@ under *Settings → Pages* and enable *Enforce HTTPS*.
 
 ## Credits
 
-Fonts: [Inter](https://github.com/rsms/inter) and
+Fonts: [Geist](https://github.com/vercel/geist-font) and
 [JetBrains Mono](https://github.com/JetBrains/JetBrainsMono), both under the
 SIL Open Font License 1.1 (see `site/assets/fonts/`).
 

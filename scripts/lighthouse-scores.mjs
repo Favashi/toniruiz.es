@@ -2,7 +2,6 @@
 // Lee los resultados de Lighthouse CI (.lighthouseci/) y publica las puntuaciones:
 // - _site/data/lighthouse.json         (detalle por URL)
 // - _site/data/lighthouse-badge.json   (endpoint de shields.io para el README)
-// - el pie de ambas páginas            (<!-- lh:scores -->)
 // Se toma la peor puntuación de entre las URLs auditadas, por honestidad.
 
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
@@ -32,21 +31,9 @@ writeFileSync(join(OUT, 'data', 'lighthouse-badge.json'), JSON.stringify({
   schemaVersion: 1,
   label: 'lighthouse',
   message,
-  color: Math.min(...Object.values(scores)) >= 90 ? '3ee6a8' : 'ffd166',
+  color: Math.min(...Object.values(scores)) >= 90 ? '232322' : 'f7c600',
 }));
 
-const LABELS = {
-  es: 'Rendimiento, accesibilidad, buenas prácticas y SEO según Lighthouse',
-  en: 'Performance, accessibility, best practices and SEO according to Lighthouse',
-};
-for (const [file, lang] of [['index.html', 'es'], ['en/index.html', 'en']]) {
-  const path = join(OUT, file);
-  const html = readFileSync(path, 'utf8').replace(
-    /<!-- lh:scores -->[\s\S]*?<!-- \/lh:scores -->/,
-    `<!-- lh:scores --> · <abbr title="${LABELS[lang]}">Lighthouse</abbr> ${message}<!-- /lh:scores -->`
-  );
-  writeFileSync(path, html);
-}
 console.log(`Lighthouse: ${message}`);
 for (const r of runs) {
   const rep = JSON.parse(readFileSync(r.jsonPath, 'utf8'));

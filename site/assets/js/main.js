@@ -39,7 +39,7 @@
         ['theme', 'cambiar tema claro/oscuro'],
         ['clear', 'limpiar la terminal']
       ],
-      whoami: 'Escribo el código. Y lo llevo a producción.',
+      whoami: 'Escribo el código y lo llevo a producción.',
       skills: {
         dev: [['backend', 'PHP, Python, Go, .NET, Node.js'], ['arquitectura', 'REST, GraphQL, microservicios, hexagonal, DDD'], ['datos', 'PostgreSQL, MySQL, SQL Server, NoSQL, dbt'], ['frontend', 'JavaScript, React, AngularJS, PWA'], ['calidad', 'PHPUnit, pgTAP, Playwright'], ['automatización', 'n8n, Make, Bash'], ['ia', 'agentes, RAG, LLM']],
         ops: [['cloud', 'AWS, GCP, Azure'], ['contenedores', 'Docker, Podman, Kubernetes, Compose, Nginx'], ['ci/cd', 'GitHub Actions, GitLab CI, Bitbucket Pipelines, Jenkins'], ['iac', 'Terraform, Ansible'], ['observab.', 'Prometheus, Grafana, ELK']]
@@ -98,7 +98,7 @@
         ['theme', 'toggle light/dark theme'],
         ['clear', 'clear the terminal']
       ],
-      whoami: 'I write the code. And I ship it to production.',
+      whoami: 'I write the code and ship it to production.',
       skills: {
         dev: [['backend', 'PHP, Python, Go, .NET, Node.js'], ['architecture', 'REST, GraphQL, microservices, hexagonal, DDD'], ['data', 'PostgreSQL, MySQL, SQL Server, NoSQL, dbt'], ['frontend', 'JavaScript, React, AngularJS, PWA'], ['quality', 'PHPUnit, pgTAP, Playwright'], ['automation', 'n8n, Make, Bash'], ['ai', 'agents, RAG, LLM']],
         ops: [['cloud', 'AWS, GCP, Azure'], ['containers', 'Docker, Podman, Kubernetes, Compose, Nginx'], ['ci/cd', 'GitHub Actions, GitLab CI, Bitbucket Pipelines, Jenkins'], ['iac', 'Terraform, Ansible'], ['observab.', 'Prometheus, Grafana, ELK']]
@@ -127,8 +127,7 @@
   const T = I18N[LANG];
 
   /* ---------- Tema ---------- */
-  const mq = window.matchMedia('(prefers-color-scheme: dark)');
-  const currentTheme = () => root.dataset.theme || (mq.matches ? 'dark' : 'light');
+  const currentTheme = () => root.dataset.theme || 'light';
   const toggleTheme = () => {
     const next = currentTheme() === 'dark' ? 'light' : 'dark';
     root.dataset.theme = next;
@@ -283,7 +282,7 @@
       '<span class="dim">──────────────────</span>'
     ].concat(T.neofetch.map(([k, v]) => kv(k, v))).join('\n') +
     '</pre><div class="neo-colors" aria-hidden="true">' +
-    ['#1c1c1f', '#ff6b6b', '#3ee6a8', '#ffd166', '#5e9bff', '#9d9bff', '#5ee6e6', '#d4d4d8']
+    ['#2a2a28', '#55534d', '#77756d', '#a9a69d', '#cfcdc6', '#e8e6e1', '#ffd21f', '#f7c600']
       .map((c) => '<i style="background:' + c + '"></i>').join('') +
     '</div></div>';
 
@@ -600,6 +599,7 @@
   document.querySelectorAll('.cmd-chip').forEach((btn) => {
     btn.addEventListener('click', async () => {
       if (introRunning) return;
+      document.querySelectorAll('.tab').forEach((t) => t.classList.toggle('is-active', t === btn));
       introRunning = true;
       if (!reduced) await typeCmd(btn.dataset.cmd);
       introRunning = false;
@@ -625,4 +625,24 @@
     out.setAttribute('aria-live', 'polite');
     introRunning = false;
   })();
+})();
+
+/* ---------- Navegación: sección activa ---------- */
+(() => {
+  const links = [...document.querySelectorAll('.nav-links > a[href^="#"]')];
+  if (!links.length || !('IntersectionObserver' in window)) return;
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (!e.isIntersecting) return;
+      links.forEach((a) => {
+        const on = a.getAttribute('href') === '#' + e.target.id;
+        a.classList.toggle('is-active', on);
+        if (on) a.setAttribute('aria-current', 'true'); else a.removeAttribute('aria-current');
+      });
+    });
+  }, { rootMargin: '-45% 0px -50% 0px' });
+  links.forEach((a) => {
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) io.observe(target);
+  });
 })();

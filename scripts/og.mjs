@@ -12,8 +12,8 @@ const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const OUT = join(ROOT, '_site');
 
 const VARIANTS = [
-  { file: 'og-image.png', lang: 'es', line1: 'Escribo el código.', line2: 'Y lo llevo a producción.', tagline: '+20 años · cloud · kubernetes · ci/cd' },
-  { file: 'og-image-en.png', lang: 'en', line1: 'I write the code.', line2: 'And I ship it to production.', tagline: '20+ years · cloud · kubernetes · ci/cd' },
+  { file: 'og-image.png', lang: 'es', line1: 'Escribo el código', line2: 'y lo llevo a <i>producción</i>.', tagline: '+20 años · cloud · kubernetes · ci/cd' },
+  { file: 'og-image-en.png', lang: 'en', line1: 'I write the code', line2: 'and ship it to <i>production</i>.', tagline: '20+ years · cloud · kubernetes · ci/cd' },
 ];
 
 const template = readFileSync(join(ROOT, 'scripts/og/template.html'), 'utf8');

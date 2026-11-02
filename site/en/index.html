@@ -19,12 +19,12 @@
   <meta property="og:locale:alternate" content="es_ES">
   <meta property="og:url" content="https://toniruiz.es/en/">
   <meta property="og:title" content="Toni Ruiz · Developer &amp; DevOps">
-  <meta property="og:description" content="I write the code. And I ship it to production. 20+ years building software, now full-time DevOps.">
+  <meta property="og:description" content="I write the code and ship it to production. 20+ years building software, now full-time DevOps.">
   <meta property="og:image" content="https://toniruiz.es/og-image-en.png">
   <meta property="og:image:type" content="image/png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="Toni Ruiz, Developer and DevOps: “I write the code. And I ship it to production.”">
+  <meta property="og:image:alt" content="Toni Ruiz, Developer and DevOps: “I write the code and ship it to production.”">
   <meta property="profile:first_name" content="Toni">
   <meta property="profile:last_name" content="Ruiz">
   <meta property="profile:username" content="Favashi">
@@ -32,13 +32,12 @@
   <!-- Twitter / X -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Toni Ruiz · Developer &amp; DevOps">
-  <meta name="twitter:description" content="I write the code. And I ship it to production.">
+  <meta name="twitter:description" content="I write the code and ship it to production.">
   <meta name="twitter:image" content="https://toniruiz.es/og-image-en.png">
-  <meta name="twitter:image:alt" content="Toni Ruiz, Developer and DevOps: “I write the code. And I ship it to production.”">
+  <meta name="twitter:image:alt" content="Toni Ruiz, Developer and DevOps: “I write the code and ship it to production.”">
 
   <!-- Icons and PWA -->
-  <meta name="theme-color" content="#f5f5f7" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#e6e4df">
   <link rel="icon" href="../favicon.ico" sizes="32x32">
   <link rel="icon" href="../favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="../apple-touch-icon.png">
@@ -109,6 +108,7 @@
   }
   </script>
 
+  <link rel="preload" href="../assets/fonts/geist-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="../assets/fonts/jetbrains-mono-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="../assets/css/fonts.css">
   <script>
@@ -122,61 +122,73 @@
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
-  <header class="nav">
-    <div class="wrap">
-      <a class="logo" href="#" aria-label="Toni Ruiz, home"><span class="p">~/</span>toniruiz<span class="c" aria-hidden="true"></span></a>
-      <nav class="nav-links" aria-label="Main">
-        <a href="#profile">Profile</a>
-        <a href="#stack">Stack</a>
-        <a href="#projects">Projects</a>
-        <a href="#contact">Contact</a>
-        <a class="lang-switch" href="../" hreflang="es" lang="es" title="Versión en español">ES</a>
-        <button class="icon-btn" type="button" id="theme" aria-label="Toggle light or dark theme">
+  <header class="sticky top-0 z-50 border-b border-line bg-bg">
+    <div class="mx-auto w-full max-w-6xl px-4 sm:px-6 flex h-14 items-center justify-between gap-4">
+      <a class="inline-flex min-h-11 items-center font-mono text-sm font-semibold" href="#" aria-label="Toni Ruiz, home"><span class="prompt-tag">~/</span>toniruiz</a>
+      <nav class="nav-links flex items-center gap-1" aria-label="Main">
+        <a class="hidden h-9 items-center rounded-lg px-3 font-mono text-xs lowercase text-ink-2 transition-colors duration-150 hover:text-ink sm:inline-flex [&.is-active]:text-ink" href="#profile">Profile</a>
+        <a class="hidden h-9 items-center rounded-lg px-3 font-mono text-xs lowercase text-ink-2 transition-colors duration-150 hover:text-ink sm:inline-flex [&.is-active]:text-ink" href="#stack">Stack</a>
+        <a class="hidden h-9 items-center rounded-lg px-3 font-mono text-xs lowercase text-ink-2 transition-colors duration-150 hover:text-ink sm:inline-flex [&.is-active]:text-ink" href="#projects">Projects</a>
+        <a class="hidden h-9 items-center rounded-lg px-3 font-mono text-xs lowercase text-ink-2 transition-colors duration-150 hover:text-ink sm:inline-flex [&.is-active]:text-ink" href="#contact">Contact</a>
+        <a class="lang-switch ml-1 inline-flex h-9 items-center rounded-lg px-2 font-mono text-xs lowercase text-ink-2 transition-colors duration-150 hover:text-ink sm:ml-3 sm:border-l sm:border-line sm:rounded-none sm:pl-4" href="../" hreflang="es" lang="es" title="Versión en español">ES</a>
+        <button class="icon-btn inline-grid size-9 place-items-center [&>svg]:size-4" type="button" id="theme" aria-label="Toggle light or dark theme">
           <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg>
           <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
         </button>
-        <button class="icon-btn menu-btn" type="button" id="menu-btn" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu">
+        <button class="icon-btn menu-btn inline-grid size-9 place-items-center sm:hidden [&>svg]:size-5" type="button" id="menu-btn" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path class="l1" d="M4 8h16"/><path class="l2" d="M4 16h16"/></svg>
         </button>
       </nav>
     </div>
-    <nav class="mobile-menu" id="mobile-menu" aria-label="Open menu" hidden>
-      <a href="#profile">Profile<span>cat profile.md</span></a>
-      <a href="#stack">Stack<span>ls ~/stack</span></a>
-      <a href="#projects">Projects<span>git log</span></a>
-      <a href="#contact">Contact<span>./contact.sh</span></a>
+    <nav class="mobile-menu border-t border-line px-4 pb-2 sm:hidden" id="mobile-menu" aria-label="Menu" hidden>
+      <a class="flex min-h-12 items-center justify-between border-t border-line text-base font-medium first:border-t-0" href="#profile">Profile<span class="font-mono text-xs text-faint">cat profile.md</span></a>
+      <a class="flex min-h-12 items-center justify-between border-t border-line text-base font-medium first:border-t-0" href="#stack">Stack<span class="font-mono text-xs text-faint">ls ~/stack</span></a>
+      <a class="flex min-h-12 items-center justify-between border-t border-line text-base font-medium first:border-t-0" href="#projects">Projects<span class="font-mono text-xs text-faint">git log</span></a>
+      <a class="flex min-h-12 items-center justify-between border-t border-line text-base font-medium first:border-t-0" href="#contact">Contact<span class="font-mono text-xs text-faint">./contact.sh</span></a>
     </nav>
   </header>
 
   <main id="main">
     <!-- ================= HERO ================= -->
-    <section class="hero">
-      <div class="wrap">
-        <img class="avatar" src="../assets/img/avatar-176.webp" width="176" height="176" alt="Portrait of Toni Ruiz" fetchpriority="high">
-        <p class="hero-name">Toni Ruiz · Barcelona</p>
-        <h1>I write the code.<span class="l2 grad">And I ship it to production.</span></h1>
-        <p class="sub"><strong>20+ years as a developer</strong>, now <strong>full-time DevOps</strong>. From the first line of code to the cluster, same hands all the way.</p>
-        <div class="hero-cta">
-          <a class="btn btn-primary" href="#projects">See projects</a>
-          <a class="btn btn-ghost" href="#contact">Get in touch</a>
+    <section class="mx-auto w-full max-w-6xl px-4 sm:px-6 pt-8 md:pt-10">
+      <h1 class="text-[clamp(2.5rem,10.5vw,3rem)] font-medium leading-[1.14] tracking-tight sm:text-6xl lg:text-7xl xl:text-[5.25rem]"><span class="rise block">I write the code</span><span class="rise block" style="--i:1">and ship it to <span class="hl">production</span>.</span></h1>
+      <div class="seq reveal mt-6 md:mt-8" aria-hidden="true">
+        <div class="seq-steps"><i style="--n:0"></i><i style="--n:1"></i><i style="--n:2"></i><i style="--n:3"></i><i style="--n:4"></i><i style="--n:5"></i><i style="--n:6"></i><i style="--n:7"></i><i style="--n:8"></i><i style="--n:9"></i><i style="--n:10"></i><i style="--n:11"></i><i style="--n:12"></i><i style="--n:13"></i><i style="--n:14"></i><i style="--n:15"></i></div>
+        <div class="seq-labels"><span>code</span><span>test</span><span>build</span><span>deploy</span><span>production</span></div>
+      </div>
+      <div class="mt-8 grid gap-8 lg:grid-cols-12 lg:gap-12">
+        <div class="lg:col-span-4 lg:flex lg:flex-col">
+          <div class="flex items-center gap-3">
+            <img class="size-12 flex-none rounded-full object-cover" src="../assets/img/avatar-176.webp" width="176" height="176" alt="Portrait of Toni Ruiz" fetchpriority="high">
+            <div>
+              <p class="text-sm font-medium">Toni Ruiz · Barcelona</p>
+              <p class="mt-0.5 flex items-center gap-2 font-mono text-xs text-faint"><span class="dot live"></span>2 projects in production</p>
+            </div>
+          </div>
+          <p class="mt-6 text-lg leading-relaxed text-muted text-pretty [&>strong]:font-medium [&>strong]:text-ink">I set up and run the infrastructure, deployments and automation behind your software. <strong>20+ years of programming</strong>, now <strong>full-time DevOps</strong>. From the first line of code to the cluster, same hands all the way.</p>
+          <div class="mt-8 flex flex-wrap gap-2">
+            <a class="btn btn-primary" href="#projects">See projects<svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+            <a class="btn btn-ghost" href="#contact">Get in touch</a>
+          </div>
+          <div class="knobs mt-8 hidden lg:grid">
+            <a class="knob" href="#profile"><span class="knob-cap knob-carbon"></span>profile</a>
+            <a class="knob" href="#stack"><span class="knob-cap knob-grey"></span>stack</a>
+            <a class="knob" href="#projects"><span class="knob-cap knob-white"></span>projects</a>
+            <a class="knob" href="#contact"><span class="knob-cap knob-yellow"></span>contact</a>
+          </div>
+          <div class="grille mt-8 hidden flex-1 lg:block" aria-hidden="true"></div>
         </div>
-        <ul class="pills" aria-label="Summary">
-          <li><span class="dot dev"></span>Developer</li>
-          <li><span class="dot ops"></span>DevOps</li>
-          <li><span class="dot live"></span>2 projects in production</li>
-        </ul>
-
-        <div class="hero-term reveal">
+        <div class="reveal min-w-0 lg:col-span-8">
           <div class="term" id="shell">
+            <p class="term-status"><span><span class="dot live"></span>toni@barcelona: ~</span><span class="hint-key">Interactive terminal · press <kbd>/</kbd> to type</span></p>
             <div class="term-bar">
-              <div class="tabs" aria-hidden="true">
-                <span><svg viewBox="0 0 24 24" fill="none" stroke="#a1a1aa" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
-              </div>
-              <div class="title">toni@barcelona: ~</div>
-              <div class="ctrls" aria-hidden="true">
-                <span><svg viewBox="0 0 10 10"><path d="M2 5h6" stroke="currentColor" stroke-width="1.5"/></svg></span>
-                <span><svg viewBox="0 0 10 10"><rect x="2" y="2" width="6" height="6" fill="none" stroke="currentColor" stroke-width="1.3"/></svg></span>
-                <span class="x"><svg viewBox="0 0 10 10"><path d="M2.5 2.5l5 5M7.5 2.5l-5 5" stroke="currentColor" stroke-width="1.5"/></svg></span>
+              <div class="tabs" role="group" aria-label="Example commands">
+                <span class="tab is-active">zsh</span>
+                <button type="button" class="tab cmd-chip" data-cmd="help">help</button>
+                <button type="button" class="tab cmd-chip" data-cmd="projects">projects</button>
+                <button type="button" class="tab cmd-chip" data-cmd="kubectl get pods">kubectl get pods</button>
+                <button type="button" class="tab cmd-chip" data-cmd="git log">git log</button>
+                <button type="button" class="tab cmd-chip" data-cmd="status">status</button>
               </div>
             </div>
             <div class="term-body" id="out" role="log" aria-live="polite" aria-label="Interactive terminal">
@@ -184,70 +196,88 @@
 Toni Ruiz — Developer &amp; DevOps · Barcelona</pre></noscript>
             </div>
           </div>
-          <p class="hint"><span>Interactive terminal. Try:</span> <button type="button" class="cmd-chip" data-cmd="help">help</button> <button type="button" class="cmd-chip" data-cmd="projects">projects</button> <button type="button" class="cmd-chip" data-cmd="kubectl get pods">kubectl get pods</button> <button type="button" class="cmd-chip" data-cmd="git log">git log</button> <button type="button" class="cmd-chip" data-cmd="status">status</button> <span class="hint-key">· press <kbd>/</kbd> to type</span></p>
         </div>
       </div>
     </section>
 
     <!-- ================= CIFRAS ================= -->
-    <section style="padding-bottom:0">
-      <div class="wrap">
-        <div class="stats reveal">
-          <div class="stat"><b>20+</b><span>years writing software</span></div>
-          <div class="stat"><b class="t-ops" data-stat="escriba.books_cataloged">1422</b><span>books catalogued by Escriba de la Marca users</span></div>
-          <div class="stat"><b class="t-dev" data-stat="projects.escribadelamarca.releases">36</b><span>Escriba releases shipped in <span data-stat="projects.escribadelamarca.release_days">9</span> days</span></div>
-          <div class="stat"><b data-stat="stats.tests">209</b><span>automated tests run on every deploy</span></div>
-        </div>
+    <section class="mx-auto w-full max-w-6xl px-4 sm:px-6 pt-6 pb-16 md:pt-8 md:pb-24" aria-label="Key figures">
+      <div class="mods grid grid-cols-2 gap-3 lg:grid-cols-6">
+          <div class="mod card reveal flex flex-col justify-between gap-8 p-6 col-span-2 lg:row-span-2" style="--i:0">
+            <p class="eyebrow"><span class="p">$</span> uptime</p>
+            <div class="grille hidden flex-1 lg:block" aria-hidden="true"></div>
+            <div><b class="block text-7xl font-medium tracking-tighter tabular-nums md:text-8xl lg:text-9xl">20+</b><p class="mt-3 min-h-[2.4em] text-sm leading-snug text-muted text-pretty">years writing software</p></div>
+          </div>
+          <div class="mod card reveal flex flex-col justify-between gap-8 p-6 lg:col-span-2" style="--i:1">
+            <p class="eyebrow"><span class="p">$</span> npm test</p>
+            <div><b class="readout" data-stat="stats.tests">209</b><p class="mt-3 min-h-[2.4em] text-sm leading-snug text-muted text-pretty">automated tests run on every deploy</p></div>
+          </div>
+          <div class="mod card reveal flex flex-col justify-between gap-8 p-6 lg:col-span-2" style="--i:2">
+            <p class="eyebrow"><span class="p">$</span> git tag</p>
+            <div><b class="readout" data-stat="projects.escribadelamarca.releases">36</b><p class="mt-3 min-h-[2.4em] text-sm leading-snug text-muted text-pretty">Escriba releases shipped in <span class="font-medium text-ink" data-stat="projects.escribadelamarca.release_days">9</span> days</p></div>
+          </div>
+          <div class="mod card reveal flex flex-col justify-between gap-8 p-6 col-span-2" style="--i:3">
+            <p class="eyebrow"><span class="p">$</span> SELECT count(*)</p>
+            <div><b class="readout" data-stat="escriba.books_cataloged">1422</b><p class="mt-3 min-h-[2.4em] text-sm leading-snug text-muted text-pretty">books catalogued by Escriba de la Marca users</p></div>
+          </div>
+          <div class="mod card reveal flex flex-col justify-between gap-8 p-6 col-span-2" style="--i:4">
+            <p class="eyebrow"><span class="p">$</span> ls ~/cloud</p>
+            <div><span class="block text-2xl font-semibold leading-[3rem] tracking-tight md:text-3xl">AWS · GCP · Azure</span><p class="mt-3 min-h-[2.4em] text-sm leading-snug text-muted text-pretty">with Kubernetes, Terraform and CI/CD</p></div>
+          </div>
+          <aside class="mod card reveal col-span-full p-6" aria-label="Services">
+            <p class="eyebrow mb-4"><span class="p">$</span> ./services --list</p>
+            <dl class="grid divide-y divide-line md:grid-cols-3 md:divide-x md:divide-y-0">
+              <div class="py-4 md:px-6 md:py-0 md:first:pl-0 md:last:pr-0"><dt class="text-base font-medium">Deployments</dt><dd class="mt-1 text-sm leading-relaxed text-muted text-pretty">CI/CD pipelines, so releases need no manual steps.</dd></div>
+              <div class="py-4 md:px-6 md:py-0 md:first:pl-0 md:last:pr-0"><dt class="text-base font-medium">Infrastructure</dt><dd class="mt-1 text-sm leading-relaxed text-muted text-pretty">Cloud and containers defined as code and monitored.</dd></div>
+              <div class="py-4 md:px-6 md:py-0 md:first:pl-0 md:last:pr-0"><dt class="text-base font-medium">Automation</dt><dd class="mt-1 text-sm leading-relaxed text-muted text-pretty">Repetitive tasks turned into workflows with n8n and AI agents.</dd></div>
+            </dl>
+          </aside>
       </div>
     </section>
 
     <!-- ================= PERFIL: DEV + OPS ================= -->
-    <section id="profile">
-      <div class="wrap">
-        <div class="head center reveal">
-          <p class="eyebrow"><span class="p">$</span> cat profile.md</p>
-          <h2>Two crafts.<br>One flow.</h2>
-          <p class="sub">I know what it takes to write the code because I have done it for years. And I know what it takes to keep it alive because that is my job today.</p>
+    <section id="profile" class="seam band py-16 md:py-24">
+      <div class="mx-auto w-full max-w-6xl px-4 sm:px-6">
+        <div class="reveal mb-10 md:mb-14">
+          <p class="eyebrow mb-4"><span class="p">$</span> cat profile.md</p>
+          <h2 class="text-4xl font-medium leading-[1.05] tracking-tight text-balance md:text-6xl">Two crafts. One flow.</h2>
+          <p class="mt-4 max-w-2xl text-lg leading-relaxed text-muted text-pretty">I know what it takes to write the code because I have done it for years. And I know what it takes to keep it alive because that is my job today.</p>
         </div>
-
-        <div class="duo">
-          <article class="side dev reveal">
-            <span class="badge"><span class="dot dev"></span>Developer</span>
-            <h3>Well-designed software, from backend to PWA.</h3>
-            <p>REST and GraphQL APIs, microservices, hexagonal architecture and DDD. Databases tested like the rest of the code, and frontends you can install on your phone.</p>
-            <ul class="chips">
+        <div class="grid gap-3 lg:grid-cols-2">
+          <article class="facet card dev reveal flex flex-col p-6 md:p-8">
+            <span class="inline-flex items-center gap-2 font-mono text-xs text-ink-2"><span class="dot dev"></span>Developer</span>
+            <h3 class="mt-4 text-2xl font-semibold leading-tight tracking-tight text-balance md:text-3xl">Well-designed software, from backend to PWA.</h3>
+            <p class="mt-3 mb-6 max-w-[46ch] leading-relaxed text-muted text-pretty">REST and GraphQL APIs, microservices, hexagonal architecture and DDD. Databases tested like the rest of the code, and frontends you can install on your phone.</p>
+            <ul class="chips mb-6">
               <li>PHP</li><li>Python</li><li>Go</li><li>.NET</li><li>Node.js</li><li>JavaScript</li><li>React</li><li>PostgreSQL</li><li>dbt</li><li>n8n</li>
             </ul>
-            <div class="term" aria-hidden="true">
-              <div class="term-bar"><div></div><div class="title">src/Domain/Collection.php</div><div></div></div>
-<div class="term-body"><pre><span class="dv">final class</span> <span class="b">Collection</span>
+            <div class="term code mt-auto" aria-hidden="true">
+              <div class="term-body"><pre><span class="dv">final class</span> <span class="b">Collection</span>
 {
     <span class="dv">public function</span> <span class="ok">missingFrom</span>(Series $s): <span class="dv">array</span>
     {
         <span class="dv">return</span> array_diff($s-&gt;codes(), $this-&gt;owned());
     }
 }
-<span class="dim">// tests: 200 passed · 0 failed</span></pre></div>
+<span class="dim">// tests: <span data-stat="projects.escribadelamarca.tests">200</span> passed · 0 failed</span></pre></div>
             </div>
           </article>
-
-          <article class="side ops reveal">
-            <span class="badge"><span class="dot ops"></span>DevOps</span>
-            <h3>Infrastructure that deploys itself.</h3>
-            <p>Cloud, containers, pipelines and infrastructure as code. Monitoring before the pager goes off. If you do it twice, it is a pipeline.</p>
-            <ol class="pipeline" id="pipeline" aria-label="Pipeline: commit, test, build, deploy, monitor">
+          <article class="facet card ops reveal flex flex-col p-6 md:p-8">
+            <span class="inline-flex items-center gap-2 font-mono text-xs text-ink-2"><span class="dot ops"></span>DevOps</span>
+            <h3 class="mt-4 text-2xl font-semibold leading-tight tracking-tight text-balance md:text-3xl">Infrastructure that deploys itself.</h3>
+            <p class="mt-3 mb-6 max-w-[46ch] leading-relaxed text-muted text-pretty">Cloud, containers, pipelines and infrastructure as code. Monitoring before the pager goes off. If you do it twice, it is a pipeline.</p>
+            <ol class="pipeline mb-5 flex flex-wrap gap-1.5" id="pipeline" aria-label="Pipeline: commit, test, build, deploy, monitor">
               <li><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>commit</span></li>
               <li><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>test</span></li>
               <li><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>build</span></li>
               <li><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>deploy</span></li>
               <li><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>monitor</span></li>
             </ol>
-            <ul class="chips">
+            <ul class="chips mb-6">
               <li>AWS</li><li>GCP</li><li>Azure</li><li>Kubernetes</li><li>Docker</li><li>Podman</li><li>Terraform</li><li>Ansible</li><li>GitHub Actions</li><li>GitLab CI</li><li>Bitbucket Pipelines</li><li>Jenkins</li><li>Prometheus</li><li>Grafana</li><li>Bash</li>
             </ul>
-            <div class="term" aria-hidden="true">
-              <div class="term-bar"><div></div><div class="title">toni@barcelona: ~/infra</div><div></div></div>
-<div class="term-body"><pre><span class="ok">$</span> terraform plan
+            <div class="term code mt-auto" aria-hidden="true">
+              <div class="term-body"><pre><span class="ok">$</span> terraform plan
 <span class="dim">No changes. Your infrastructure matches
 the configuration.</span>
 <span class="ok">$</span> kubectl rollout status deploy/api
@@ -259,140 +289,78 @@ deployment <span class="b">"api"</span> <span class="ok">successfully rolled out
     </section>
 
     <!-- ================= STACK ================= -->
-    <section id="stack" style="background:var(--bg-alt)">
-      <div class="wrap">
-        <div class="head center reveal">
-          <p class="eyebrow"><span class="p">$</span> ls ~/stack</p>
-          <h2>Everyday tools.</h2>
-          <p class="sub">What I use to build, ship and watch over software.</p>
+    <section id="stack" class="seam py-16 md:py-24">
+      <div class="mx-auto w-full max-w-6xl px-4 sm:px-6">
+        <div class="reveal mb-10 md:mb-14">
+          <p class="eyebrow mb-4"><span class="p">$</span> ls ~/stack</p>
+          <h2 class="text-4xl font-medium leading-[1.05] tracking-tight text-balance md:text-6xl">Everyday tools.</h2>
+          <p class="mt-4 max-w-2xl text-lg leading-relaxed text-muted text-pretty">What I use to build, ship and watch over software.</p>
         </div>
-
-        <div class="bento">
-          <div class="tile ops w2 reveal">
-            <div class="tile-top">
-              <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/></svg></span>
-              <span class="kind">ops</span>
+        <div class="grid gap-6 lg:grid-cols-2">
+          <div class="reveal flex flex-col">
+            <p class="mb-3 flex items-center gap-2 font-mono text-xs text-ink-2"><span class="dot ops"></span>Operations</p>
+            <div class="card flex-1">
+              <div class="grid grid-cols-[20px_1fr] gap-x-3 gap-y-1 border-t border-line px-5 py-4 first:border-t-0 sm:grid-cols-[20px_9rem_1fr]"><span class="size-5 text-faint [&>svg]:size-5"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/></svg></span><h3 class="text-sm font-medium leading-snug">Cloud</h3><p class="col-start-2 text-sm leading-relaxed text-muted text-pretty sm:col-start-3">AWS, Google Cloud and Azure. Networking, compute, storage and costs under control.</p></div>
+              <div class="grid grid-cols-[20px_1fr] gap-x-3 gap-y-1 border-t border-line px-5 py-4 first:border-t-0 sm:grid-cols-[20px_9rem_1fr]"><span class="size-5 text-faint [&>svg]:size-5"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="M3.3 7 12 12l8.7-5M12 22V12"/></svg></span><h3 class="text-sm font-medium leading-snug">Containers</h3><p class="col-start-2 text-sm leading-relaxed text-muted text-pretty sm:col-start-3">Docker, Podman, Kubernetes, Compose and Nginx.</p></div>
+              <div class="grid grid-cols-[20px_1fr] gap-x-3 gap-y-1 border-t border-line px-5 py-4 first:border-t-0 sm:grid-cols-[20px_9rem_1fr]"><span class="size-5 text-faint [&>svg]:size-5"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="12" r="3"/><path d="M6 9v6M8.6 7.5 15.4 11M8.6 16.5l6.8-3.5"/></svg></span><h3 class="text-sm font-medium leading-snug">CI/CD</h3><p class="col-start-2 text-sm leading-relaxed text-muted text-pretty sm:col-start-3">GitHub Actions, GitLab CI, Bitbucket Pipelines and Jenkins.</p></div>
+              <div class="grid grid-cols-[20px_1fr] gap-x-3 gap-y-1 border-t border-line px-5 py-4 first:border-t-0 sm:grid-cols-[20px_9rem_1fr]"><span class="size-5 text-faint [&>svg]:size-5"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3v4a1 1 0 0 0 1 1h4"/><path d="M17 21H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7l5 5v11a2 2 0 0 1-2 2Z"/><path d="M9 13h6M9 17h4"/></svg></span><h3 class="text-sm font-medium leading-snug">Infrastructure as code</h3><p class="col-start-2 text-sm leading-relaxed text-muted text-pretty sm:col-start-3">Terraform, Ansible and Bash scripting.</p></div>
+              <div class="grid grid-cols-[20px_1fr] gap-x-3 gap-y-1 border-t border-line px-5 py-4 first:border-t-0 sm:grid-cols-[20px_9rem_1fr]"><span class="size-5 text-faint [&>svg]:size-5"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg></span><h3 class="text-sm font-medium leading-snug">Observability</h3><p class="col-start-2 text-sm leading-relaxed text-muted text-pretty sm:col-start-3">Prometheus, Grafana and ELK.</p></div>
             </div>
-            <h3>Cloud</h3>
-            <p>AWS, Google Cloud and Azure. Networking, compute, storage and costs under control.</p>
           </div>
-          <div class="tile ops reveal">
-            <div class="tile-top">
-              <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="M3.3 7 12 12l8.7-5M12 22V12"/></svg></span>
-              <span class="kind">ops</span>
+          <div class="reveal flex flex-col">
+            <p class="mb-3 flex items-center gap-2 font-mono text-xs text-ink-2"><span class="dot dev"></span>Development</p>
+            <div class="card flex-1">
+              <div class="grid grid-cols-[20px_1fr] gap-x-3 gap-y-1 border-t border-line px-5 py-4 first:border-t-0 sm:grid-cols-[20px_9rem_1fr]"><span class="size-5 text-faint [&>svg]:size-5"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m16 18 6-6-6-6M8 6l-6 6 6 6"/></svg></span><h3 class="text-sm font-medium leading-snug">Backend and architecture</h3><p class="col-start-2 text-sm leading-relaxed text-muted text-pretty sm:col-start-3">PHP, Python, Go, .NET and Node.js. REST, GraphQL, microservices, hexagonal and DDD.</p></div>
+              <div class="grid grid-cols-[20px_1fr] gap-x-3 gap-y-1 border-t border-line px-5 py-4 first:border-t-0 sm:grid-cols-[20px_9rem_1fr]"><span class="size-5 text-faint [&>svg]:size-5"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5"/><path d="M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></span><h3 class="text-sm font-medium leading-snug">Data</h3><p class="col-start-2 text-sm leading-relaxed text-muted text-pretty sm:col-start-3">PostgreSQL, MySQL, SQL Server, NoSQL and data modelling with dbt.</p></div>
+              <div class="grid grid-cols-[20px_1fr] gap-x-3 gap-y-1 border-t border-line px-5 py-4 first:border-t-0 sm:grid-cols-[20px_9rem_1fr]"><span class="size-5 text-faint [&>svg]:size-5"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="2" width="14" height="20" rx="3"/><path d="M11 18h2"/></svg></span><h3 class="text-sm font-medium leading-snug">Frontend</h3><p class="col-start-2 text-sm leading-relaxed text-muted text-pretty sm:col-start-3">JavaScript, React, AngularJS and PWA.</p></div>
+              <div class="grid grid-cols-[20px_1fr] gap-x-3 gap-y-1 border-t border-line px-5 py-4 first:border-t-0 sm:grid-cols-[20px_9rem_1fr]"><span class="size-5 text-faint [&>svg]:size-5"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></span><h3 class="text-sm font-medium leading-snug">Quality</h3><p class="col-start-2 text-sm leading-relaxed text-muted text-pretty sm:col-start-3">PHPUnit, pgTAP and Playwright.</p></div>
+              <div class="grid grid-cols-[20px_1fr] gap-x-3 gap-y-1 border-t border-line px-5 py-4 first:border-t-0 sm:grid-cols-[20px_9rem_1fr]"><span class="size-5 text-faint [&>svg]:size-5"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.9 5.8L20 10l-5 3.6L16.5 20 12 16.5 7.5 20 9 13.6 4 10l6.1-1.2Z"/></svg></span><h3 class="text-sm font-medium leading-snug">AI and automation</h3><p class="col-start-2 text-sm leading-relaxed text-muted text-pretty sm:col-start-3">Agents, RAG and LLMs wired into real workflows with n8n and Make.</p></div>
             </div>
-            <h3>Containers</h3>
-            <p>Docker, Podman, Kubernetes, Compose and Nginx.</p>
-          </div>
-          <div class="tile ops reveal">
-            <div class="tile-top">
-              <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="12" r="3"/><path d="M6 9v6M8.6 7.5 15.4 11M8.6 16.5l6.8-3.5"/></svg></span>
-              <span class="kind">ops</span>
-            </div>
-            <h3>CI/CD</h3>
-            <p>GitHub Actions, GitLab CI, Bitbucket Pipelines and Jenkins.</p>
-          </div>
-          <div class="tile ops reveal">
-            <div class="tile-top">
-              <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3v4a1 1 0 0 0 1 1h4"/><path d="M17 21H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7l5 5v11a2 2 0 0 1-2 2Z"/><path d="M9 13h6M9 17h4"/></svg></span>
-              <span class="kind">ops</span>
-            </div>
-            <h3>Infrastructure as code</h3>
-            <p>Terraform, Ansible and Bash scripting.</p>
-          </div>
-          <div class="tile ops reveal">
-            <div class="tile-top">
-              <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg></span>
-              <span class="kind">ops</span>
-            </div>
-            <h3>Observability</h3>
-            <p>Prometheus, Grafana and ELK.</p>
-          </div>
-          <div class="tile dev w2 reveal">
-            <div class="tile-top">
-              <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m16 18 6-6-6-6M8 6l-6 6 6 6"/></svg></span>
-              <span class="kind">dev</span>
-            </div>
-            <h3>Backend and architecture</h3>
-            <p>PHP, Python, Go, .NET and Node.js. REST, GraphQL, microservices, hexagonal and DDD.</p>
-          </div>
-          <div class="tile dev reveal">
-            <div class="tile-top">
-              <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5"/><path d="M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></span>
-              <span class="kind">dev</span>
-            </div>
-            <h3>Data</h3>
-            <p>PostgreSQL, MySQL, SQL Server, NoSQL and data modelling with dbt.</p>
-          </div>
-          <div class="tile dev reveal">
-            <div class="tile-top">
-              <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="2" width="14" height="20" rx="3"/><path d="M11 18h2"/></svg></span>
-              <span class="kind">dev</span>
-            </div>
-            <h3>Frontend</h3>
-            <p>JavaScript, React, AngularJS and PWA.</p>
-          </div>
-          <div class="tile dev reveal">
-            <div class="tile-top">
-              <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></span>
-              <span class="kind">dev</span>
-            </div>
-            <h3>Quality</h3>
-            <p>PHPUnit, pgTAP and Playwright.</p>
-          </div>
-          <div class="tile dev reveal">
-            <div class="tile-top">
-              <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.9 5.8L20 10l-5 3.6L16.5 20 12 16.5 7.5 20 9 13.6 4 10l6.1-1.2Z"/></svg></span>
-              <span class="kind">dev</span>
-            </div>
-            <h3>AI and automation</h3>
-            <p>Agents, RAG and LLMs wired into real workflows with n8n and Make.</p>
           </div>
         </div>
-        <div class="legend reveal"><span><span class="dot dev"></span>development</span><span><span class="dot ops"></span>operations</span></div>
       </div>
     </section>
 
     <!-- ================= PROYECTOS ================= -->
-    <section id="projects">
-      <div class="wrap">
-        <div class="head center reveal">
-          <p class="eyebrow"><span class="p">$</span> git log --author=toni</p>
-          <h2>Projects in production.</h2>
-          <p class="sub">Open source, real users and zero infrastructure cost. Designed, built and operated by me.</p>
+    <section id="projects" class="seam band py-16 md:py-24">
+      <div class="mx-auto w-full max-w-6xl px-4 sm:px-6">
+        <div class="reveal mb-10 md:mb-14">
+          <p class="eyebrow mb-4"><span class="p">$</span> git log --author=toni</p>
+          <h2 class="text-4xl font-medium leading-[1.05] tracking-tight text-balance md:text-6xl">Projects in <span class="hl">production</span>.</h2>
+          <p class="mt-4 max-w-2xl text-lg leading-relaxed text-muted text-pretty">Open source, real users and zero infrastructure cost. Designed, built and operated by me.</p>
         </div>
-
-        <article class="project reveal">
-          <div class="project-info">
-            <span class="status"><span class="dot live"></span>In production · <span data-gh="escribadelamarca.version">v1.14</span> · <time data-gh-time="escribadelamarca.pushed_at" data-prefix="updated" datetime="2026-10-01">updated in October 2026</time></span>
-            <h3>Escriba de la Marca</h3>
-            <p>A PWA for collectors of the Spanish tabletop RPG <em>Aventuras en la Marca del Este</em>. Scan a barcode and it tells you whether you already own the book and what is missing from each series.</p>
-            <ul class="chips" aria-label="Escriba catalogue">
+      <div class="grid gap-3">
+        <article class="card reveal grid overflow-hidden lg:grid-cols-2">
+          <div class="flex min-w-0 flex-col p-6 md:p-10">
+            <p class="font-mono text-xs leading-relaxed text-faint"><span class="dot live mr-2"></span>In production · <span data-gh="escribadelamarca.version">v1.14</span> · <time data-gh-time="escribadelamarca.pushed_at" data-prefix="updated" datetime="2026-10-01">updated in October 2026</time></p>
+            <h3 class="mt-4 text-3xl font-semibold leading-tight tracking-tight md:text-4xl">Escriba de la Marca</h3>
+            <p class="mt-3 mb-6 max-w-[46ch] leading-relaxed text-muted text-pretty [&>em]:font-medium [&>em]:not-italic [&>em]:text-ink">A PWA for collectors of the Spanish tabletop RPG <em>Aventuras en la Marca del Este</em>. Scan a barcode and it tells you whether you already own the book and what is missing from each series.</p>
+            <ul class="chips mb-6" aria-label="Escriba catalogue">
               <li><span data-stat="escriba.publications">118</span> publications</li><li><span data-stat="escriba.authors">83</span> authors</li><li><span data-stat="escriba.adventures">83</span> searchable adventures</li>
             </ul>
-            <div class="split">
-              <div class="d">
-                <h4><span class="dot dev"></span>Development</h4>
-                <ul>
+            <div class="split mb-8 grid gap-6 sm:grid-cols-2">
+              <div>
+                <h4 class="mb-3 flex items-center gap-2 font-mono text-xs text-ink-2"><span class="dot dev"></span>Development</h4>
+                <ul class="grid gap-2 text-sm leading-relaxed text-ink-2 text-pretty">
                   <li>Vanilla JavaScript PWA, no framework, no build step</li>
                   <li>Continuous barcode scanner</li>
                   <li>Community catalogue with quests and levels</li>
                   <li>PostgreSQL with row-level security</li>
                 </ul>
               </div>
-              <div class="o">
-                <h4><span class="dot ops"></span>Operations</h4>
-                <ul>
+              <div>
+                <h4 class="mb-3 flex items-center gap-2 font-mono text-xs text-ink-2"><span class="dot ops"></span>Operations</h4>
+                <ul class="grid gap-2 text-sm leading-relaxed text-ink-2 text-pretty">
                   <li>CI/CD with GitHub Actions to GitHub Pages</li>
-                  <li>~200 tests: <code>pgTAP</code> + <code>Playwright</code></li>
+                  <li><span data-stat="projects.escribadelamarca.tests">200</span> tests: <code>pgTAP</code> + <code>Playwright</code></li>
                   <li>Scheduled jobs with <code>pg_cron</code> and Telegram alerts</li>
                   <li>Supabase: €0 infrastructure cost</li>
                 </ul>
               </div>
             </div>
-            <div class="project-links">
-              <a class="btn btn-primary" href="https://favashi.github.io/escribadelamarca/?ref=toniruiz-es" data-goatcounter-click="click/escriba-app">Open the app</a>
-              <a class="btn btn-ghost" href="https://github.com/Favashi/escribadelamarca" data-goatcounter-click="click/escriba-code">View code</a>
+            <div class="mt-auto flex flex-wrap items-center gap-2">
+              <a class="btn btn-primary" href="https://favashi.github.io/escribadelamarca/?ref=toniruiz-es" data-goatcounter-click="click/escriba-app">Open the app<svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+              <a class="btn btn-ghost" href="https://github.com/Favashi/escribadelamarca" data-goatcounter-click="click/escriba-code">View code<svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
             </div>
           </div>
           <div class="stage escriba">
@@ -400,25 +368,24 @@ deployment <span class="b">"api"</span> <span class="ok">successfully rolled out
             <div class="phone"><img src="../assets/img/escriba-series.webp" width="540" height="985" alt="Escriba de la Marca: library by series showing the gaps in each one" loading="lazy" decoding="async"></div>
           </div>
         </article>
-
-        <article class="project reveal">
-          <div class="project-info">
-            <span class="status"><span class="dot live"></span>Active · <span data-gh="osr-manager.version">v0.4</span> · <time data-gh-time="osr-manager.pushed_at" data-prefix="updated" datetime="2026-09-27">updated in September 2026</time></span>
-            <h3>OSR Manager</h3>
-            <p>A table assistant for old-school RPG game masters: exploration, hexcrawl, encounters, combat, light and resources. Runs in the browser and <em>fully offline</em>.</p>
-            <div class="split">
-              <div class="d">
-                <h4><span class="dot dev"></span>Development</h4>
-                <ul>
+        <article class="card reveal grid overflow-hidden lg:grid-cols-2">
+          <div class="flex min-w-0 flex-col p-6 md:p-10">
+            <p class="font-mono text-xs leading-relaxed text-faint"><span class="dot live mr-2"></span>Active · <span data-gh="osr-manager.version">v0.4</span> · <time data-gh-time="osr-manager.pushed_at" data-prefix="updated" datetime="2026-09-27">updated in September 2026</time></p>
+            <h3 class="mt-4 text-3xl font-semibold leading-tight tracking-tight md:text-4xl">OSR Manager</h3>
+            <p class="mt-3 mb-6 max-w-[46ch] leading-relaxed text-muted text-pretty [&>em]:font-medium [&>em]:not-italic [&>em]:text-ink">A table assistant for old-school RPG game masters: exploration, hexcrawl, encounters, combat, light and resources. Runs in the browser and <em>fully offline</em>.</p>
+            <div class="split mb-8 grid gap-6 sm:grid-cols-2">
+              <div>
+                <h4 class="mb-3 flex items-center gap-2 font-mono text-xs text-ink-2"><span class="dot dev"></span>Development</h4>
+                <ul class="grid gap-2 text-sm leading-relaxed text-ink-2 text-pretty">
                   <li>Custom dice engine, no <code>eval</code></li>
                   <li>Per-campaign rulesets: base + overrides</li>
                   <li>Statblock importer from plain text</li>
                   <li>7 systems: OSE, B/X, BECMI, LotFP…</li>
                 </ul>
               </div>
-              <div class="o">
-                <h4><span class="dot ops"></span>Operations</h4>
-                <ul>
+              <div>
+                <h4 class="mb-3 flex items-center gap-2 font-mono text-xs text-ink-2"><span class="dot ops"></span>Operations</h4>
+                <ul class="grid gap-2 text-sm leading-relaxed text-ink-2 text-pretty">
                   <li>Zero dependencies, zero backend</li>
                   <li>Works offline from <code>file://</code></li>
                   <li>Releases as a portable ZIP</li>
@@ -426,81 +393,71 @@ deployment <span class="b">"api"</span> <span class="ok">successfully rolled out
                 </ul>
               </div>
             </div>
-            <div class="project-links">
-              <a class="btn btn-primary" href="https://favashi.github.io/osr-manager/app/?ref=toniruiz-es" data-goatcounter-click="click/osr-app">Open online</a>
-              <a class="btn btn-ghost" href="https://github.com/Favashi/osr-manager/releases/latest" data-goatcounter-click="click/osr-download">Download</a>
-              <a class="btn btn-ghost" href="https://github.com/Favashi/osr-manager" data-goatcounter-click="click/osr-code">Code</a>
+            <div class="mt-auto flex flex-wrap items-center gap-2">
+              <a class="btn btn-primary" href="https://favashi.github.io/osr-manager/app/?ref=toniruiz-es" data-goatcounter-click="click/osr-app">Open online<svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+              <a class="btn btn-ghost" href="https://github.com/Favashi/osr-manager/releases/latest" data-goatcounter-click="click/osr-download">Download<svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+              <a class="btn btn-link" href="https://github.com/Favashi/osr-manager" data-goatcounter-click="click/osr-code">View code<svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
             </div>
           </div>
-          <div class="stage osr">
-            <div class="term">
-              <div class="term-bar">
-                <div></div><div class="title">osr-manager</div>
-                <div class="ctrls" aria-hidden="true"><span></span><span></span><span class="x"></span></div>
-              </div>
+          <div class="stage osr lg:order-first">
+            <div class="term w-full">
+              <div class="term-bar"><div class="title">osr-manager</div></div>
               <div class="term-body"><img src="../assets/img/osr-mazmorra.webp" width="1054" height="889" alt="OSR Manager: Dungeon mode with a terminal-style interface" loading="lazy" decoding="async"></div>
             </div>
           </div>
         </article>
-
-        <div class="ls reveal" id="activity">
+        <div class="reveal" id="activity">
           <div class="term">
-            <div class="term-bar"><div></div><div class="title">toni@barcelona: ~/repos</div><div class="ctrls" aria-hidden="true"><span></span><span></span><span class="x"></span></div></div>
+            <div class="term-bar"><div class="title">toni@barcelona: ~</div></div>
             <div class="term-body">
               <pre><span class="ok">toni@barcelona</span>:<span class="dv">~/repos</span>$ git log --all --oneline -n 6 <span class="dim"># recent activity</span></pre>
               <!-- gh:activity -->
-              <div class="log-row"><a href="https://github.com/Favashi">·······</a><span class="repo dv">Favashi</span><span class="msg">Recent activity on github.com/Favashi</span><span class="when dim"></span></div>
+              <p class="gh-h dim"># GitHub did not respond during this build. The history is at <a href="https://github.com/Favashi" rel="noopener">github.com/Favashi</a></p>
               <!-- /gh:activity -->
-            </div>
-          </div>
-        </div>
-
-        <div class="ls reveal" id="github">
-          <div class="term">
-            <div class="term-bar"><div></div><div class="title">toni@barcelona: ~/github</div><div class="ctrls" aria-hidden="true"><span></span><span></span><span class="x"></span></div></div>
-            <div class="term-body">
-              <pre><span class="ok">toni@barcelona</span>:<span class="dv">~/github</span>$ gh stats Favashi <span class="dim"># projects in production</span></pre>
+              <pre class="gh-next" id="github"><span class="ok">toni@barcelona</span>:<span class="dv">~/github</span>$ gh stats Favashi <span class="dim"># projects in production</span></pre>
               <!-- gh:stats -->
-              <p class="gh-h"><a href="https://github.com/Favashi" rel="noopener">Stats on github.com/Favashi</a></p>
+              <p class="gh-h dim"># stats unavailable in this build</p>
               <!-- /gh:stats -->
               <p class="gh-h gh-more"><a href="https://github.com/Favashi" rel="me noopener" data-goatcounter-click="click/github-stats">github.com/Favashi</a> <span class="dim">→ full profile</span></p>
             </div>
           </div>
         </div>
       </div>
+      </div>
     </section>
 
     <!-- ================= CONTACTO ================= -->
-    <section id="contact" class="contact" style="background:var(--bg-alt)">
-      <div class="narrow reveal">
-        <p class="eyebrow"><span class="p">$</span> ./contact.sh</p>
-        <h2>Let's talk.</h2>
-        <p class="sub">Open to new opportunities: <strong>DevOps or development roles</strong>, <strong>projects</strong> and <strong>consulting</strong> on infrastructure and automation. I reply personally.</p>
-        <div class="mail-line">
-          <span><span class="ok">$</span> mail <a href="mailto:info@toniruiz.es" data-goatcounter-click="click/contact-email">info@toniruiz.es</a></span>
-          <button class="copy" type="button" id="copy" data-email="info@toniruiz.es" aria-label="Copy email">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-            <span class="lbl">Copy</span>
-          </button>
+    <section id="contact" class="carbon seam py-16 md:py-24">
+      <div class="mx-auto w-full max-w-6xl px-4 sm:px-6">
+      <div class="card reveal grid gap-10 p-6 md:p-12 lg:grid-cols-12 lg:items-end">
+        <div class="lg:col-span-7">
+          <p class="eyebrow mb-4"><span class="p">$</span> ./contact.sh</p>
+          <h2 class="text-5xl font-medium leading-none tracking-tight md:text-7xl">Let's talk.</h2>
+          <p class="mt-6 max-w-xl text-lg leading-relaxed text-muted text-pretty [&>strong]:font-medium [&>strong]:text-ink">Still deploying by hand? Got a server nobody dares to touch? Tell me about it. I take on <strong>projects</strong> and <strong>consulting</strong> on infrastructure and automation, and I also listen to offers for <strong>DevOps or development roles</strong>. I reply personally.</p>
         </div>
-        <div class="socials">
-          <a class="btn btn-ghost" href="https://www.linkedin.com/in/toniruizfernandez" rel="me noopener" data-goatcounter-click="click/contact-linkedin">
-            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0Z"/></svg>
-            LinkedIn
-          </a>
-          <a class="btn btn-ghost" href="https://github.com/Favashi" rel="me noopener" data-goatcounter-click="click/contact-github">
-            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2.2c-3.3.7-4-1.4-4-1.4-.6-1.4-1.4-1.8-1.4-1.8-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 0-.8.4-1.3.7-1.6-2.7-.3-5.5-1.3-5.5-6 0-1.2.5-2.3 1.3-3.1-.2-.4-.6-1.6 0-3.2 0 0 1-.3 3.4 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.6.2 2.8.1 3.2.8.8 1.3 1.9 1.3 3.2 0 4.6-2.8 5.6-5.5 5.9.5.4.9 1.1.9 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3"/></svg>
-            GitHub
-          </a>
+        <div class="grid min-w-0 gap-4 lg:col-span-5">
+          <div class="grille hidden h-24 lg:block" aria-hidden="true"></div>
+          <div class="flex items-center justify-between gap-3 border-b border-line-2 pb-3">
+            <a class="mail-link group inline-flex min-w-0 items-center gap-2 font-mono text-lg md:text-xl" href="mailto:info@toniruiz.es" data-goatcounter-click="click/contact-email">info@toniruiz.es<svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+            <button class="copy" type="button" id="copy" data-email="info@toniruiz.es" aria-label="Copy email">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              <span class="lbl">Copy</span>
+            </button>
+          </div>
+          <div class="flex flex-wrap gap-2">
+            <a class="btn btn-ghost" href="https://www.linkedin.com/in/toniruizfernandez" rel="me noopener" data-goatcounter-click="click/contact-linkedin"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0Z"/></svg>LinkedIn</a>
+            <a class="btn btn-ghost" href="https://github.com/Favashi" rel="me noopener" data-goatcounter-click="click/contact-github"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2.2c-3.3.7-4-1.4-4-1.4-.6-1.4-1.4-1.8-1.4-1.8-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 0-.8.4-1.3.7-1.6-2.7-.3-5.5-1.3-5.5-6 0-1.2.5-2.3 1.3-3.1-.2-.4-.6-1.6 0-3.2 0 0 1-.3 3.4 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.6.2 2.8.1 3.2.8.8 1.3 1.9 1.3 3.2 0 4.6-2.8 5.6-5.5 5.9.5.4.9 1.1.9 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3"/></svg>GitHub</a>
+          </div>
         </div>
+      </div>
       </div>
     </section>
   </main>
 
-  <footer>
-    <div class="wrap">
+  <footer class="carbon seam py-6 text-xs leading-relaxed text-faint">
+    <div class="mx-auto w-full max-w-6xl px-4 sm:px-6 flex flex-wrap justify-between gap-x-6 gap-y-2">
       <span>© <span id="year">2026</span> Toni Ruiz · Barcelona</span>
-      <span>HTML, CSS and a little JS. No frameworks. Deployed with GitHub Actions and GitHub Pages · GitHub data <time data-gh-time="generated_at" data-prefix="updated" datetime="2026-10-02">updated in October 2026</time><!-- lh:scores --><!-- /lh:scores --></span>
+      <span>HTML, CSS and a little JS. No frameworks in the browser. Deployed with GitHub Actions and GitHub Pages · GitHub data <time data-gh-time="generated_at" data-prefix="updated" datetime="2026-10-02">updated in October 2026</time></span>
     </div>
   </footer>
 

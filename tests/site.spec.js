@@ -12,8 +12,8 @@ function watchConsole(page) {
 }
 
 const PAGES = [
-  { path: '/', lang: 'es', h1: 'Escribo el código.', help: 'Comandos disponibles' },
-  { path: '/en/', lang: 'en', h1: 'I write the code.', help: 'Available commands' },
+  { path: '/', lang: 'es', h1: 'Escribo el código', help: 'Comandos disponibles' },
+  { path: '/en/', lang: 'en', h1: 'I write the code', help: 'Available commands' },
 ];
 
 for (const p of PAGES) {

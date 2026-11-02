@@ -266,9 +266,10 @@ async function collect() {
   // Lenguajes en porcentaje: los 6 principales + "otros"
   const total = Object.values(languages).reduce((a, b) => a + b, 0) || 1;
   const sorted = Object.entries(languages).sort((a, b) => b[1] - a[1]);
-  const top = sorted.slice(0, 6).map(([name, bytes]) => ({ name, pct: (bytes / total) * 100, color: LANG_COLORS[name] || '#8a8a93' }));
+  const LANG_RAMP = ['#f7c600', '#e8e6e1', '#b5b2a9', '#8f8d85', '#6d6c66', '#55534d'];
+  const top = sorted.slice(0, 6).map(([name, bytes], i) => ({ name, pct: (bytes / total) * 100, color: LANG_RAMP[i] }));
   const rest = sorted.slice(6).reduce((a, [, b]) => a + b, 0);
-  if (rest / total >= 0.005) top.push({ name: 'other', pct: (rest / total) * 100, color: '#3a3a3f' });
+  if (rest / total >= 0.005) top.push({ name: 'other', pct: (rest / total) * 100, color: '#3a3a36' });
 
   return {
     generated_at: new Date().toISOString(),
@@ -356,6 +357,9 @@ function render(html, data, lang) {
 
 rmSync(OUT, { recursive: true, force: true });
 cpSync(SRC, OUT, { recursive: true });
+
+// Compila Tailwind (styles/main.css) a la hoja que usa la web.
+execFileSync(join(ROOT, 'node_modules/.bin/tailwindcss'), ['-i', join(ROOT, 'styles/main.css'), '-o', join(OUT, 'assets/css/main.css'), '--minify'], { stdio: 'pipe' });
 
 const today = new Date().toISOString().slice(0, 10);
 const sitemapPath = join(OUT, 'sitemap.xml');
