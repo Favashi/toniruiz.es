@@ -101,7 +101,7 @@ flowchart LR
 
 1. Copies `site/` to `_site/`.
 2. Fetches public data for an **allow-list** of repositories (`escribadelamarca`,
-   `osr-manager`, `toniruiz.es`). It reads the latest release, the last push and the
+   `osr-manager`, `bestiarium`, `toniruiz.es`). It reads the latest release, the last push and the
    recent commits. Other repositories are never shown.
 3. Injects the data into both pages through `data-gh` / `data-gh-time` attributes and
    the `<!-- gh:activity -->` block. It also exposes the data as JSON for the terminal.
