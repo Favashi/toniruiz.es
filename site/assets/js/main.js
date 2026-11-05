@@ -44,7 +44,7 @@
         dev: [['backend', 'PHP, Python, Go, .NET, Node.js'], ['arquitectura', 'REST, GraphQL, microservicios, hexagonal, DDD'], ['datos', 'PostgreSQL, MySQL, SQL Server, NoSQL, dbt'], ['frontend', 'JavaScript, React, AngularJS, PWA'], ['calidad', 'PHPUnit, pgTAP, Playwright'], ['automatización', 'n8n, Make, Bash'], ['ia', 'agentes, RAG, LLM']],
         ops: [['cloud', 'AWS, GCP, Azure'], ['contenedores', 'Docker, Podman, Kubernetes, Compose, Nginx'], ['ci/cd', 'GitHub Actions, GitLab CI, Bitbucket Pipelines, Jenkins'], ['iac', 'Terraform, Ansible'], ['observab.', 'Prometheus, Grafana, ELK']]
       },
-      projects: { escriba: 'PWA para coleccionistas de la Marca del Este', osr: 'ayuda de mesa para directores de juego OSR', open: 'abrir app', code: 'código' },
+      projects: { escriba: 'PWA para coleccionistas de la Marca del Este', osr: 'ayuda de mesa para directores de juego OSR', bestiarium: 'cartas de monstruos para OSE y la Marca del Este', open: 'abrir app', code: 'código' },
       noData: 'Sin datos ahora mismo. Mira ',
       theme: (t) => 'Tema cambiado a <span class="b">' + (t === 'dark' ? 'oscuro' : 'claro') + '</span>.',
       ls: ['perfil/', 'stack/', 'proyectos/', 'contacto/'],
@@ -103,7 +103,7 @@
         dev: [['backend', 'PHP, Python, Go, .NET, Node.js'], ['architecture', 'REST, GraphQL, microservices, hexagonal, DDD'], ['data', 'PostgreSQL, MySQL, SQL Server, NoSQL, dbt'], ['frontend', 'JavaScript, React, AngularJS, PWA'], ['quality', 'PHPUnit, pgTAP, Playwright'], ['automation', 'n8n, Make, Bash'], ['ai', 'agents, RAG, LLM']],
         ops: [['cloud', 'AWS, GCP, Azure'], ['containers', 'Docker, Podman, Kubernetes, Compose, Nginx'], ['ci/cd', 'GitHub Actions, GitLab CI, Bitbucket Pipelines, Jenkins'], ['iac', 'Terraform, Ansible'], ['observab.', 'Prometheus, Grafana, ELK']]
       },
-      projects: { escriba: 'PWA for Aventuras en la Marca del Este collectors', osr: 'table assistant for OSR game masters', open: 'open app', code: 'code' },
+      projects: { escriba: 'PWA for Aventuras en la Marca del Este collectors', osr: 'table assistant for OSR game masters', bestiarium: 'monster cards for OSE and la Marca del Este', open: 'open app', code: 'code' },
       noData: 'No data right now. See ',
       theme: (t) => 'Theme switched to <span class="b">' + t + '</span>.',
       ls: ['profile/', 'stack/', 'projects/', 'contact/'],
@@ -303,7 +303,9 @@
       '<span class="b">escribadelamarca</span>  ' + T.projects.escriba,
       '                  ' + link('https://favashi.github.io/escribadelamarca/?ref=toniruiz-es', T.projects.open) + ' · ' + link('https://github.com/Favashi/escribadelamarca', T.projects.code),
       '<span class="b">osr-manager</span>       ' + T.projects.osr,
-      '                  ' + link('https://favashi.github.io/osr-manager/app/?ref=toniruiz-es', T.projects.open) + ' · ' + link('https://github.com/Favashi/osr-manager', T.projects.code)
+      '                  ' + link('https://favashi.github.io/osr-manager/app/?ref=toniruiz-es', T.projects.open) + ' · ' + link('https://github.com/Favashi/osr-manager', T.projects.code),
+      '<span class="b">bestiarium</span>        ' + T.projects.bestiarium,
+      '                  ' + link('https://favashi.github.io/bestiarium/?ref=toniruiz-es', T.projects.open) + ' · ' + link('https://github.com/Favashi/bestiarium', T.projects.code)
     ].join('\n'),
     'kubectl get pods': () => {
       const p = (gh && gh.projects) || {};
@@ -319,6 +321,7 @@
         '<span class="dim">' + 'NAME'.padEnd(26) + 'READY   STATUS             RESTARTS   AGE</span>',
         row('escribadelamarca', 'escribadelamarca', 'v1.14'),
         row('osr-manager', 'osr-manager', 'v0.4'),
+        row('bestiarium', 'bestiarium', 'latest'),
         row('toniruiz-es', 'toniruiz.es', 'latest')
       ].join('\n');
     },

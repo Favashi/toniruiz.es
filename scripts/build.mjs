@@ -24,7 +24,7 @@ const USER = 'Favashi';
 const OFFLINE = process.argv.includes('--offline');
 
 // Solo estos repos aparecen en la web. Cualquier otro se ignora a propósito.
-const PROJECTS = ['escribadelamarca', 'osr-manager', 'toniruiz.es'];
+const PROJECTS = ['escribadelamarca', 'osr-manager', 'bestiarium', 'toniruiz.es'];
 const ACTIVITY_LIMIT = 6;
 // La propia web cuenta en las estadísticas, pero no en la actividad reciente.
 const ACTIVITY_SKIP = new Set(['toniruiz.es']);
@@ -105,6 +105,7 @@ async function escribaShowcase() {
 const HEALTH_URLS = {
   escribadelamarca: 'https://favashi.github.io/escribadelamarca/',
   'osr-manager': 'https://favashi.github.io/osr-manager/app/',
+  bestiarium: 'https://favashi.github.io/bestiarium/',
 };
 async function healthCheck(url) {
   if (!url) return null;
