@@ -321,7 +321,7 @@
         '<span class="dim">' + 'NAME'.padEnd(26) + 'READY   STATUS             RESTARTS   AGE</span>',
         row('escribadelamarca', 'escribadelamarca', 'v1.14'),
         row('osr-manager', 'osr-manager', 'v0.4'),
-        row('bestiarium', 'bestiarium', 'latest'),
+        row('bestiarium', 'bestiarium', 'v1.0'),
         row('toniruiz-es', 'toniruiz.es', 'latest')
       ].join('\n');
     },
