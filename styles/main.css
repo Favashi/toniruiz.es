@@ -253,6 +253,10 @@
   .stage.osr .term, .stage.bestiarium .term { background: var(--carbon-2); box-shadow: inset 0 1px 0 rgba(255, 255, 255, .1); }
   .stage.osr .term-body, .stage.bestiarium .term-body { padding: 0; overflow: hidden; background-image: none; }
   .stage.osr img, .stage.bestiarium img { width: 100%; }
+  .stage.bestiarium .duo { width: 100%; }
+  .stage.bestiarium .term { width: 84%; }
+  .stage.bestiarium .back { margin-left: auto; }
+  .stage.bestiarium .front { position: relative; margin-top: -34%; box-shadow: 0 0 0 1px rgba(255, 255, 255, .14), 0 16px 40px rgba(0, 0, 0, .45); }
   .phone { position: relative; z-index: 1; flex: none; width: min(50%, 272px); padding: 6px 6px 0; border-radius: 28px 28px 0 0; background: #111110; box-shadow: 0 0 0 1px rgba(255, 255, 255, .14); transition: transform .3s var(--ease-out-soft); }
   .phone img { border-radius: 22px 22px 0 0; }
   .phone.back { z-index: 0; margin-right: -48px; transform: translateY(40px); }
